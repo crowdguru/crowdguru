@@ -9,7 +9,7 @@ public class BaseTest {
 	public void clearDown() {
 		guruRepository.deleteAll();
 		assertEquals(0, guruRepository.count());
-		log().info("Clearing out temporary repository, no. of gurus: '" + guruRepository.count() + "'");
+		log().info("Cleared out temporary repository, no. of gurus: '" + guruRepository.count() + "'");
 	}
 	
 	@Autowired
