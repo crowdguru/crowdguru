@@ -14,9 +14,10 @@
 	<url>http://maven.apache.org</url>
 
 	<properties>
-		<spring.data.neo4j.version>2.0.1.RELEASE</spring.data.neo4j.version>
+		<hibernate.version>4.1.9.Final</hibernate.version>
+		<spring.data.jpa.version>1.2.0.RELEASE</spring.data.jpa.version>
+		<c3p0.version>0.9.1.2</c3p0.version>
 	</properties>
-
 
 	<build>
 		<plugins>
@@ -46,23 +47,12 @@
 				</executions>
 				<configuration>
 					<outxml>true</outxml>
+
 					<aspectLibraries>
-
-						<aspectLibrary>
-							<groupId>org.springframework</groupId>
-							<artifactId>spring-aspects</artifactId>
-						</aspectLibrary>
-
-						<aspectLibrary>
-							<groupId>org.springframework.data</groupId>
-							<artifactId>spring-data-neo4j-aspects</artifactId>
-						</aspectLibrary>
-
 						<aspectLibrary>
 							<groupId>org.crowdguru</groupId>
 							<artifactId>logging</artifactId>
 						</aspectLibrary>
-
 					</aspectLibraries>
 
 					<source>${java.source}</source>
@@ -74,29 +64,22 @@
 	</build>
 
 	<dependencies>
-
 		<dependency>
 			<groupId>org.springframework</groupId>
-			<artifactId>spring-aop</artifactId>
+			<artifactId>spring-core</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.springframework</groupId>
-			<artifactId>spring-aspects</artifactId>
+			<artifactId>spring-beans</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.springframework</groupId>
-			<artifactId>spring-tx</artifactId>
+			<artifactId>spring-context</artifactId>
 			<version>${spring.version}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.data</groupId>
-			<artifactId>spring-data-neo4j-aspects</artifactId>
-			<version>${spring.data.neo4j.version}</version>
 		</dependency>
 
 		<dependency>
@@ -110,11 +93,82 @@
 			<artifactId>aspectjtools</artifactId>
 			<version>${aspectj.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>commons-collections</groupId>
+			<artifactId>commons-collections</artifactId>
+			<version>3.2.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-jpa</artifactId>
+			<version>${spring.data.jpa.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>cglib</groupId>
+			<artifactId>cglib</artifactId>
+			<version>2.2.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>${hibernate.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+			<version>${hibernate.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-ehcache</artifactId>
+			<version>${hibernate.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-c3p0</artifactId>
+			<version>${hibernate.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.18</version>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
+			<version>2.6</version>
+		</dependency>
 
 		<dependency>
 			<groupId>org.crowdguru</groupId>
 			<artifactId>logging</artifactId>
 			<version>${crowdguru.version}</version>
+		</dependency>
+		
+		
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>log4j-over-slf4j</artifactId>
+			<version>1.7.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>1.7.2</version>
+		</dependency>
+		<dependency>
+			<groupId>c3p0</groupId>
+			<artifactId>c3p0</artifactId>
+			<version>${c3p0.version}</version>
 		</dependency>
 	</dependencies>
 

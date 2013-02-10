@@ -4,6 +4,14 @@ import org.crowdguru.datastore.domain.Guru;
 
 public privileged aspect GuruItds {
 	
+	public Long Guru.getId() {
+		return id;
+	}
+
+	public void Guru.setId(Long id) {
+		this.id = id;
+	}
+
 	public String Guru.getForename() {
 		return forename;
 	}
@@ -21,7 +29,7 @@ public privileged aspect GuruItds {
 	}
 	
 	public String Guru.toString() {
-		return "{ nodeId: '" + getNodeId() + "', forename: '" + forename + "', surname: '" + surname + "' }";
+		return "{ id: '" + id + "', forename: '" + forename + "', surname: '" + surname + "' }";
 	}
 
 }

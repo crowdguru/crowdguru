@@ -3,7 +3,7 @@ package org.crowdguru.datastore.advice;
 import org.crowdguru.logging.IntroducedLogger;
 import org.springframework.stereotype.Component;
 
-public aspect Introductions {
+public aspect TestingIntroductions {
 	declare @type: org.crowdguru.datastore.helpers.impl.*: 		@Component;
 	declare @type: org.crowdguru.datastore.validators.impl.*: 	@Component;
 	declare @type: org.crowdguru.datastore.helpers.impl.*: 		@IntroducedLogger;

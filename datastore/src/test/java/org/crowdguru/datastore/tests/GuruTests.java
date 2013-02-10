@@ -21,13 +21,13 @@ public class GuruTests extends BaseTest {
 		guruValidator.validateGuru1(guru);
 		log().info("Got unattached guru '" + guru + "'");
 		
-		Guru merged = getGuruRepository().save(guru);
-		guruValidator.validateGuru1(merged);
-		log().info("Got merged guru '" + merged + "'");
+//		Guru merged = getGuruRepository().save(guru);
+//		guruValidator.validateGuru1(merged);
+//		log().info("Got merged guru '" + merged + "'");
 		
-		Guru retrieved = getGuruRepository().findOne(merged.getNodeId());
-		guruValidator.validateGuru1(retrieved);
-		log().info("Got retrieved guru '" + retrieved + "'");
+//		Guru retrieved = getGuruRepository().findOne(merged.getNodeId());
+//		guruValidator.validateGuru1(retrieved);
+//		log().info("Got retrieved guru '" + retrieved + "'");
 	}
 	
 	@Autowired

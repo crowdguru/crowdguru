@@ -1,8 +1,8 @@
 package org.crowdguru.datastore.repositories;
 
 import org.crowdguru.datastore.domain.Guru;
-import org.springframework.data.neo4j.repository.GraphRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface GuruRepository extends GraphRepository<Guru> {
+public interface GuruRepository extends JpaRepository<Guru, Long> {
 
 }
