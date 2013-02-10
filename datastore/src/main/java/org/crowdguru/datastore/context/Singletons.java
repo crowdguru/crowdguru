@@ -15,7 +15,7 @@ public class Singletons {
 	
 	public static synchronized ConfigurableApplicationContext context() {
 		if (_context == null) {
-			_context = new AnnotationConfigApplicationContext(CrowdGuruContext.class);
+			_context = new AnnotationConfigApplicationContext(CrowdGuruDatastoreContext.class);
 		}
 		return _context;
 	}

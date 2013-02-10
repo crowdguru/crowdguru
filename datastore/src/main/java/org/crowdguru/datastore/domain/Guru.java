@@ -21,5 +21,5 @@ public class Guru {
 	
 	@Basic
 	private String surname;
-
+	
 }

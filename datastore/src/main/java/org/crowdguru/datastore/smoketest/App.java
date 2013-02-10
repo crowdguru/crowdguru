@@ -17,9 +17,7 @@ public class App {
 	private void run() {
 		GuruRepository guruRepository = guruRepository();
 		log().info("Got guru repository '" + guruRepository + "'");
-		Guru guru = new Guru();
-		guru.setForename("GURU_FORENAME");
-		guru.setSurname("GURU_SURNAME");
+		Guru guru = new Guru("GURU_FORENAME", "GURU_SURNAME");
 		log().info("Saving '" + guru + "'");
 		Guru persisted = guruRepository().save(guru);
 		log().info("Saved '" + persisted + "'");

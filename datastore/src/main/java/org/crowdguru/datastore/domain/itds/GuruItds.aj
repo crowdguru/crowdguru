@@ -27,9 +27,16 @@ public privileged aspect GuruItds {
 	public void Guru.setSurname(String surname) {
 		this.surname = surname;
 	}
-	
+
+
 	public String Guru.toString() {
 		return "{ id: '" + id + "', forename: '" + forename + "', surname: '" + surname + "' }";
+	}
+
+	public Guru.new(String forename, String surname) {
+		super();
+		this.forename = forename;
+		this.surname = surname;
 	}
 
 }

@@ -11,7 +11,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 
 @Configuration
 @ImportResource("classpath:datastoreContext.xml")
-public class CrowdGuruContext {
+public class CrowdGuruDatastoreContext {
 
 	@Bean(name = "crowdGuruEntityManagerFactory")
 	public LocalContainerEntityManagerFactoryBean crowdGuruEntityManagerFactory() throws CrowdGuruDatastoreException {
