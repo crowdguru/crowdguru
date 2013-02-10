@@ -4,18 +4,18 @@
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:jpa="http://www.springframework.org/schema/data/jpa"
 	xmlns:tx="http://www.springframework.org/schema/tx"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+	xmlns:cloud="http://schema.cloudfoundry.org/spring"
+	xsi:schemaLocation="http://schema.cloudfoundry.org/spring http://schema.cloudfoundry.org/spring/cloudfoundry-spring-0.8.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
 		http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa-1.2.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
 
-	<context:property-placeholder location="classpath:datastore-${env}.properties" />
+ 	<context:property-placeholder location="classpath:datastore.properties" />
 	<context:annotation-config />
-
-	<jpa:repositories base-package="org.crowdguru.datastore.repositories" 
-		entity-manager-factory-ref="crowdGuruEntityManagerFactory" 
-		transaction-manager-ref="crowdGuruTransactionManager"/>
-
+	<context:component-scan base-package="org.crowdguru.datastore.context" />
 	
-	<tx:annotation-driven mode="aspectj" transaction-manager="crowdGuruTransactionManager" />
+	
+	<jpa:repositories base-package="org.crowdguru.datastore.repositories" /> 
+ 	<tx:annotation-driven mode="aspectj" />
 </beans>

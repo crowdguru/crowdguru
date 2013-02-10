@@ -17,6 +17,7 @@
 		<hibernate.version>4.1.9.Final</hibernate.version>
 		<spring.data.jpa.version>1.2.0.RELEASE</spring.data.jpa.version>
 		<c3p0.version>0.9.1.2</c3p0.version>
+		<cloudfoundry.version>0.8.2</cloudfoundry.version>
 	</properties>
 
 	<build>
@@ -165,11 +166,20 @@
 			<artifactId>slf4j-log4j12</artifactId>
 			<version>1.7.2</version>
 		</dependency>
+		
 		<dependency>
 			<groupId>c3p0</groupId>
 			<artifactId>c3p0</artifactId>
 			<version>${c3p0.version}</version>
 		</dependency>
+		
+		
+		<dependency>
+			<groupId>org.cloudfoundry</groupId>
+			<artifactId>cloudfoundry-runtime</artifactId>
+			<version>${cloudfoundry.version}</version>
+		</dependency>
+		
 	</dependencies>
 
 </project>

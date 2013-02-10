@@ -1,0 +1,16 @@
+--- 
+applications: 
+  target/crowdguru.war: 
+    instances: 1
+    mem: 512M
+    url: ${name}.${target-base}
+    name: crowdguru
+    services: 
+      crowdguru-datastore: 
+        type: mysql
+    framework: 
+      info: 
+        description: Java SpringSource Spring Application
+        mem: 512M
+        exec: 
+      name: spring

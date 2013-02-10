@@ -3,6 +3,14 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
+	<groupId>org.crowdguru</groupId>
+	<artifactId>crowdguru</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<name>crowdguru</name>
+	<url>http://maven.apache.org</url>
+
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<spring.version>3.2.1.RELEASE</spring.version>
@@ -11,14 +19,6 @@
 		<java.target>1.7</java.target>
 		<crowdguru.version>0.0.1-SNAPSHOT</crowdguru.version>
 	</properties>
-
-	<groupId>org.crowdguru</groupId>
-	<artifactId>crowdguru</artifactId>
-	<version>${crowdguru.version}</version>
-	<packaging>pom</packaging>
-
-	<name>crowdguru</name>
-	<url>http://maven.apache.org</url>
 
 
 	<modules>
@@ -68,7 +68,7 @@
 			<version>${spring.version}</version>
 			<scope>test</scope>
 		</dependency>
-
+		
 	</dependencies>
 
 	<repositories>

@@ -2,7 +2,7 @@ package org.crowdguru.datastore.context;
 
 import org.crowdguru.datastore.repositories.GuruRepository;
 import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class Singletons {
 
@@ -12,10 +12,10 @@ public class Singletons {
 		}
 		return _guruRepository;
 	}
-	
+
 	public static synchronized ConfigurableApplicationContext context() {
 		if (_context == null) {
-			_context = new AnnotationConfigApplicationContext(CrowdGuruDatastoreContext.class);
+			_context = new ClassPathXmlApplicationContext("datastoreContext.xml");
 		}
 		return _context;
 	}

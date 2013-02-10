@@ -11,5 +11,5 @@
 <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="org.crowdguru.datastore.smoketest.App"/>
 <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="datastore"/>
 <stringAttribute key="org.eclipse.jdt.launching.SOURCE_PATH_PROVIDER" value="org.eclipse.m2e.launchconfig.sourcepathProvider"/>
-<stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Dlogging.directory=/tmp -Dlogging.aspect=datastore-smoketest -Dbase.logging.level=DEBUG -Dthird.party.logging.level=INFO -Denv=local"/>
+<stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Denv=local -Dlogging.directory=/tmp -Dlogging.aspect=datastore-smoketest -Dbase.logging.level=DEBUG -Dthird.party.logging.level=INFO -Dspring.profiles.active=local"/>
 </launchConfiguration>
