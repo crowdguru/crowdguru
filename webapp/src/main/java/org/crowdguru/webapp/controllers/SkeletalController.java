@@ -14,8 +14,6 @@ public class SkeletalController {
 
 	@RequestMapping("/gurus")
 	public @ResponseBody List<Guru> allGurus() {
-		Guru guru = new Guru("Crowd", "Guru");
-		guruRepository.saveAndFlush(guru);
 		return guruRepository.findAll();
 	}
 
