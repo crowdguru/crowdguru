@@ -8,9 +8,22 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
 
 	<context:annotation-config />
+	<context:component-scan base-package="org.crowdguru.webapp.controllers" />
+	
+	<mvc:resources mapping="/static/**" location="/static/" />
 
 	<mvc:annotation-driven />
+
 	<bean class="org.crowdguru.datastore.context.CrowdGuruDatastoreContext" />
 	<context:component-scan base-package="org.crowdguru.webapp.controllers" />
-	<mvc:resources mapping="/static/**" location="static/"/>
+	
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.mustache.MustacheViewResolver">
+		<property name="cache" value="false" />
+		<property name="prefix" value="/WEB-INF/views/" />
+		<property name="suffix" value=".html" />
+		<property name="templateLoader">
+			<bean class="org.springframework.web.servlet.view.mustache.MustacheTemplateLoader" />
+		</property>
+	</bean>
+
 </beans>
