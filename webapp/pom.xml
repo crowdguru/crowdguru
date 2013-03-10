@@ -18,6 +18,7 @@
 
 	<properties>
 		<jackson.version>1.9.12</jackson.version>
+		<mustache.java-spring-webmvc.version>0.9.3-SNAPSHOT</mustache.java-spring-webmvc.version>
 	</properties>
 
 	<build>
@@ -90,5 +91,18 @@
 			<artifactId>jackson-mapper-asl</artifactId>
 			<version>${jackson.version}</version>
 		</dependency>
+		
+		<dependency>
+			<groupId>com.github.ericdwhite</groupId>
+			<artifactId>mustache.java-spring-webmvc</artifactId>
+			<version>${mustache.java-spring-webmvc.version}</version>
+		</dependency>
 	</dependencies>
+	
+	<repositories>
+		<repository>
+			<id>Sonatype Snapshots</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+		</repository>
+	</repositories>
 </project>
