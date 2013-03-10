@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class SkeletalController {
 
 	@RequestMapping("/gurus")
-	public @ResponseBody List<Guru> allGurus() {
+	public @ResponseBody List<Guru> allGurus() { 
 		return guruRepository.findAll();
 	}
 

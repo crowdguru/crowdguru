@@ -8,8 +8,9 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
 
 	<context:annotation-config />
-	<context:component-scan base-package="org.crowdguru.webapp.controllers" />
 
-	<bean class="org.crowdguru.datastore.context.CrowdGuruDatastoreContext" />
 	<mvc:annotation-driven />
+	<bean class="org.crowdguru.datastore.context.CrowdGuruDatastoreContext" />
+	<context:component-scan base-package="org.crowdguru.webapp.controllers" />
+	<mvc:resources mapping="/static/**" location="static/"/>
 </beans>
