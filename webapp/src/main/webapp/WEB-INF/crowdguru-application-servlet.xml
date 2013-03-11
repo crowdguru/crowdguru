@@ -10,7 +10,7 @@
 	<context:annotation-config />
 	<context:component-scan base-package="org.crowdguru.webapp.controllers" />
 	
-	<mvc:resources mapping="/static/**" location="/static/" />
+	<mvc:resources mapping="/static/**" location="static/" />
 
 	<mvc:annotation-driven />
 

@@ -1,6 +1,7 @@
 package org.crowdguru.webapp.controllers;
 
-//import javax.servlet.http.HttpServletRequest;
+import org.apache.commons.lang.StringUtils;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.ui.Model;
@@ -10,8 +11,11 @@ public class IndexController {
 	
 	@RequestMapping("/")
 	public String index(Model m) {
-		//m.addAttribute("contextPath", request.getContextPath());
-		m.addAttribute("contextPath", "/crowdguru/");
+		log().info("Context path '" + contextPath + "'");
+		m.addAttribute("contextPath", StringUtils.isNotBlank(contextPath) ? contextPath : "/");
 		return "index";
 	}
+	
+	@Value("${context.path}")
+	private String contextPath;
 }
