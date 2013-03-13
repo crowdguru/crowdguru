@@ -3,3 +3,4 @@ ephemeral
 .project
 .settings/
 .classpath
+.springBeans
