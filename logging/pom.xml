@@ -48,17 +48,8 @@
 				</executions>
 				<configuration>
 					<outxml>true</outxml>
-
-					<aspectLibraries>
-						<aspectLibrary>
-							<groupId>org.crowdguru</groupId>
-							<artifactId>logging</artifactId>
-						</aspectLibrary>
-					</aspectLibraries>
-
 					<source>${java.source}</source>
 					<target>${java.target}</target>
-
 				</configuration>
 			</plugin>
 		</plugins>
