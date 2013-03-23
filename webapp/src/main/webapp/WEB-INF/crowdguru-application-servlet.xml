@@ -3,7 +3,9 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:oauth="http://www.springframework.org/schema/security/oauth2"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+		http://www.springframework.org/schema/security/oauth2 http://www.springframework.org/schema/security/spring-security-oauth2-1.0.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
 
@@ -25,5 +27,44 @@
 			<bean class="org.springframework.web.servlet.view.mustache.MustacheTemplateLoader" />
 		</property>
 	</bean>
+
+
+	<!--according to the facebook docs, the 'client-id' is the App ID, and the 'client-secret' 
+		is the App Secret -->
+	<oauth:resource id="facebook" 
+		type="authorization_code" 
+		client-id="523456461031436" 
+		client-secret="f83d918ebed6dba3bb99515f14520fe5"
+		authentication-scheme="query" 
+		access-token-uri="https://graph.facebook.com/oauth/access_token" 
+		user-authorization-uri="https://www.facebook.com/dialog/oauth"
+		token-name="oauth_token" client-authentication-scheme="form" />
+		
+	<bean id="facebookController" class="org.crowdguru.webapp.controllers.FacebookController">
+		<property name="facebookRestTemplate">
+			<oauth:rest-template resource="facebook">
+				<property name="messageConverters">
+					<list>
+						<bean class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
+							<property name="supportedMediaTypes">
+								<list>
+									<bean class="org.springframework.http.MediaType">
+										<!--facebook sends its json as text/javascript for some reason -->
+										<constructor-arg value="text" />
+										<constructor-arg value="javascript" />
+									</bean>
+									<bean class="org.springframework.http.MediaType">
+										<constructor-arg value="application" />
+										<constructor-arg value="json" />
+									</bean>
+								</list>
+							</property>
+						</bean>
+					</list>
+				</property>
+			</oauth:rest-template>
+		</property>
+	</bean>
+		
 
 </beans>
