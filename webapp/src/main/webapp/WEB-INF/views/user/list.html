@@ -1,0 +1,15 @@
+{{> partials/header }}
+		<div class="container">
+			{{> partials/navigation }}
+			<section class="row-fluid">
+				<h2>Search Results</h2>
+				<div class="search-results">
+					<ul>
+						{{#gurus}}
+						<li><a href="{{contextPath}}users/{{id}}">{{forename}} {{surname}}</a></li>
+						{{/gurus}}
+					</ul>
+				</div>
+			</section>
+		</div>
+{{> partials/footer }}
