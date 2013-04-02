@@ -27,6 +27,7 @@ public class FacebookController {
 	}
 
 	public void setFacebookRestTemplate(OAuth2RestTemplate facebookRestTemplate) {
+		log().info("WOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO!");
 		this.facebookRestTemplate = facebookRestTemplate;
 	}
 
