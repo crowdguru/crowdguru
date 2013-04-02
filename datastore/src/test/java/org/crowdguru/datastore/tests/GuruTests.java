@@ -1,6 +1,6 @@
 package org.crowdguru.datastore.tests;
 
-import org.crowdguru.datastore.domain.Guru;
+import org.crowdguru.datastore.domain.User;
 import org.crowdguru.datastore.helpers.GuruHelper;
 import org.crowdguru.datastore.validators.GuruValidator;
 import org.junit.Test;
@@ -17,7 +17,7 @@ public class GuruTests extends BaseTest {
 	
 	@Test
 	public void testGuru1() {
-		Guru guru = guruHelper.guru1();
+		User guru = guruHelper.guru1();
 		guruValidator.validateGuru1(guru);
 		log().info("Got unattached guru '" + guru + "'");
 		
