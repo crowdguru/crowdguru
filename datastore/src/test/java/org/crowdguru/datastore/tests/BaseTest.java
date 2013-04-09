@@ -1,6 +1,6 @@
 package org.crowdguru.datastore.tests;
 
-import org.crowdguru.datastore.repositories.GuruRepository;
+import org.crowdguru.datastore.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import static org.junit.Assert.assertEquals;
 
@@ -13,6 +13,6 @@ public class BaseTest {
 	}
 	
 	@Autowired
-	private GuruRepository guruRepository;
+	private UserRepository guruRepository;
 
 }

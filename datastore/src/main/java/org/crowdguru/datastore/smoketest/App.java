@@ -2,8 +2,8 @@ package org.crowdguru.datastore.smoketest;
 
 import static org.crowdguru.datastore.context.Singletons.guruRepository;
 
-import org.crowdguru.datastore.domain.Guru;
-import org.crowdguru.datastore.repositories.GuruRepository;
+import org.crowdguru.datastore.domain.User;
+import org.crowdguru.datastore.repositories.UserRepository;
 
 public class App {
 
@@ -15,11 +15,11 @@ public class App {
 	}
 	
 	private void run() {
-		GuruRepository guruRepository = guruRepository();
+		UserRepository guruRepository = guruRepository();
 		log().info("Got guru repository '" + guruRepository + "'");
-		Guru guru = new Guru("GURU_FORENAME", "GURU_SURNAME");
+		User guru = new User("GURU_FORENAME", "GURU_SURNAME");
 		log().info("Saving '" + guru + "'");
-		Guru persisted = guruRepository().save(guru);
+		User persisted = guruRepository().save(guru);
 		log().info("Saved '" + persisted + "'");
 	}
 

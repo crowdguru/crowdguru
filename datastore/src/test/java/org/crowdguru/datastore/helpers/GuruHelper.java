@@ -1,7 +1,7 @@
 package org.crowdguru.datastore.helpers;
 
-import org.crowdguru.datastore.domain.Guru;
+import org.crowdguru.datastore.domain.User;
 
 public interface GuruHelper {
-	Guru guru1();
+	User guru1();
 }
