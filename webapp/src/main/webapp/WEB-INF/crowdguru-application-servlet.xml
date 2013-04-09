@@ -11,14 +11,14 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
 
+	<!-- <context:property-placeholder location="classpath:crowdguru-security.properties"/> -->
 	<context:annotation-config />
-	<context:component-scan base-package="org.crowdguru.webapp.controllers" />
-	
 	<mvc:resources mapping="/static/**" location="static/" />
-
 	<mvc:annotation-driven />
 
-	<bean class="org.crowdguru.datastore.context.CrowdGuruDatastoreContext" />
+	<import resource="classpath:datastoreContext.xml"/>
+
+<!-- 	<bean class="org.crowdguru.datastore.context.CrowdGuruDatastoreContext" /> -->
 	<context:component-scan base-package="org.crowdguru.webapp.controllers" />
 	
 	<bean id="viewResolver" class="org.springframework.web.servlet.view.mustache.MustacheViewResolver">
@@ -31,31 +31,7 @@
 	</bean>
 
 
-	<http access-denied-page="/login.jsp?authorization_error=true" xmlns="http://www.springframework.org/schema/security">
-		<intercept-url pattern="/facebook/**" access="ROLE_USER" />
-		<intercept-url pattern="/**" access="IS_AUTHENTICATED_ANONYMOUSLY" />
-
-		<form-login authentication-failure-url="/login.jsp?authentication_error=true" 
-			default-target-url="/index.jsp"
-			login-page="/login.jsp" 
-			login-processing-url="/login.do" />
-		<logout logout-success-url="/index.jsp" logout-url="/logout.do" />
-		<anonymous />
-		<custom-filter ref="oauth2ClientFilter" after="EXCEPTION_TRANSLATION_FILTER" />
-	</http>
-
-	<authentication-manager xmlns="http://www.springframework.org/schema/security">
-		<authentication-provider>
-			<user-service>
-				<user name="daniel" password="chicot" authorities="ROLE_USER" />
-			</user-service>
-		</authentication-provider>
-	</authentication-manager>
-
-	<oauth:client id="oauth2ClientFilter" />
-
-
-	<oauth:resource id="facebook" 
+<!-- 	<oauth:resource id="facebook" 
 		type="authorization_code" 
 		client-id="523456461031436" 
 		client-secret="f83d918ebed6dba3bb99515f14520fe5"
@@ -64,32 +40,5 @@
 		user-authorization-uri="https://www.facebook.com/dialog/oauth"
 		token-name="oauth_token" 
 		client-authentication-scheme="form" />
-		
-	<bean id="facebookController" class="org.crowdguru.webapp.controllers.FacebookController">
-		<property name="facebookRestTemplate">
-			<oauth:rest-template resource="facebook">
-				<property name="messageConverters">
-					<list>
-						<bean class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
-							<property name="supportedMediaTypes">
-								<list>
-									<bean class="org.springframework.http.MediaType">
-										<!--facebook sends its json as text/javascript for some reason -->
-										<constructor-arg value="text" />
-										<constructor-arg value="javascript" />
-									</bean>
-									<bean class="org.springframework.http.MediaType">
-										<constructor-arg value="application" />
-										<constructor-arg value="json" />
-									</bean>
-								</list>
-							</property>
-						</bean>
-					</list>
-				</property>
-			</oauth:rest-template>
-		</property>
-	</bean>
-		
-
+ -->
 </beans>

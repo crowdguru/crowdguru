@@ -17,7 +17,7 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 
 @Configuration
-@ImportResource("classpath:datastoreContext.xml")
+//@ImportResource("classpath:datastoreContext.xml")
 public class CrowdGuruDatastoreContext {
 
 	@Bean

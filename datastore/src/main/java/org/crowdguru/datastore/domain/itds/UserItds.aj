@@ -7,7 +7,18 @@ import org.crowdguru.datastore.domain.Skill;
 import org.crowdguru.datastore.domain.User;
 
 public privileged aspect UserItds {
-	
+
+	public User.new(Long id) {
+		super();
+		this.id = id;
+	}
+
+	public User.new(String forename, String surname) {
+		super();
+		this.forename = forename;
+		this.surname = surname;
+	}
+
 	public Long User.getId() {
 		return id;
 	}
@@ -68,10 +79,5 @@ public privileged aspect UserItds {
 		return "{ id: '" + id + "', forename: '" + forename + "', surname: '" + surname + "' }";
 	}
 
-	public User.new(String forename, String surname) {
-		super();
-		this.forename = forename;
-		this.surname = surname;
-	}
 
 }

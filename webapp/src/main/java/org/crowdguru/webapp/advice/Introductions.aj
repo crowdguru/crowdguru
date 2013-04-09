@@ -4,5 +4,5 @@ import org.crowdguru.logging.IntroducedLogger;
 import org.springframework.stereotype.Controller;
 
 public aspect Introductions {
-	declare @type: @Controller * : @IntroducedLogger;
+	declare @type: @Controller org.crowdguru..* : @IntroducedLogger;
 }
