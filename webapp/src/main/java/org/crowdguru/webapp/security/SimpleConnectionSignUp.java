@@ -30,6 +30,9 @@ public final class SimpleConnectionSignUp implements ConnectionSignUp {
 	private final AtomicLong userIdSequence = new AtomicLong();
 	
 	public String execute(Connection<?> connection) {
+		System.err.println("Connection: provider: '" + connection.getKey().getProviderId() 
+				+ "', provider user id '" + connection.getKey().getProviderUserId() + "'");
+		
 		return Long.toString(userIdSequence.incrementAndGet());
 	}
 

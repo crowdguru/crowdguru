@@ -11,15 +11,14 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
 
-	<!-- <context:property-placeholder location="classpath:crowdguru-security.properties"/> -->
+	<context:property-placeholder location="classpath:crowdguru-security.properties,classpath:datastore.properties"/>
 	<context:annotation-config />
 	<mvc:resources mapping="/static/**" location="static/" />
 	<mvc:annotation-driven />
 
 	<import resource="classpath:datastoreContext.xml"/>
 
-<!-- 	<bean class="org.crowdguru.datastore.context.CrowdGuruDatastoreContext" /> -->
-	<context:component-scan base-package="org.crowdguru.webapp.controllers" />
+	<context:component-scan base-package="org.crowdguru.webapp.controllers,org.crowdguru.webapp.configuration" />
 	
 	<bean id="viewResolver" class="org.springframework.web.servlet.view.mustache.MustacheViewResolver">
 		<property name="cache" value="false" />
