@@ -8,23 +8,28 @@ import org.crowdguru.datastore.domain.User;
 
 public privileged aspect UserItds {
 
-	public User.new(Long id) {
-		super();
-		this.id = id;
-	}
-
-	public User.new(String forename, String surname) {
-		super();
-		this.forename = forename;
-		this.surname = surname;
-	}
-
 	public Long User.getId() {
 		return id;
 	}
 
 	public void User.setId(Long id) {
 		this.id = id;
+	}
+
+	public String User.getProviderId() {
+		return providerId;
+	}
+
+	public void User.setProviderId(String providerId) {
+		this.providerId = providerId;
+	}
+
+	public String User.getProviderUserId() {
+		return providerUserId;
+	}
+
+	public void User.setProviderUserId(String providerUserId) {
+		this.providerUserId = providerUserId;
 	}
 
 	public String User.getForename() {
@@ -76,8 +81,13 @@ public privileged aspect UserItds {
 	}
 
 	public String User.toString() {
-		return "{ id: '" + id + "', forename: '" + forename + "', surname: '" + surname + "' }";
+		return "{ "
+				+ "id: '"             + id             + "', "
+				+ "forename: '"       + forename       + "', " 
+				+ "surname: '"        + surname        + "', "
+				+ "providerId: '"     + providerId     + "', "
+				+ "providerUserId: '" + providerUserId + "', "
+				+ "' }";
 	}
-
 
 }

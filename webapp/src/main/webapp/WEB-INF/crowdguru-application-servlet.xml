@@ -18,7 +18,10 @@
 
 	<import resource="classpath:datastoreContext.xml"/>
 
-	<context:component-scan base-package="org.crowdguru.webapp.controllers,org.crowdguru.webapp.configuration" />
+	<context:component-scan base-package="org.crowdguru.webapp.controllers,
+										  org.crowdguru.webapp.configuration,
+										  org.crowdguru.webapp.security,
+										  org.crowdguru.webapp.builders" />
 	
 	<bean id="viewResolver" class="org.springframework.web.servlet.view.mustache.MustacheViewResolver">
 		<property name="cache" value="false" />

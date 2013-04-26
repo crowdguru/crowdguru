@@ -4,7 +4,7 @@ import javax.sql.DataSource;
 
 import org.crowdguru.datastore.domain.User;
 import org.crowdguru.webapp.security.SecurityContext;
-import org.crowdguru.webapp.security.SimpleConnectionSignUp;
+import org.crowdguru.webapp.security.CrowdGuruConnectionSignUp;
 import org.crowdguru.webapp.security.SimpleSignInAdapter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -59,11 +59,13 @@ public class SocialConfiguration {
 	    	= new JdbcUsersConnectionRepository(dataSource,
 	    										connectionFactoryLocator(), 
 	    										Encryptors.noOpText());
-	    repository.setConnectionSignUp(new SimpleConnectionSignUp());
+	    repository.setConnectionSignUp(connectionSignUp);
 	    return repository;
 	}
 
-	
+
+	@Autowired
+	private CrowdGuruConnectionSignUp connectionSignUp;
 	
 	@Autowired
 	private DataSource dataSource;
