@@ -3,19 +3,25 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xmlns:oauth="http://www.springframework.org/schema/security/oauth2"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd
+		http://www.springframework.org/schema/security/oauth2 http://www.springframework.org/schema/security/spring-security-oauth2-1.0.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
 
+	<context:property-placeholder location="classpath:crowdguru-security.properties,classpath:datastore.properties"/>
 	<context:annotation-config />
-	<context:component-scan base-package="org.crowdguru.webapp.controllers" />
-	
 	<mvc:resources mapping="/static/**" location="static/" />
-
 	<mvc:annotation-driven />
 
-	<bean class="org.crowdguru.datastore.context.CrowdGuruDatastoreContext" />
-	<context:component-scan base-package="org.crowdguru.webapp.controllers" />
+	<import resource="classpath:datastoreContext.xml"/>
+
+	<context:component-scan base-package="org.crowdguru.webapp.controllers,
+										  org.crowdguru.webapp.configuration,
+										  org.crowdguru.webapp.security,
+										  org.crowdguru.webapp.builders" />
 	
 	<bean id="viewResolver" class="org.springframework.web.servlet.view.mustache.MustacheViewResolver">
 		<property name="cache" value="false" />
@@ -26,4 +32,15 @@
 		</property>
 	</bean>
 
+
+<!-- 	<oauth:resource id="facebook" 
+		type="authorization_code" 
+		client-id="523456461031436" 
+		client-secret="f83d918ebed6dba3bb99515f14520fe5"
+		authentication-scheme="query" 
+		access-token-uri="https://graph.facebook.com/oauth/access_token" 
+		user-authorization-uri="https://www.facebook.com/dialog/oauth"
+		token-name="oauth_token" 
+		client-authentication-scheme="form" />
+ -->
 </beans>

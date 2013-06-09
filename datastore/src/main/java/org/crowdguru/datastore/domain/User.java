@@ -20,6 +20,12 @@ public class User {
 	private Long id;
 	
 	@Basic
+	private String providerId;
+	
+	@Basic
+	private String providerUserId;
+	
+	@Basic
 	private String forename;
 	
 	@Basic
@@ -36,4 +42,5 @@ public class User {
 	
 	@ManyToMany
 	private Set<Sector> sectors;
+
 }
