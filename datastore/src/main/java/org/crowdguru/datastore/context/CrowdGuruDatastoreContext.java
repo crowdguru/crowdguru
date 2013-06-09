@@ -7,7 +7,6 @@ import org.crowdguru.datastore.exceptions.CrowdGuruDatastoreException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.ImportResource;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
@@ -17,7 +16,6 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 
 @Configuration
-@ImportResource("classpath:datastoreContext.xml")
 public class CrowdGuruDatastoreContext {
 
 	@Bean

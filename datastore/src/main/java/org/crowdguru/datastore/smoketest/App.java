@@ -17,7 +17,7 @@ public class App {
 	private void run() {
 		UserRepository guruRepository = guruRepository();
 		log().info("Got guru repository '" + guruRepository + "'");
-		User guru = new User("GURU_FORENAME", "GURU_SURNAME");
+		User guru = new User();
 		log().info("Saving '" + guru + "'");
 		User persisted = guruRepository().save(guru);
 		log().info("Saved '" + persisted + "'");

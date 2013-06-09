@@ -1,9 +1,9 @@
 <html>
 	<head>
 		<title>Authorization page</title>
-		<script type="text/javascript" src="static/lib/jquery/jquery-1.9.1.js"></script>
-		<script type="text/javascript" src="static/lib/crowdguru/authorization.js"></script>
-		<link href="static/css/crowdguru.css" rel="stylesheet" type="text/css">
+		<script type="text/javascript" src="/crowdguru/static/lib/jquery/jquery-1.9.1.js"></script>
+		<script type="text/javascript" src="/crowdguru/static/lib/crowdguru/authorization.js"></script>
+		<link href="/crowdguru/static/css/crowdguru.css" rel="stylesheet" type="text/css">
 		<style type="text/css">
 			* {
 				font-family: sans-serif;
