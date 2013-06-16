@@ -18,22 +18,22 @@ public class UserController {
 	
 	@RequestMapping("/users")
 	public String users(Model m) {
-		List<User> gurus = guruRepository.findAll();
+		List<User> users = userRepository.findAll();
 		m.addAttribute("contextPath", StringUtils.isNotBlank(contextPath) ? contextPath : "/");
-		m.addAttribute("gurus", gurus);
+		m.addAttribute("users", users);
 		return "user/list";
 	}
 	
 	@RequestMapping(value="/users/{userId}", method=RequestMethod.GET)
 	public String user(@PathVariable Long userId, Model m) {
-		User guru = guruRepository.findOne(userId);
+		User user = userRepository.findOne(userId);
 		m.addAttribute("contextPath", StringUtils.isNotBlank(contextPath) ? contextPath : "/");
-		m.addAttribute("guru", guru);
+		m.addAttribute("user", user);
 		return "user/profile";
 	}
 
 	@Autowired
-	private UserRepository guruRepository;
+	private UserRepository userRepository;
 	
 	@Value("${context.path}")
 	private String contextPath;

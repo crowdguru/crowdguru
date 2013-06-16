@@ -1,44 +1,88 @@
 @CHARSET "UTF-8";
 
 body {
-	background-color: #eee;
+	padding-top:60px;
+	background: #fff url('../img/bg-paper.jpg') repeat top center;
+	font-size:0.8em;
 }
-.container {
-	padding-top: 40px;
-}
-.navbar-fixed-top .navbar-inner {
-	padding-left: 10px;
-	padding-right: 10px;
-}
-.cg-box {
-	position: relative;
-	margin: 15px 0;
-	padding: 15px;
-	*padding-top: 15px;
-	background-color: #fff;
-	border: 1px solid #ddd;
-	-webkit-border-radius: 4px;
-	-moz-border-radius: 4px;
-	border-radius: 4px;
-	overflow: auto;
-}
-.hero-unit {
-	background-color: #fff;
-	margin-top: 30px;
-}
-.content-block {
-	background-color: #fff;
-	margin-top: 30px;
-}
-.content {
-	padding: 0 10px;
-}
-.thumbnail {
-	background-color: #fff;
-}
-.thumbnails h3 {
-	line-height: 1;
-}
+
+/* type */
+	h1, h2, h3 {
+		font-family: "Cabin Sketch", sans-serif;
+		font-weight:bold;
+	}
+	h2, h3 {
+		font-weight:normal;
+	}
+	h3 {
+		font-size:1.4em;
+	}
+	
+/* restyling the hero unit */
+	.hero-unit {
+		background-color:transparent;
+	}
+	
+/* task/guru boxes */
+	.taskbox-small {
+		margin-bottom:20px;
+		padding:10px;
+		border-radius:10px;
+		background-color:#eed6ed;
+	}
+	.gurubox-small {
+		margin-bottom:20px;
+		padding:10px;
+		border-radius:10px;
+		background-color:#e5e5e5;
+	}
+	.orgbox-small {
+		margin-bottom:20px;
+		padding:10px;
+		border-radius:10px;
+		background-color:#e5e5e5;
+	}
+		.taskbox-small img, .gurubox-small img, .orgbox-small img, .loginbox img {
+			width:270px;
+		}
+
+/* logins */
+	.loginbox {
+		background-color:#e5e5e5;
+		border-radius:10px;
+		padding:10px;
+	}
+	
+/* image upload button */
+	.imgplaceholder {
+		width:250px;
+		height:250px;
+	}
+	
+/* Personal home styles */
+	.recogniser {
+		text-align:center;
+	}
+	.recogniser img {
+		width:150px;
+	}
+	.inmail img {
+		width:50px;
+	}
+	
+/* temp */
+	.ben {
+		border:1px solid red;
+	}
+	.benbg {
+		background-color:green;
+	}
+	hr {
+		margin-top:0px;
+	}
+	
+	
+
 .tags {
 	list-style: none;
 	margin: 10px 0;
