@@ -18,6 +18,13 @@
 
 	</dependencies>
 	<build>
-		<finalName>webadmin</finalName>
+		<finalName>cgadmin</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.eclipse.jetty</groupId>
+				<artifactId>jetty-maven-plugin</artifactId>
+				<version>9.0.3.v20130506</version>
+			</plugin>
+		</plugins>
 	</build>
 </project>
