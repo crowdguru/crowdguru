@@ -6,7 +6,7 @@ public class SkeletalControllerTest {
 
 	@Test
 	public void testAllGurus() {
-		//fail("Not yet implemented");
+		fail("Not yet implemented");
 	}
 
 }
