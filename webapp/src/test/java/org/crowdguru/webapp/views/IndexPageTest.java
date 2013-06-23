@@ -1,23 +1,17 @@
 package org.crowdguru.webapp.views;
 
-import org.openqa.selenium.phantomjs.PhantomJSDriverService;
-import org.openqa.selenium.WebDriver;
+import static org.junit.Assert.assertTrue;
+
 import org.junit.Test;
-import static org.junit.Assert.*;
+import org.openqa.selenium.WebDriver;
 
-import java.util.logging.Logger;
-
-public class IndexPageTest extends BaseTest{
+public class IndexPageTest extends BaseTest {
 	@Test
 	public void testTitle() throws Exception {
 		WebDriver driver = this.getDriver();
         driver.get(this.getBaseURL());
-        Logger LOG = Logger.getLogger(PhantomJSDriverService.class.getName());
-        LOG.warning("Page title: " + driver.getTitle());
-        LOG.warning("Url: " + driver.getCurrentUrl());
+        log().warn("Page title: '" + driver.getTitle() + "'");
+        log().warn("Url: '" + driver.getCurrentUrl() + "'");
         assertTrue(driver.getTitle().contains("CrowdGuru"));
-        
-        //Take a screenshot 
-        //FileUtils.copyFile(((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE),new File("screenshot.png")); 
 	}
 }
