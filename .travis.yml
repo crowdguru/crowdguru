@@ -1,1 +1,11 @@
 language: java
+
+before_install:
+  - mysql -e 'CREATE DATABASE crowdguru' -u root
+  - echo "GRANT ALL ON crowdguru.* TO 'crowdguru'@'localhost' IDENTIFIED BY 'crowdguru';" | mysql -u root
+
+script: mvn verify
+
+after_failure: 
+  - cat webapp/target/cargo/configurations/jetty7x/logs/*.log
+  - cat webapp/target/failsafe-reports/*.txt
