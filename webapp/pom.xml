@@ -71,28 +71,28 @@
 				<groupId>org.eclipse.jetty</groupId>
 				<artifactId>jetty-maven-plugin</artifactId>
 				<version>9.0.3.v20130506</version>
-				</plugin>
-   			<plugin>
-      			<groupId>org.apache.maven.plugins</groupId>
-      			<artifactId>maven-surefire-plugin</artifactId>
-      			<version>2.15</version>
-      			<configuration>
-					<argLine>-Dconsole.logging.level=ERROR -Dlogging.aspect=crowdguru-webapp -Dlogging.directory="/tmp" -Denv=local</argLine>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.15</version>
+				<configuration>
+					<argLine>-Dconsole.logging.level=ERROR -Dlogging.aspect=crowdguru-webapp -Dlogging.directory="/tmp" -Denv=local -XX:-UseSplitVerifier</argLine>
 					<excludes>
 						<exclude>**/views/*.java</exclude>
-        			</excludes>
-     			</configuration>
-		   	</plugin>
+					</excludes>
+				</configuration>
+			</plugin>
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>failsafe-maven-plugin</artifactId>
 				<version>2.4.3-alpha-1</version>
 				<configuration>
 					<includes>
-            			<include>**/views/*.java</include>
-          			</includes>
-					<argLine>-Dconsole.logging.level=ERROR -Dlogging.aspect=crowdguru-webapp -Dlogging.directory="/tmp" -Denv=local</argLine>
-     			</configuration>
+						<include>**/views/*.java</include>
+					</includes>
+					<argLine>-Dconsole.logging.level=ERROR -Dlogging.aspect=crowdguru-webapp -Dlogging.directory="/tmp" -Denv=local -XX:-UseSplitVerifier</argLine>
+				</configuration>
 				<executions>
 					<execution>
 						<goals>
@@ -102,41 +102,74 @@
 					</execution>
 				</executions>
 			</plugin>
-      		<plugin>
-        		<groupId>org.codehaus.cargo</groupId>
-        		<artifactId>cargo-maven2-plugin</artifactId>
-        		<version>1.4.2</version>
-        		<executions>
-    				<execution>
-      					<id>start-container</id>
-      					<phase>pre-integration-test</phase>
-      					<goals>
-        					<goal>start</goal>
-      					</goals>
-    				</execution>
-    				<execution>
-     					<id>stop-container</id>
-      						<phase>post-integration-test</phase>
-      						<goals>
-        						<goal>stop</goal>
-      						</goals>
-    				</execution>
-  				</executions>
-        		<configuration>
-        		    <container>
-  						<systemProperties>
-    					<context.path>/crowdguru/</context.path>
-  						</systemProperties>
-    				</container>
-    				<deployables>
-      					<deployable>
-      						<type>war</type>
-        					<location>${project.build.directory}/${project.build.finalName}.${project.packaging}</location>
-        					<pingURL>http://localhost:8080/cargocpc/</pingURL>
-      					</deployable>
-    				</deployables>
-    			</configuration>
-      		</plugin>
+			<plugin>
+				<groupId>org.codehaus.cargo</groupId>
+				<artifactId>cargo-maven2-plugin</artifactId>
+				<version>1.4.2</version>
+				<executions>
+					<execution>
+						<id>start-container</id>
+						<phase>pre-integration-test</phase>
+						<goals>
+							<goal>start</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>stop-container</id>
+						<phase>post-integration-test</phase>
+						<goals>
+							<goal>stop</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<container>
+						<systemProperties>
+							<context.path>/crowdguru/</context.path>
+						</systemProperties>
+					</container>
+					<deployables>
+						<deployable>
+							<type>war</type>
+							<location>${project.build.directory}/${project.build.finalName}.${project.packaging}</location>
+							<pingURL>http://localhost:8080/cargocpc/</pingURL>
+						</deployable>
+					</deployables>
+					<skip>${skipTests}</skip>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>cobertura-maven-plugin</artifactId>
+				<configuration>
+					<formats>
+            			<format>html</format>
+          			</formats>
+					<check>
+						<branchRate>85</branchRate>
+						<lineRate>85</lineRate>
+						<haltOnFailure>false</haltOnFailure>
+						<totalBranchRate>85</totalBranchRate>
+						<totalLineRate>85</totalLineRate>
+						<packageLineRate>85</packageLineRate>
+						<packageBranchRate>85</packageBranchRate>
+					</check>
+					<instrumentation>
+						<excludes>
+							<exclude>org/crowdguru/webapp/advice/*.class</exclude>
+							<exclude>org/crowdguru/**/*Test.class</exclude>
+						</excludes>
+					</instrumentation>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>clean</goal>
+							<goal>check</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
 
@@ -213,17 +246,17 @@
 			<artifactId>standard</artifactId>
 			<version>1.1.2</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-java</artifactId>
 			<version>2.33.0</version>
 		</dependency>
-	
+
 		<dependency>
-    		<groupId>com.github.detro.ghostdriver</groupId>
-    		<artifactId>phantomjsdriver</artifactId>
-    		<version>1.0.3</version>
+			<groupId>com.github.detro.ghostdriver</groupId>
+			<artifactId>phantomjsdriver</artifactId>
+			<version>1.0.3</version>
 		</dependency>
 	</dependencies>
 

@@ -19,7 +19,6 @@
 
 
 	<build>
-	
 		<finalName>crowdguru</finalName>
 		<plugins>
 			<plugin>
