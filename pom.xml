@@ -18,6 +18,9 @@
 		<java.source>1.7</java.source>
 		<java.target>1.7</java.target>
 		<crowdguru.version>0.0.1-SNAPSHOT</crowdguru.version>
+		<cobertura.version>2.5.2</cobertura.version>
+		<junit.version>4.10</junit.version>
+		<apache.maven.plugin.version>2.4</apache.maven.plugin.version>
 	</properties>
 
 
@@ -34,7 +37,7 @@
 				<plugin>
 					<groupId>org.codehaus.mojo</groupId>
 					<artifactId>cobertura-maven-plugin</artifactId>
-					<version>2.5.2</version>
+					<version>${cobertura.version}</version>
 				</plugin>
 			</plugins>
 		</pluginManagement>
@@ -42,38 +45,20 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>2.4</version>
+				<version>${apache.maven.plugin.version}</version>
 				<configuration>
 					<source>${java.source}</source>
 					<target>${java.target}</target>
 				</configuration>
 			</plugin>
 			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>cobertura-maven-plugin</artifactId>
-				<configuration>
-					<formats>
-            			<format>html</format>
-          			</formats>
-					<check>
-						<branchRate>85</branchRate>
-						<lineRate>85</lineRate>
-						<haltOnFailure>false</haltOnFailure>
-						<totalBranchRate>85</totalBranchRate>
-						<totalLineRate>85</totalLineRate>
-						<packageLineRate>85</packageLineRate>
-						<packageBranchRate>85</packageBranchRate>
-					</check>
-				</configuration>
-				<executions>
-					<execution>
-						<goals>
-							<goal>clean</goal>
-							<goal>check</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>${apache.maven.plugin.version}</version>
+                <configuration>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
 		</plugins>
 	</build>
 
@@ -81,7 +66,7 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.10</version>
+			<version>${junit.version}</version>
 			<scope>test</scope>
 		</dependency>
 
