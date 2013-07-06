@@ -25,18 +25,6 @@
 				<artifactId>jetty-maven-plugin</artifactId>
 				<version>9.0.3.v20130506</version>
 			</plugin>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>cobertura-maven-plugin</artifactId>
-				<configuration>
-					<instrumentation>
-						<excludes>
-							<exclude>org/crowdguru/webadmin/advice/*.class</exclude>
-							<exclude>org/crowdguru/**/*Test.class</exclude>
-						</excludes>
-					</instrumentation>
-				</configuration>
-			</plugin>
 		</plugins>
 	</build>
 </project>
