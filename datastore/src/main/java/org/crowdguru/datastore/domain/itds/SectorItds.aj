@@ -30,5 +30,12 @@ public privileged aspect SectorItds {
 	public void Sector.setUsers(Set<User> users) {
 		this.users = users;
 	}
+	
+	public String Sector.toString() {
+		return "{ "
+				+ "id: '"   + id + "', "
+				+ "name: '" + name + "', " 
+				+ "' }";
+	}
 
 }

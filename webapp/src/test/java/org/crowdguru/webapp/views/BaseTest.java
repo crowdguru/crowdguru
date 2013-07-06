@@ -43,16 +43,11 @@ public abstract class BaseTest {
 		caps.setJavascriptEnabled(true);
 		caps.setCapability("takesScreenshot", true);
 
-		System.setProperty("console.logging.level", loadProperty("console_logging_level"));
-		System.setProperty("logging.aspect", loadProperty("logging_aspect"));
-		System.setProperty("logging.directory", loadProperty("logging_directory"));
-		System.setProperty("env", loadProperty("env"));
-
 		// Prepare builder configurations
-		phantomjsExecPath = loadProperty("phantomjs_exec_path");
-		phantomjsLogLevel = loadProperty("phantomjs_driver_log_level");
-		phantomjsLogFile = loadProperty("phantomjs_driver_log_file");
-		baseURL = loadProperty("base_url");
+		phantomjsExecPath = loadProperty("phantomjs.execpath");
+		phantomjsLogLevel = loadProperty("phantomjs.loglevel");
+		phantomjsLogFile = loadProperty("phantomjs.logfile");
+		baseURL = loadProperty("base.url");
 	}
 
 	private static String loadProperty(String fieldKey) {

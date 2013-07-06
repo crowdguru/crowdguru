@@ -2,6 +2,8 @@ package org.crowdguru.webapp.controllers;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.commons.lang.StringUtils;
 import org.crowdguru.datastore.domain.User;
 import org.crowdguru.datastore.repositories.UserRepository;
@@ -19,7 +21,7 @@ public class UserController {
 	@RequestMapping("/users")
 	public String users(Model m) {
 		List<User> users = userRepository.findAll();
-		m.addAttribute("contextPath", StringUtils.isNotBlank(contextPath) ? contextPath : "/");
+		m.addAttribute("contextPath", context.getContextPath());
 		m.addAttribute("users", users);
 		return "user/list";
 	}
@@ -27,7 +29,7 @@ public class UserController {
 	@RequestMapping(value="/users/{userId}", method=RequestMethod.GET)
 	public String user(@PathVariable Long userId, Model m) {
 		User user = userRepository.findOne(userId);
-		m.addAttribute("contextPath", StringUtils.isNotBlank(contextPath) ? contextPath : "/");
+		m.addAttribute("contextPath", context.getContextPath());
 		m.addAttribute("user", user);
 		return "user/profile";
 	}
@@ -35,6 +37,6 @@ public class UserController {
 	@Autowired
 	private UserRepository userRepository;
 	
-	@Value("${context.path}")
-	private String contextPath;
+	@Autowired
+	private HttpServletRequest context;
 }

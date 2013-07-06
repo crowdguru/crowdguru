@@ -14,5 +14,3 @@ after_failure:
 
 after_success: mvn verify
 
-after_script: mvn cobertura:cobertura
-

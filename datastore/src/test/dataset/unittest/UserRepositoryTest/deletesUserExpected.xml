@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <sector />
+  <sector />
+  <skill />
+  <skill />
+  <user id="1" aboutMe="USER_1_ABOUTME" forename="USER_1_FORENAME" surname="USER_1_SURNAME" homeTown="USER_1_HOMETOWN" providerId="USER_1_PROVIDER_ID" providerUserId="USER_1_PROVIDER_USERID"/>
+  <user_sector/>
+  <user_skill />
+</dataset>

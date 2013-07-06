@@ -68,16 +68,28 @@
 				</configuration>
 			</plugin>
 			<plugin>
-				<groupId>org.eclipse.jetty</groupId>
-				<artifactId>jetty-maven-plugin</artifactId>
-				<version>9.0.3.v20130506</version>
-			</plugin>
-			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
-				<version>2.15</version>
 				<configuration>
-					<argLine>-Dconsole.logging.level=ERROR -Dlogging.aspect=crowdguru-webapp -Dlogging.directory="/tmp" -Denv=local -XX:-UseSplitVerifier</argLine>
+					<systemProperties>
+						<property>
+							<name>console.logging.level</name>
+							<value>ERROR</value>
+						</property>
+						<property>
+							<name>logging.aspect</name>
+							<value>webapp-unit</value>
+						</property>
+						<property>
+							<name>logging.directory</name>
+							<value>target/log</value>
+						</property>
+						<property>
+							<name>third.party.logging.level</name>
+							<value>DEBUG</value>
+						</property>
+					</systemProperties>
+					<argLine>-XX:-UseSplitVerifier</argLine>
 					<excludes>
 						<exclude>**/views/*.java</exclude>
 					</excludes>
@@ -86,12 +98,28 @@
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>failsafe-maven-plugin</artifactId>
-				<version>2.4.3-alpha-1</version>
 				<configuration>
 					<includes>
 						<include>**/views/*.java</include>
 					</includes>
-					<argLine>-Dconsole.logging.level=ERROR -Dlogging.aspect=crowdguru-webapp -Dlogging.directory="/tmp" -Denv=local -XX:-UseSplitVerifier</argLine>
+					<systemProperties>
+						<property>
+							<name>console.logging.level</name>
+							<value>ERROR</value>
+						</property>
+						<property>
+							<name>logging.aspect</name>
+							<value>webapp-integration</value>
+						</property>
+						<property>
+							<name>logging.directory</name>
+							<value>target/log</value>
+						</property>
+						<property>
+							<name>third.party.logging.level</name>
+							<value>DEBUG</value>
+						</property>
+					</systemProperties>
 				</configuration>
 				<executions>
 					<execution>
@@ -125,16 +153,12 @@
 				<configuration>
 					<container>
 						<systemProperties>
-							<context.path>/crowdguru/</context.path>
+							<console.logging.level>ERROR</console.logging.level>
+							<logging.aspect>webapp-jetty</logging.aspect>
+							<logging.directory>../../../log/</logging.directory>
+							<third.party.logging.level>DEBUG</third.party.logging.level>
 						</systemProperties>
 					</container>
-					<deployables>
-						<deployable>
-							<type>war</type>
-							<location>${project.build.directory}/${project.build.finalName}.${project.packaging}</location>
-							<pingURL>http://localhost:8080/cargocpc/</pingURL>
-						</deployable>
-					</deployables>
 					<skip>${skipTests}</skip>
 				</configuration>
 			</plugin>
@@ -156,8 +180,8 @@
 					</check>
 					<instrumentation>
 						<excludes>
-							<exclude>org/crowdguru/webapp/advice/*.class</exclude>
-							<exclude>org/crowdguru/**/*Test.class</exclude>
+							<exclude>**/advice/*.class</exclude>
+							<exclude>**/*Test.class</exclude>
 						</excludes>
 					</instrumentation>
 				</configuration>
@@ -257,6 +281,12 @@
 			<groupId>com.github.detro.ghostdriver</groupId>
 			<artifactId>phantomjsdriver</artifactId>
 			<version>1.0.3</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-all</artifactId>
+			<version>1.9.5</version>
 		</dependency>
 	</dependencies>
 

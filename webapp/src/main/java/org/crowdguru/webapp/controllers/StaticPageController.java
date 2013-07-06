@@ -1,6 +1,9 @@
 package org.crowdguru.webapp.controllers;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.commons.lang.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,11 +19,11 @@ public class StaticPageController {
 	
 	@RequestMapping("/pages/**")
 	public String index(Model m) {
-		log().info("Context path '" + contextPath + "'");
-		m.addAttribute("contextPath", StringUtils.isNotBlank(contextPath) ? contextPath : "/");
+		log().info("Context path '" + context.getContextPath() + "'");
+		m.addAttribute("contextPath", context.getContextPath());
 		return "pages/default";
 	}
 	
-	@Value("${context.path}")
-	private String contextPath;
+	@Autowired
+	private HttpServletRequest context;
 }
