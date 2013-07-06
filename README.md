@@ -11,3 +11,6 @@ Development site: http://cloudguru.cfapps.io/
 Developers mailing list: https://groups.google.com/forum/#!forum/crowdguru-dev 
 
 Google+ community page: https://plus.google.com/u/0/communities/115932858304206533693
+
+
+Go to [wiki page] (https://github.com/crowdguru/crowdguru/wiki) for further information
