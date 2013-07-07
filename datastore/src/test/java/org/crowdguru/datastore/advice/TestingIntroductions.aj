@@ -9,8 +9,5 @@ public aspect TestingIntroductions {
 	declare @type: org.crowdguru.datastore.validators.impl.*: 	@Component;
 	declare @type: org.crowdguru.datastore.helpers.impl.*: 		@IntroducedLogger;
 	declare @type: org.crowdguru.datastore.validators.impl.*: 	@IntroducedLogger;
-	declare @type: org.crowdguru.datastore.repository.Base*:    @IntroducedLogger;
-	declare @type: org.crowdguru.datastore.domain.*:    	    @IntroducedLogger;
-	declare @type: org.crowdguru.datastore.integration.*:  	    @IntroducedLogger;
-	declare @type: org.crowdguru.datastore.repository.BaseRepositoryTest : @ActiveProfiles({"dev", "unittest"});
+	declare @type: org.crowdguru.datastore.integration.RepositoryTestCommon : @ActiveProfiles({"dev", "unittest"});
 }

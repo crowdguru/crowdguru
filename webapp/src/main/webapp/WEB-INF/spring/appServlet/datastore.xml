@@ -24,5 +24,13 @@ http://www.springframework.org/schema/util http://www.springframework.org/schema
 			location="classpath:META-INF/prod/hibernate.properties" />
 		<import resource="classpath:datastoreContext.xml" />
 	</beans>
+	
+	<beans profile="cloud">
+		<context:property-placeholder
+			location="classpath:crowdguru-security.properties, classpath:META-INF/cloud/datasource.properties" />
+		<util:properties id="hibernateProperties"
+			location="classpath:META-INF/cloud/hibernate.properties" />
+		<import resource="classpath:datastoreContext.xml" />
+	</beans>
 
 </beans>

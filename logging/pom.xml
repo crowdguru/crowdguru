@@ -10,16 +10,10 @@
 	</parent>
 
 	<artifactId>logging</artifactId>
-
-	<name>logging</name>
+	<name>logging - logging module</name>
 	<url>http://maven.apache.org</url>
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	</properties>
-
 
 	<build>
-		<finalName>crowdguru</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>

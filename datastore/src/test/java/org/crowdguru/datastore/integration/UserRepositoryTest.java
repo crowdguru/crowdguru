@@ -1,4 +1,4 @@
-package org.crowdguru.datastore.repository;
+package org.crowdguru.datastore.integration;
 
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
@@ -30,7 +30,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @TransactionConfiguration(defaultRollback = false)
-public class UserRepositoryTest extends BaseRepositoryTest{
+public class UserRepositoryTest extends RepositoryTestCommon{
 
 	@Autowired
 	private UserRepository cut;

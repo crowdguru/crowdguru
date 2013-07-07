@@ -12,13 +12,13 @@
 	<artifactId>webadmin</artifactId>
 
 	<packaging>war</packaging>
-	<name>webadmin Maven Webapp</name>
+	<name>webadmin - admin web application</name>
 	<url>http://maven.apache.org</url>
+
 	<dependencies>
 
 	</dependencies>
 	<build>
-		<finalName>cgadmin</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.eclipse.jetty</groupId>
