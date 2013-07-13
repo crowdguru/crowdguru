@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <sector id="1" name="SKILL_1_NAME"/>
+  <sector id="2" name="SKILL_2_NAME"/>
+  <sector id="3" name="SKILL_3_NAME"/>
+  <skill />
+  <user />
+  <user_sector/>
+  <user_skill />
+</dataset>

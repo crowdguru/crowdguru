@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <sector id="1" name="IT"/>
+  <SECTOR id="2" name="Marketing"/>
+  <skill id="1" name="Java"/>
+  <skill id="2" name="Python"/>
+  <user id="1" aboutMe="Best dancer" forename="Michael" surname="Jackson" homeTown="London" providerId="123456" providerUserId="mjackson"/>
+  <user id="2" aboutMe="Another user" forename="Smith" surname="Alice" homeTown="Manchester" providerId="12347" providerUserId="alice2"/>
+  <user id="3" aboutMe="Tennis instructor" forename="Mike" surname="Weland" homeTown="Bristol" providerId="456" providerUserId="mikeB"/>
+  <user_sector users_id="1" sectors_id="1"/>
+  <user_skill users_id="1" skills_id="1"/>
+</dataset>

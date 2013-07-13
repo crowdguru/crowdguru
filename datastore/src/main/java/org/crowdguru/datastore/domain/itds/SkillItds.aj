@@ -30,5 +30,11 @@ public privileged aspect SkillItds {
 	public void Skill.setUsers(Set<User> users) {
 		this.users = users;
 	}
-
+	
+	public String Skill.toString() {
+		return "{ "
+				+ "id: '"   + id + "', "
+				+ "name: '" + name + "', " 
+				+ "' }";
+	}
 }

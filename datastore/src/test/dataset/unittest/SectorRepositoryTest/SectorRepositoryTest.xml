@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <sector id="1" name="SECTOR_1_NAME"/>
+  <sector id="2" name="SECTOR_2_NAME"/>
+  <skill id="1" name="SKILL_1_NAME"/>
+  <skill id="2" name="SKILL_2_NAME"/>
+  <user id="1" aboutMe="USER_1_ABOUTME" forename="USER_1_FORENAME" surname="USER_1_SURNAME" homeTown="USER_1_HOMETOWN" providerId="USER_1_PROVIDER_ID" providerUserId="USER_1_PROVIDER_USERID"/>
+  <user id="2" aboutMe="USER_2_ABOUTME" forename="USER_2_FORENAME" surname="USER_2_SURNAME" homeTown="USER_2_HOMETOWN" providerId="USER_2_PROVIDER_ID" providerUserId="USER_2_PROVIDER_USERID"/>
+  <user_sector />
+  <user_skill />
+</dataset>
