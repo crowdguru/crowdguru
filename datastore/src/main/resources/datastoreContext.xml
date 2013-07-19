@@ -30,4 +30,9 @@
 		<context:property-placeholder location="classpath:/META-INF/prod/datasource.properties" />
 		<util:properties id="hibernateProperties" location="classpath:META-INF/prod/hibernate.properties"/>
 	</beans>
+	
+	<beans profile="cloud">
+		<context:property-placeholder location="classpath:/META-INF/cloud/datasource.properties" />
+		<util:properties id="hibernateProperties" location="classpath:META-INF/cloud/hibernate.properties"/>
+	</beans>
 </beans>

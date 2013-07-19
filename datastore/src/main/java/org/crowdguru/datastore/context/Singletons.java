@@ -2,8 +2,6 @@ package org.crowdguru.datastore.context;
 
 import org.crowdguru.datastore.repositories.UserRepository;
 import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.context.support.GenericApplicationContext;
 import org.springframework.context.support.GenericXmlApplicationContext;
 
 public class Singletons {

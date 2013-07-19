@@ -1,4 +1,4 @@
-package org.crowdguru.datastore.repository;
+package org.crowdguru.datastore.integration;
 
 import org.crowdguru.datastore.helpers.DatabaseTesterHelper;
 import org.crowdguru.datastore.helpers.FileOperationsHelper;
@@ -8,7 +8,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.transaction.AfterTransaction;
 
 @ContextConfiguration({ "/datastoreContext.xml", "/datastoreTestContext.xml" })
-public class BaseRepositoryTest {
+public class RepositoryTestCommon {
 
 	@Autowired
 	protected FileOperationsHelper fileHelper;

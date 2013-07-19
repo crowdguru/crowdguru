@@ -11,7 +11,7 @@ For any kind feature request, problem or defect please raise an issue from [here
 
 Web site: http://www.crowdguru.org
 
-Development site: http://cloudguru.cfapps.io/
+Development site: http://crowdguru.cfapps.io/
 
 Developers mailing list: https://groups.google.com/forum/#!forum/crowdguru-dev 
 

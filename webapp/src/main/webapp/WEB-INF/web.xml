@@ -16,7 +16,7 @@
 	<!-- Sets default profile to production -->
 	<context-param>
 		<param-name>spring.profiles.default</param-name>
-		<param-value>prod</param-value>
+		<param-value>dev</param-value>
 	</context-param>
 
 	<!-- Creates the Spring Container shared by all Servlets and Filters -->
