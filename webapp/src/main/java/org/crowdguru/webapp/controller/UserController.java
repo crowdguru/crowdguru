@@ -1,4 +1,4 @@
-package org.crowdguru.webapp.controllers;
+package org.crowdguru.webapp.controller;
 
 import java.util.List;
 
@@ -23,7 +23,7 @@ public class UserController {
 		List<User> users = userRepository.findAll();
 		m.addAttribute("contextPath", context.getContextPath());
 		m.addAttribute("users", users);
-		return "user/list";
+		return "users/list";
 	}
 	
 	@RequestMapping(value="/users/{userId}", method=RequestMethod.GET)
@@ -31,7 +31,7 @@ public class UserController {
 		User user = userRepository.findOne(userId);
 		m.addAttribute("contextPath", context.getContextPath());
 		m.addAttribute("user", user);
-		return "user/profile";
+		return "users/profile";
 	}
 
 	@Autowired

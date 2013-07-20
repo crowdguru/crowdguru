@@ -1,4 +1,4 @@
-package org.crowdguru.webapp.controllers;
+package org.crowdguru.webapp.controller;
 
 import java.util.List;
 

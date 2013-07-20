@@ -1,7 +1,7 @@
-package org.crowdguru.webapp.builders.impl;
+package org.crowdguru.webapp.builder.impl;
 
 import org.crowdguru.datastore.domain.User;
-import org.crowdguru.webapp.builders.Builder;
+import org.crowdguru.webapp.builder.Builder;
 import org.springframework.social.connect.Connection;
 import org.springframework.social.connect.UserProfile;
 import org.springframework.stereotype.Component;

@@ -37,11 +37,8 @@
 	</bean>
 
 	<context:component-scan
-		base-package="org.crowdguru.webapp.controllers,
+		base-package="org.crowdguru.webapp.controller,
 										  org.crowdguru.webapp.configuration,
 										  org.crowdguru.webapp.security,
-										  org.crowdguru.webapp.builders" />
-										  
-	<import resource="datastore.xml" />
-	
+										  org.crowdguru.webapp.builder" />	
 </beans>

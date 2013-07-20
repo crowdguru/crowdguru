@@ -45,7 +45,7 @@ public class DatastoreConfigTest{
 	}
 	
 	@Test
-	public void createsT(){
+	public void createsJpaVendorAdapter(){
 		JpaVendorAdapter adapter = cut.vendorAdapter();
 		assertThat(adapter, instanceOf(HibernateJpaVendorAdapter.class));
 	}

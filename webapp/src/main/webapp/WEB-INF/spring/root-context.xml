@@ -5,4 +5,8 @@
 
 	<!-- Root Context: defines shared resources visible to all other web components -->
 
+	<!-- Load datastore submodule context -->
+	<import resource="classpath:datastoreContext.xml"/>
+	
+	
 </beans>
