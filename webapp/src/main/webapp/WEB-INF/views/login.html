@@ -1,0 +1,74 @@
+{{> partials/header }}
+	{{> partials/navigation }}
+<div class="container">
+	  	<!-- login form -->
+	  		<!-- NOTE: form validation using jQuery? -->
+	  		<h1>login or register...</h1>
+	  		Login with your favourite social media or do it the old fashioned way with an email address and password.
+	  		<br><br>
+			<div class="row-fluid">
+				<!-- soc media logins -->
+					<div class="span4">
+						<div class="loginbox">
+							<!-- linkedin -->
+							<form action="/" method="">
+								<div class="input-prepend">
+									<button class="btn btn-large btn-info">li</button>
+									<button class="btn btn-large btn-info">Log in with LinkedIn</button>
+								</div>
+							</form>
+							
+							<!-- google+ -->
+							<form action="/" method="">
+								<div class="input-prepend">
+									<button class="btn btn-large btn-danger">g+</button>
+									<button class="btn btn-large btn-danger">Log in with Google</button>
+								</div>
+							</form>
+							
+							<!-- fb -->
+							<form action="/" method="">
+								<div class="input-prepend">
+									<button class="btn btn-large btn-primary">f</button>
+									<button class="btn btn-large btn-primary">Log in with Facebook</button>
+								</div>
+							</form>
+						</div><!-- end loginbox -->
+					</div>
+				<!-- end soc media logins -->
+				
+				<!-- form login -->
+					<div class="span5">
+						<div class="loginbox">
+							<form action="register.shtml" class="form-horizontal">
+							  <div class="control-group">
+							    <label class="control-label" for="inputEmail">Email</label>
+							    <div class="controls">
+							      <input type="text" id="inputEmail" name="[UserEmail]" placeholder="Email">
+							    </div>
+							  </div>
+							  <div class="control-group">
+							    <label class="control-label" for="inputPassword">Password</label>
+							    <div class="controls">
+							      <input type="password" id="inputPassword" name="[UserPassword]" placeholder="Password">
+							    </div>
+							  </div>
+							  <div class="control-group">
+							    <div class="controls">
+							      <label class="checkbox">
+							        <input type="checkbox" name="[UserRememberme]"> Remember me
+							      </label>
+							      <button type="submit" class="btn">Sign in</button>
+							      
+							      <a href="register.html" class="btn">Register</a>
+							    </div>
+							  </div>
+							</form>
+						</div><!-- end loginbox -->
+					</div>
+				<!-- end form login -->
+			
+			</div>
+		<!-- end login form -->
+	</div><!-- end container -->
+{{> partials/footer }}

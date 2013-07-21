@@ -1,0 +1,267 @@
+{{> partials/header }}
+	{{> partials/navigation }}
+<div class="container">
+	  	<!-- register form -->
+	  		<!-- NOTE: form validation using jQuery? -->
+	  		<h1>Let's get started...</h1>
+	  		CrowdGuru is a big community of people helping each other to make the world a better place. If you are a Guru or looking for a Guru, or both, then please let us know a bit about you.
+	  		<br>
+	  		<!-- NOTE:	Suggested dynamics on this page... but please feel free to improve!
+	  					1. Ajax uploader for avatar
+	  					2. Pull in avatar from social login as default with option to replace
+	  					3. Pull in personal an job details from FB/LI/G+ etc as appropriate
+	  					4. Seperate sections trigger visibility of different form areas using javascript. These are wrapped in divs e.g. gururegform
+	  					NB. The <form> tags have not been added yet.
+	  					-->
+	  					
+	  		<hr>
+	  					
+			<div class="row-fluid">
+				<!-- avatar -->
+					<div class="span3">
+						<div id="avatar" class="loginbox">
+							<img src="static/img/blank-avatar.png" class="img-rounded">
+							Please select an image
+							<input type="file" value="[UserAvatarFile]" id="">
+							<button class="btn btn-large"><i class="icon-upload"> </i> Upload</button>
+						</div><!-- end loginbox -->
+					</div>
+				<!-- end avatar -->
+				
+				<!-- basics -->
+					<div class="span6">
+						<h2>you login details</h2>
+						<div class="control-group">
+						    <label class="control-label" for="inputEmail">Email</label>
+						    <div class="controls">
+						      <input type="text" id="inputEmail" name="[UserEmail]" placeholder="Email">
+						    </div>
+						  </div>
+						  <div class="control-group">
+						    <label class="control-label" for="inputPassword">Password</label>
+						    <div class="controls">
+						      <input type="password" id="inputPassword" name="[UserPassword]" placeholder="Password">
+						    </div>
+						  </div>
+						
+						<h2>about you</h2>
+						My name is 
+							<input name="[UserFirstName]" type="text" class="input-small" placeholder="Given name">
+							<input name="[UserFamilyName]" type="text" class="input-small" placeholder="Family name">
+							
+						<br>
+						and I work for <input name="[UserCompany]" type="text" class="input-medium" placeholder="Your organisation">
+						
+						<br>
+						as a <input name="[UserJobTitleCurrent]" type="text" class="input-medium" placeholder="Current job title">
+												
+						<br>
+						<textarea name="[UserShortProfile]" rows="3" placeholder="Write a short profile telling people a bit about your experience and what you do..." class="span6"></textarea>
+						
+						<br>
+						<div class="input-prepend">
+							<button class="btn btn-large btn-info">li</button>
+							<button class="btn btn-large btn-info">Grab these details from LinkedIn</button>
+						</div>
+						
+						<label class="checkbox">
+						  <input type="checkbox" value="[UserIsGuru]">
+						  I'm a Guru
+						</label>
+						<label class="checkbox">
+						  <input type="checkbox" value="[UserIsGuru]">
+						  I need a Guru
+						</label>
+						
+						<br>
+						We think you are in <a href="#">Location</a>
+						<button name="[UserLocation]" class="btn">Change location</button>
+						<button name="[UserLocationPermit]" class="btn"><i class="icon-remove"> </i> Disable location</button>
+						
+						<br><br>
+						<label class="checkbox">
+						  <input type="checkbox" value="[UserAgreeTC]">
+						  I agree to CrowdGuru's <a href="#" target="_new">Terms and Conditions</a>
+						</label>
+						
+						<br>
+						<a href="#" class="btn">Save details and continue registration later</a>
+						
+					</div>
+				<!-- end basics -->
+			</div><!-- end row-fluid -->
+			
+			<br>
+			<hr>
+			
+			<!-- Guru section -->
+				<div id="gururegform">
+					<a href="#" class="btn btn-info pull-right"><i class="icon-zoom-in icon-white"></i> Preview my profile [modal]</a>
+					<h2>I'm a Guru!</h2>
+			  		There are people who need your help to achieve great things. To help us link you up with them, tell us what you are great at...
+			  		<br>
+					
+					<div class="row-fluid">
+						<label class="checkbox">
+						  <input type="checkbox" value="[UserEmailGuruMatches]" checked="checked">
+						  Please email me with good matches
+						</label>
+				  		<br>
+				  		
+				  		<!-- tabbed Guru skills selection -->
+				  			<div class="tabbable tabs-left">
+							  <ul class="nav nav-tabs">
+							    <li class="active"><a href="#tab1" data-toggle="tab">[SkillGroup]1</a></li>
+							    <li><a href="#tab2" data-toggle="tab">[SkillGroup]2</a></li>
+							    <li><a href="#tab3" data-toggle="tab">[SkillGroup]3</a></li>
+							    <li><a href="#tab4" data-toggle="tab">...and so on</a></li>
+							  </ul>
+							  <div class="tab-content">
+							    <div class="tab-pane active" id="tab1">
+							      <h2>[SkillGroup]1</h2>
+									<label class="checkbox">
+										<input type="checkbox" value="[Skill]">
+									  	[Skill]
+										</label>
+									<label class="checkbox">
+										<input type="checkbox" value="[Skill]">
+									  	[Skill]
+										</label>
+									<label class="checkbox">
+										<input type="checkbox" value="[Skill]">
+									  	[Skill]
+										</label>
+									<label class="checkbox">
+										<input type="checkbox" value="[Skill]">
+									  	[Skill]
+										</label>
+									<label class="checkbox">
+										<input type="checkbox" value="[Skill]">
+									  	[Skill]
+										</label>
+									<label class="checkbox">
+										<input type="checkbox" value="[Skill]">
+									  	[Skill]
+										</label>
+									<label class="checkbox">
+										<input type="checkbox" value="[Skill]">
+									  	[Skill]
+										</label>
+									<label class="checkbox">
+										<input type="checkbox" value="[Skill]">
+									  	[Skill]
+										</label>
+							    </div>
+							    <div class="tab-pane" id="tab2">
+							      <h2>[SkillGroup]2</h2>
+							     	 <label class="checkbox">
+										<input type="checkbox" value="[Skill]">
+									  	[Skill]
+										</label>
+									<label class="checkbox">
+										<input type="checkbox" value="[Skill]">
+									  	...
+										</label>
+							    </div>
+							    <div class="tab-pane" id="tab3">
+							      <h2>[SkillGroup]3</h2>
+									<label class="checkbox">
+										<input type="checkbox" value="[Skill]">
+									  	[Skill]
+										</label>
+									<label class="checkbox">
+										<input type="checkbox" value="[Skill]">
+									  	...
+										</label>
+							    </div>
+							    <div class="tab-pane" id="tab4">
+							      <h2>...and so on</h2>
+							      	<label class="checkbox">
+										<input type="checkbox" value="[Skill]">
+									  	[Skill]
+										</label>
+									<label class="checkbox">
+										<input type="checkbox" value="[Skill]">
+									  	...
+										</label>
+							    </div>
+							  </div>
+							</div>
+				  		<!-- end tabbed Guru skills selection -->
+					
+					</div><!-- end row-fluid -->
+				</div><!-- end gururegform -->
+			<!-- end Guru section -->
+			
+			<!-- Cause section -->
+				<div id="causeregform">
+					<hr>
+					<a href="#" class="btn btn-info pull-right"><i class="icon-zoom-in icon-white"></i> Preview my profile [modal]</a>
+					<h2>I'm looking for a Guru!</h2>
+			  		There is a Guru in the crowd who can help you to overcome your challenge. To help us link you up with them, tell us what you need...
+			  		<br>
+			  		
+					<!-- organisation setup -->
+					<!-- NOTE:	the sector selection puts in place a placeholder graphic until a logo or image is uploaded
+								we may need to check the [OrganisationName] against existing entries to prevent duplicates
+								-->
+						<div class="row-fluid">
+							<!-- org display box -->
+								<div class="span3">
+						  			<div class="orgbox-small">
+						  				<button class="btn imgplaceholder"><i class="icon-upload"> </i> Upload logo or image</button>
+						  				<input name="[OrganisationName]" type="text" class="span12" placeholder="Organisation name">
+						  				
+						  				
+						  				
+						  			</div>
+						  		</div><!-- end span3 -->
+						  	<!-- end org display box -->
+					  		
+					  		<div class="span9">
+					  			<h2>about your cause</h2>
+						  		What does your cause do? (check those that apply)
+						  		
+						  		<br>
+						  		<textarea name="[OrganisationShortProfile]" rows="3" placeholder="Write a short profile telling people what your cause aims to achieve..." class="span6"></textarea>
+						  		
+						  		<br>
+						  		Tick the boxes that apply most to what your organisation does (usually 2-4 boxes is about right)...
+				  				<!-- list of organisation sectors -->
+				  					<label class="checkbox">
+										<input type="checkbox" value="[OrganisationSector]">
+									  	[OrganisationSector] e.g. working with young people [young people]
+										</label>
+									<label class="checkbox">
+										<input type="checkbox" value="[OrganisationSector]">
+									  	[OrganisationSector] e.g. education [education]
+										</label>
+									<label class="checkbox">
+										<input type="checkbox" value="[OrganisationSector]">
+									  	[OrganisationSector]
+										</label>
+									<label class="checkbox">
+										<input type="checkbox" value="[OrganisationSector]">
+									  	[OrganisationSector]
+										</label>
+									<label class="checkbox">
+										<input type="checkbox" value="[OrganisationSector]">
+									  	...
+										</label>
+				  				
+				  				<!-- end list of organisation sectors -->
+					  		
+					  		</div><!-- end span9 -->
+					  	</div><!-- end row-fluid -->
+					<!-- end organisation setup -->
+					
+					<a href="createtask.shtml" class="btn btn-large">Publish and get some help &raquo;</a>
+					
+				</div><!-- end causeregform -->
+			<!-- end Cause section -->
+			
+			<hr>
+			
+		<!-- end register form -->
+	</div><!-- end container -->
+{{> partials/footer }}
