@@ -1,0 +1,157 @@
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	
+	<parent>
+		<groupId>org.crowdguru</groupId>
+		<artifactId>crowdguru</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	
+	<artifactId>acceptance</artifactId>
+	<name>acceptance - acceptance tests</name>
+	<url>http://maven.apache.org</url>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<cargo.version>1.4.2</cargo.version>
+		<phantomjsdriver.version>1.0.3</phantomjsdriver.version>
+		<selenium.version>2.33.0</selenium.version>
+		<aspetj.plugin.version>1.2</aspetj.plugin.version>
+		<deployable.name>crowdguru</deployable.name>
+		<deployable.path>${basedir}/../webapp/target/${deployable.name}.war</deployable.path>
+	</properties>
+	
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>aspectj-maven-plugin</artifactId>
+				<version>${aspetj.plugin.version}</version>
+				<dependencies>
+					<dependency>
+						<groupId>org.aspectj</groupId>
+						<artifactId>aspectjrt</artifactId>
+						<version>${aspectj.version}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.aspectj</groupId>
+						<artifactId>aspectjtools</artifactId>
+						<version>${aspectj.version}</version>
+					</dependency>
+				</dependencies>
+				<executions>
+					<execution>
+						<goals>
+							<goal>compile</goal>
+							<goal>test-compile</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<outxml>true</outxml>
+
+					<aspectLibraries>
+						<aspectLibrary>
+							<groupId>org.crowdguru</groupId>
+							<artifactId>logging</artifactId>
+						</aspectLibrary>
+					</aspectLibraries>
+
+					<source>${java.source}</source>
+					<target>${java.target}</target>
+
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.cargo</groupId>
+				<artifactId>cargo-maven2-plugin</artifactId>
+				<version>${cargo.version}</version>
+				<executions>
+					<execution>
+						<id>start-container</id>
+						<phase>pre-integration-test</phase>
+						<goals>
+							<goal>start</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>stop-container</id>
+						<phase>post-integration-test</phase>
+						<goals>
+							<goal>stop</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<container>
+					</container>
+      				<deployables>
+        				<deployable>
+    						<location>${deployable.path}</location>
+    						<pingURL>http://localhost:8080/${deployable.name}</pingURL>
+    						<type>war</type>
+        				</deployable>
+      				</deployables>
+					<skip>${skipTests}</skip>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>failsafe-maven-plugin</artifactId>
+				<configuration>
+					<includes>
+						<include>**/usecase/*.java</include>
+					</includes>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>integration-test</goal>
+							<goal>verify</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.crowdguru</groupId>
+			<artifactId>logging</artifactId>
+			<version>${crowdguru.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.crowdguru</groupId>
+			<artifactId>webapp</artifactId>
+			<version>${crowdguru.version}</version>
+			<scope>test</scope>
+			<type>war</type>
+		</dependency>
+		
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-java</artifactId>
+			<version>${selenium.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.detro.ghostdriver</groupId>
+			<artifactId>phantomjsdriver</artifactId>
+			<version>${phantomjsdriver.version}</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+	
+</project>

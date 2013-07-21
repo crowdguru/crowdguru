@@ -75,24 +75,6 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
 				<configuration>
-					<systemProperties>
-						<property>
-							<name>console.logging.level</name>
-							<value>ERROR</value>
-						</property>
-						<property>
-							<name>logging.aspect</name>
-							<value>webapp-unit</value>
-						</property>
-						<property>
-							<name>logging.directory</name>
-							<value>target/log</value>
-						</property>
-						<property>
-							<name>third.party.logging.level</name>
-							<value>DEBUG</value>
-						</property>
-					</systemProperties>
 					<argLine>-XX:-UseSplitVerifier</argLine>
 					<excludes>
 						<exclude>**/views/*.java</exclude>
@@ -106,24 +88,6 @@
 					<includes>
 						<include>**/views/*.java</include>
 					</includes>
-					<systemProperties>
-						<property>
-							<name>console.logging.level</name>
-							<value>ERROR</value>
-						</property>
-						<property>
-							<name>logging.aspect</name>
-							<value>webapp-integration</value>
-						</property>
-						<property>
-							<name>logging.directory</name>
-							<value>target/log</value>
-						</property>
-						<property>
-							<name>third.party.logging.level</name>
-							<value>DEBUG</value>
-						</property>
-					</systemProperties>
 				</configuration>
 				<executions>
 					<execution>
@@ -156,13 +120,6 @@
 				</executions>
 				<configuration>
 					<container>
-						<systemProperties>
-							<console.logging.level>ERROR</console.logging.level>
-							<logging.aspect>webapp-jetty</logging.aspect>
-							<logging.directory>../../../log/</logging.directory>
-							<third.party.logging.level>DEBUG</third.party.logging.level>
-							<!-- <spring.profiles.active>cloud</spring.profiles.active> -->
-						</systemProperties>
 					</container>
 					<skip>${skipTests}</skip>
 				</configuration>
@@ -177,19 +134,11 @@
 					<check>
 						<branchRate>85</branchRate>
 						<lineRate>85</lineRate>
-						<haltOnFailure>true</haltOnFailure>
+						<haltOnFailure>false</haltOnFailure>
 						<totalBranchRate>85</totalBranchRate>
 						<totalLineRate>85</totalLineRate>
 						<packageLineRate>85</packageLineRate>
 						<packageBranchRate>85</packageBranchRate>
-						<regexes>
-						<!-- Need real cloudfoundry environment to increase line coverage. Can not go beyond that -->
-              				<regex>
-                				<pattern>org.crowdguru.webapp.controller.SkeletalController</pattern>
-                				<branchRate>85</branchRate>
-                				<lineRate>66</lineRate>
-              				</regex>
-           			 	</regexes>
 					</check>
 					<instrumentation>
 						<excludes>

@@ -103,28 +103,6 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
 				<configuration>
-					<systemProperties>
-						<property>
-							<name>console.logging.level</name>
-							<value>WARN</value>
-						</property>
-						<property>
-							<name>logging.aspect</name>
-							<value>datastore-unit</value>
-						</property>
-						<property>
-							<name>logging.directory</name>
-							<value>target/log</value>
-						</property>
-						<property>
-							<name>third.party.logging.level</name>
-							<value>ERROR</value>
-						</property>
-							<property>
-							<name>base.logging.level</name>
-							<value>DEBUG</value>
-						</property>
-					</systemProperties>
 					<argLine>-XX:-UseSplitVerifier</argLine>
 					<excludes>
 						<exclude>**/integration/*.java</exclude>
@@ -144,28 +122,6 @@
 						<exclude>**/context/*.java</exclude>
 						<exclude>**/repository/*.java</exclude>
 					</excludes>
-					<systemProperties>
-						<property>
-							<name>console.logging.level</name>
-							<value>WARN</value>
-						</property>
-						<property>
-							<name>logging.aspect</name>
-							<value>datastore-integration</value>
-						</property>
-						<property>
-							<name>logging.directory</name>
-							<value>target/log</value>
-						</property>
-						<property>
-							<name>third.party.logging.level</name>
-							<value>ERROR</value>
-						</property>
-							<property>
-							<name>base.logging.level</name>
-							<value>DEBUG</value>
-						</property>
-					</systemProperties>
 				</configuration>
 				<executions>
 					<execution>

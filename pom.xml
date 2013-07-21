@@ -34,6 +34,7 @@
 		<module>webapp</module>
 		<module>webadmin</module>
 		<module>logging</module>
+		<module>acceptance</module>
 	</modules>
 
 	<build>
