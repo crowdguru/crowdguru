@@ -25,7 +25,6 @@
 		<taglibs.standard.version>1.1.2</taglibs.standard.version>
 		<servlet.api.version>2.5</servlet.api.version>
 		<jstl.version>1.2</jstl.version>
-		<aspetj.plugin.version>1.2</aspetj.plugin.version>
 		<cargo.version>1.4.2</cargo.version>
 	</properties>
 
@@ -184,7 +183,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>org.crowdguru</groupId>
-			<artifactId>datastore</artifactId>
+			<artifactId>service</artifactId>
 			<version>${crowdguru.version}</version>
 		</dependency>
 

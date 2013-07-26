@@ -6,9 +6,11 @@
 
 	<!-- Root Context: defines shared resources visible to all other web components -->
 
-	<!-- Loads datastore submodule context -->
-	<import resource="classpath:datastoreContext.xml"/>
-	
 	<!-- Loads security context-->
 	<import resource="security-context.xml"/>
+	
+ 	<beans profile="dev, prod, cloud">
+		<!-- Loads service submodule context -->
+		<import resource="classpath:serviceContext.xml"/>
+	</beans>
 </beans>

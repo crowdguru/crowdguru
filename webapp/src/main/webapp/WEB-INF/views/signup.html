@@ -1,6 +1,6 @@
 {{> partials/header }} 
 	{{> partials/navigation }}
-
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%> 
 <div class="container">
 	<h1>Let's get started...</h1>
 	CrowdGuru is a big community of people helping each other to make the
@@ -33,15 +33,14 @@
 					<input type="password" id="inputPassword" name="password" placeholder="Password">
 				</div>
 			</div>
-			</form>
 			<h2>about you</h2>
 			My name is 
-			<input name="[UserFirstName]" type="text" class="input-small" placeholder="Given name"> 
-			<input name="[UserFamilyName]" type="text" class="input-small" placeholder="Family name"> 
+			<input name="forename" type="text" class="input-small" placeholder="Given name"> 
+			<input name="surname" type="text" class="input-small" placeholder="Family name"> 
 			<br> and I work for 
-			<input name="[UserCompany]" type="text" class="input-medium" placeholder="Your organisation"> 
-			<br> as a <input name="[UserJobTitleCurrent]" type="text" class="input-medium" placeholder="Current job title"> <br>
-			<textarea name="[UserShortProfile]" rows="3"
+			<input name="organization" type="text" class="input-medium" placeholder="Your organisation"> 
+			<br> as a <input name="jobTitle" type="text" class="input-medium" placeholder="Current job title"> <br>
+			<textarea name="shortProfile" rows="3"
 				placeholder="Write a short profile telling people a bit about your experience and what you do..."
 				class="span6">
 			</textarea>
@@ -52,21 +51,20 @@
 					from LinkedIn
 				</button>
 			</div>
-			<label class="checkbox"> <input type="checkbox" value="[UserIsGuru]"> I'm a Guru </label> 
-			<label class="checkbox"> <input type="checkbox" value="[UserIsGuru]"> I need a Guru </label> 
+			<label class="checkbox"> <input type="checkbox" name="guru" value="true"> I'm a Guru </label> 
+			<label class="checkbox"> <input type="checkbox" name="keyContact" value="true"> I need a Guru </label> 
 			<br> We think you are in <a href="#">Location</a>
-			<button name="[UserLocation]" class="btn">Change location</button>
-			<button name="[UserLocationPermit]" class="btn">
-				<i class="icon-remove"> </i> Disable location
-			</button>
+			<button name="location" class="btn">Change location</button>
+			<label class="checkbox"> <input type="checkbox" name="locationDisabled" value="true"> Disable location</label> 
 			<br>
 			<br> 
-			<label class="checkbox"> <input type="checkbox" value="[UserAgreeTC]"> 
+			<label class="checkbox"> <input type="checkbox" name="agreedTC" value="true"> 
 				I agree to CrowdGuru's 
 				<a href="#" target="_new">Terms and Conditions</a>
 			</label> 
 			<br>
-			<input type="submit" form="registration" value="Save details and continue registration later"> 
+			<input type="submit" form="registration" value="Save details and continue registration later">
+			</form> 
 			<!-- <a href="#" class="btn">Save details and continue registration later</a> -->
 		</div>
 	</div>

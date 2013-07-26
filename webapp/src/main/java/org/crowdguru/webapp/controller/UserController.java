@@ -1,5 +1,6 @@
 package org.crowdguru.webapp.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,7 +19,7 @@ public class UserController {
 	
 	@RequestMapping("/users")
 	public String users(Model m) {
-		List<User> users = userRepository.findAll();
+		List<User> users = new ArrayList<User>();
 		m.addAttribute("contextPath", context.getContextPath());
 		m.addAttribute("users", users);
 		return "users/list";
@@ -26,14 +27,11 @@ public class UserController {
 	
 	@RequestMapping(value="/users/{userId}", method=RequestMethod.GET)
 	public String user(@PathVariable Long userId, Model m) {
-		User user = userRepository.findOne(userId);
+		User user = new User();
 		m.addAttribute("contextPath", context.getContextPath());
 		m.addAttribute("user", user);
 		return "users/profile";
 	}
-
-	@Autowired
-	private UserRepository userRepository;
 	
 	@Autowired
 	private HttpServletRequest context;

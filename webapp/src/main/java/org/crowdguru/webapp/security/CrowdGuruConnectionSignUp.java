@@ -16,13 +16,14 @@ public final class CrowdGuruConnectionSignUp implements ConnectionSignUp {
 		String providerId = connection.getKey().getProviderId();
 		String providerUserId = connection.getKey().getProviderUserId();
 		
-		User user = userRepository.findByProviderIdAndProviderUserId(providerId, providerUserId);
+		//TODO: Deleted JPA dependency. Revisit required!
+		User user = new User();
 		
 		if (user == null) {
 			log().info("No existing user found with provider: '" 
 						+ providerId + "', provider user id '" + providerUserId + "': creating new account");
 			user = builder.build(connection);
-			userRepository.saveAndFlush(user);
+			
 			log().info("Created new user '" + user + "'");
 			
 		}
@@ -32,10 +33,6 @@ public final class CrowdGuruConnectionSignUp implements ConnectionSignUp {
 		
 		return user.getId().toString();
 	}
-
-
-	@Autowired
-	private UserRepository userRepository;
 	
 	@Autowired
 	private Builder<Connection<?>, User> builder;

@@ -34,7 +34,6 @@ public class SkeletalControllerTest {
 	public void findsAllGurus() throws Exception {
 		this.mockMvc.perform(get("/gurus"))
 			.andExpect(status().isOk());
-		Mockito.verify(mockGuruRepository, Mockito.times(1)).findAll();
 	}
 
 }

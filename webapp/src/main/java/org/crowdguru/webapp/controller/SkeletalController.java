@@ -1,5 +1,6 @@
 package org.crowdguru.webapp.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.crowdguru.datastore.domain.User;
@@ -14,10 +15,6 @@ public class SkeletalController {
 
 	@RequestMapping("/gurus")
 	public @ResponseBody List<User> allGurus() { 
-		return guruRepository.findAll();
+		return new ArrayList<User>();
 	}
-
-
-	@Autowired
-	private UserRepository guruRepository;
 }
