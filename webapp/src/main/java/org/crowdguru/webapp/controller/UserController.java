@@ -1,14 +1,13 @@
-package org.crowdguru.webapp.controllers;
+package org.crowdguru.webapp.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.commons.lang.StringUtils;
 import org.crowdguru.datastore.domain.User;
 import org.crowdguru.datastore.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,22 +19,19 @@ public class UserController {
 	
 	@RequestMapping("/users")
 	public String users(Model m) {
-		List<User> users = userRepository.findAll();
+		List<User> users = new ArrayList<User>();
 		m.addAttribute("contextPath", context.getContextPath());
 		m.addAttribute("users", users);
-		return "user/list";
+		return "users/list";
 	}
 	
 	@RequestMapping(value="/users/{userId}", method=RequestMethod.GET)
 	public String user(@PathVariable Long userId, Model m) {
-		User user = userRepository.findOne(userId);
+		User user = new User();
 		m.addAttribute("contextPath", context.getContextPath());
 		m.addAttribute("user", user);
-		return "user/profile";
+		return "users/profile";
 	}
-
-	@Autowired
-	private UserRepository userRepository;
 	
 	@Autowired
 	private HttpServletRequest context;
