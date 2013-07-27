@@ -1,9 +1,11 @@
 package org.crowdguru.service.domain.impl;
 
-import org.crowdguru.datastore.repositories.UserRepository;
+import java.util.List;
+
+import org.crowdguru.datastore.domain.Sector;
+import org.crowdguru.datastore.domain.SkillGroup;
 import org.crowdguru.service.domain.RegistrationService;
 import org.crowdguru.service.request.RegistrationRequest;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -11,13 +13,20 @@ public class RegistrationServiceImpl implements RegistrationService {
 
 	@Override
 	public void register(RegistrationRequest request) {
-		log().warn("Real implementation active");
+		log().warn("state=init");
 	}
 	
-	@Autowired
-	private UserRepository userRepository;
-	
-	public static void main(String[] args) {
-		System.out.print("Merhaba");
+	@Override
+	public List<SkillGroup> getSkillGroups() {
+		log().debug("> getSkillGroups");
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Sector> getSectors() {
+		log().debug("> getSectors");
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

@@ -1,6 +1,11 @@
 {{> partials/header }} 
 	{{> partials/navigation }}
-<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%> 
+
+<!-- <script type="text/javascript">
+	(function(){
+		alert("OK");
+	})();
+</script> -->
 <div class="container">
 	<h1>Let's get started...</h1>
 	CrowdGuru is a big community of people helping each other to make the
@@ -87,56 +92,19 @@
 			<!-- tabbed Guru skills selection -->
 			<div class="tabbable tabs-left">
 				<ul class="nav nav-tabs">
-					<li class="active"><a href="#tab1" data-toggle="tab">[SkillGroup]1</a></li>
-					<li><a href="#tab2" data-toggle="tab">[SkillGroup]2</a></li>
-					<li><a href="#tab3" data-toggle="tab">[SkillGroup]3</a></li>
-					<li><a href="#tab4" data-toggle="tab">...and so on</a></li>
+					{{#skillGroups}}
+						<li><a href="#tab{{id}}" data-toggle="tab">{{groupName}}</a></li>
+					{{/skillGroups}}
 				</ul>
 				<div class="tab-content">
-					<div class="tab-pane active" id="tab1">
-						<h2>[SkillGroup]1</h2>
-						<label class="checkbox"> <input type="checkbox"
-							value="[Skill]"> [Skill]
-						</label> <label class="checkbox"> <input type="checkbox"
-							value="[Skill]"> [Skill]
-						</label> <label class="checkbox"> <input type="checkbox"
-							value="[Skill]"> [Skill]
-						</label> <label class="checkbox"> <input type="checkbox"
-							value="[Skill]"> [Skill]
-						</label> <label class="checkbox"> <input type="checkbox"
-							value="[Skill]"> [Skill]
-						</label> <label class="checkbox"> <input type="checkbox"
-							value="[Skill]"> [Skill]
-						</label> <label class="checkbox"> <input type="checkbox"
-							value="[Skill]"> [Skill]
-						</label> <label class="checkbox"> <input type="checkbox"
-							value="[Skill]"> [Skill]
-						</label>
-					</div>
-					<div class="tab-pane" id="tab2">
-						<h2>[SkillGroup]2</h2>
-						<label class="checkbox"> <input type="checkbox"
-							value="[Skill]"> [Skill]
-						</label> <label class="checkbox"> <input type="checkbox"
-							value="[Skill]"> ...
-						</label>
-					</div>
-					<div class="tab-pane" id="tab3">
-						<h2>[SkillGroup]3</h2>
-						<label class="checkbox"> <input type="checkbox"
-							value="[Skill]"> [Skill]
-						</label> <label class="checkbox"> <input type="checkbox"
-							value="[Skill]"> ...
-						</label>
-					</div>
-					<div class="tab-pane" id="tab4">
-						<h2>...and so on</h2>
-						<label class="checkbox"> <input type="checkbox"
-							value="[Skill]"> [Skill]
-						</label> <label class="checkbox"> <input type="checkbox"
-							value="[Skill]"> ...
-						</label>
-					</div>
+					{{#skillGroups}}
+						<div class="tab-pane" id="tab{{id}}">
+							<h2>{{groupName}}</h2>
+							{{#skills}}
+								<label class="checkbox"> <input type="checkbox" value="{{name}}">{{name}}</label>
+							{{/skills}}
+						</div>
+					{{/skillGroups}}
 				</div>
 			</div>
 			<!-- end tabbed Guru skills selection -->
@@ -188,22 +156,10 @@
 				<br> Tick the boxes that apply most to what your organisation
 				does (usually 2-4 boxes is about right)...
 				<!-- list of organisation sectors -->
-				<label class="checkbox"> <input type="checkbox"
-					value="[OrganisationSector]"> [OrganisationSector] e.g.
-					working with young people [young people]
-				</label> <label class="checkbox"> <input type="checkbox"
-					value="[OrganisationSector]"> [OrganisationSector] e.g.
-					education [education]
-				</label> <label class="checkbox"> <input type="checkbox"
-					value="[OrganisationSector]"> [OrganisationSector]
-				</label> <label class="checkbox"> <input type="checkbox"
-					value="[OrganisationSector]"> [OrganisationSector]
-				</label> <label class="checkbox"> <input type="checkbox"
-					value="[OrganisationSector]"> ...
-				</label>
-
+				{{#sectors}}
+					<label class="checkbox"> <input type="checkbox" value="{{id}}">{{name}}</label> 
+				{{/sectors}}
 				<!-- end list of organisation sectors -->
-
 			</div>
 			<!-- end span9 -->
 		</div>

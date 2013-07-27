@@ -186,6 +186,12 @@
 			<artifactId>service</artifactId>
 			<version>${crowdguru.version}</version>
 		</dependency>
+		
+		<dependency>
+			<groupId>org.crowdguru</groupId>
+			<artifactId>datastore</artifactId>
+			<version>${crowdguru.version}</version>
+		</dependency>
 
 		<dependency>
 				<groupId>junit</groupId>
