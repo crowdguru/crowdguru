@@ -1,7 +1,6 @@
 package org.crowdguru.webapp.service.stub;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -70,7 +69,6 @@ public class TestRegistrationService implements RegistrationService {
 
 	@Override
 	public List<Sector> getSectors() {
-		List<Sector> sectors1 = new ArrayList<Sector>();
 		Sector sector1 = new Sector();
 		sector1.setName("Sector 1");
 		sector1.setId(new Long(1));
