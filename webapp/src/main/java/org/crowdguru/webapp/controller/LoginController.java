@@ -23,9 +23,9 @@ public class LoginController {
 	}
 	
 	@ModelAttribute
-	public void populateModel(Model model) {
+	public void populateModel(Model model, HttpServletRequest request) {
 		if(model.containsAttribute("contextPath") == false) {
-			model.addAttribute("contextPath", httpServletRequest.getContextPath());
+			model.addAttribute("contextPath", request.getContextPath() + "/");
 		}
 	}
 }

@@ -22,17 +22,14 @@
  	<tx:annotation-driven mode="aspectj" />
  	
  	<beans profile="dev">
-		<context:property-placeholder location="classpath:META-INF/dev/datasource.properties" />
 		<util:properties id="hibernateProperties" location="classpath:META-INF/dev/hibernate.properties"/>
 	</beans>
 	
 	<beans profile="prod">
-		<context:property-placeholder location="classpath:/META-INF/prod/datasource.properties" />
 		<util:properties id="hibernateProperties" location="classpath:META-INF/prod/hibernate.properties"/>
 	</beans>
 	
 	<beans profile="cloud">
-		<context:property-placeholder location="classpath:/META-INF/cloud/datasource.properties" />
 		<util:properties id="hibernateProperties" location="classpath:META-INF/cloud/hibernate.properties"/>
 	</beans>
 </beans>

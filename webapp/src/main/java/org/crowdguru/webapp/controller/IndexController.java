@@ -15,7 +15,7 @@ public class IndexController {
 	@RequestMapping("/")
 	public String index(Model m) {
 		log().info("Context path '" + context.getContextPath() + "'");
-		m.addAttribute("contextPath", context.getContextPath());
+		m.addAttribute("contextPath", context.getContextPath() + "/");
 		return "index";
 	}
 	

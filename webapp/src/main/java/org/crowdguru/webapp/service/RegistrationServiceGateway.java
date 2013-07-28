@@ -1,10 +1,8 @@
 package org.crowdguru.webapp.service;
 
-import java.util.List;
-
-import org.crowdguru.datastore.domain.Sector;
-import org.crowdguru.datastore.domain.SkillGroup;
+import org.crowdguru.datastore.domain.User;
 import org.crowdguru.service.domain.RegistrationService;
+import org.crowdguru.service.exception.InvalidAccountTypeException;
 import org.crowdguru.service.request.RegistrationRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,15 +17,7 @@ public class RegistrationServiceGateway {
 		this.registrationService = registrationService;
 	}
 
-	public void register(RegistrationRequest request) {
-		registrationService.register(request);
-	}
-	
-	public List<SkillGroup> getSkillGroups(){
-		return registrationService.getSkillGroups();
-	}
-
-	public List<Sector> getSectorGroups() {
-		return registrationService.getSectors();
+	public User register(RegistrationRequest request) throws InvalidAccountTypeException{
+		return registrationService.register(request);
 	}
 }

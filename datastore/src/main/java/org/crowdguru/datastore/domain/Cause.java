@@ -2,14 +2,21 @@ package org.crowdguru.datastore.domain;
 
 import java.util.Set;
 
-public class Cause {
-	Long id;
+import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "cause")
+public class Cause extends HasId{
+
+	private String description;
 	
-	String shortProfile;
+	private String name;
 	
-	String name;
+	@ManyToMany
+	private Set<Sector> sectors;
 	
-	KeyContact keyContact;
-	
-	Set<Sector> sectors;
+	@ManyToMany
+	private Set<User> keyContacts;
 }

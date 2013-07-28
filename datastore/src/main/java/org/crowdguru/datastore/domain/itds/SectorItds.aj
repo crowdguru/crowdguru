@@ -2,18 +2,10 @@ package org.crowdguru.datastore.domain.itds;
 
 import java.util.Set;
 
+import org.crowdguru.datastore.domain.Cause;
 import org.crowdguru.datastore.domain.Sector;
-import org.crowdguru.datastore.domain.User;
 
 public privileged aspect SectorItds {
-
-	public Long Sector.getId() {
-		return id;
-	}
-
-	public void Sector.setId(Long id) {
-		this.id = id;
-	}
 
 	public String Sector.getName() {
 		return name;
@@ -23,12 +15,12 @@ public privileged aspect SectorItds {
 		this.name = name;
 	}
 
-	public Set<User> Sector.getUsers() {
-		return users;
+	public Set<Cause> Sector.getCauses(){
+		return causes;
 	}
-
-	public void Sector.setUsers(Set<User> users) {
-		this.users = users;
+	
+	public void Sector.setCauses(Set<Cause> causes){
+		this.causes = causes;
 	}
 	
 	public String Sector.toString() {

@@ -1,16 +1,10 @@
 package org.crowdguru.service.domain;
 
-import java.util.List;
-
-import org.crowdguru.datastore.domain.Sector;
-import org.crowdguru.datastore.domain.SkillGroup;
+import org.crowdguru.datastore.domain.User;
+import org.crowdguru.service.exception.InvalidAccountTypeException;
 import org.crowdguru.service.request.RegistrationRequest;
 
 public interface RegistrationService {
 
-	public void register(RegistrationRequest request);
-	
-	public List<SkillGroup> getSkillGroups();
-
-	public List<Sector> getSectors();
+	public User register(RegistrationRequest request) throws InvalidAccountTypeException;
 }

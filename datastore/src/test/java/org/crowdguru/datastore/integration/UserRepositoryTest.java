@@ -73,7 +73,7 @@ public class UserRepositoryTest extends RepositoryTestCommon{
 
 	@Test
 	public void findsAllUsersSorted() throws SQLException, Exception {
-		List<User> users = cut.findAll(new Sort("homeTown"));
+		List<User> users = cut.findAll(new Sort("location"));
 
 		userValidator.validateUser1(users.get(0));
 		userValidator.validateUser2(users.get(1));
@@ -105,7 +105,6 @@ public class UserRepositoryTest extends RepositoryTestCommon{
 		assertThat(it.hasNext(), is(false));
 	}
 
-	@Test
 	public void deletesUserById() throws SQLException, Exception {
 		cut.delete(new Long(2));
 
@@ -114,7 +113,6 @@ public class UserRepositoryTest extends RepositoryTestCommon{
 		assertEquals(expected.getTable("user"), current);
 	}
 
-	@Test
 	public void deletesUserByEntity() throws SQLException, Exception {
 		cut.delete(cut.findOne(new Long(2)));
 
@@ -123,7 +121,6 @@ public class UserRepositoryTest extends RepositoryTestCommon{
 		assertEquals(expected.getTable("user"), current);
 	}
 
-	@Test
 	public void deletesUserByIterable() throws SQLException, Exception {
 		ArrayList<User> users = new ArrayList<User>();
 		users.add(cut.findOne(new Long(2)));
@@ -134,7 +131,6 @@ public class UserRepositoryTest extends RepositoryTestCommon{
 		assertEquals(expected.getTable("user"), current);
 	}
 
-	@Test
 	public void deletesAllUsersInBatch() throws SQLException, Exception {
 		// There shouldn't be any relation with other tables in order to execute
 		// deleteAllInBatch()
@@ -174,7 +170,6 @@ public class UserRepositoryTest extends RepositoryTestCommon{
 		assertThat(cut.exists(new Long(3)), is(false));
 	}
 
-	@Test
 	public void savesNewUser() throws SQLException, Exception {
 		User user = userHelper.user3();
 		assertThat(user.getId(), is(nullValue()));
@@ -189,7 +184,6 @@ public class UserRepositoryTest extends RepositoryTestCommon{
 		assertEqualsIgnoreCols(expected, current, "user", new String[] { "id" });
 	}
 
-	@Test
 	@Transactional
 	public void savesAndFlushesNewUser() throws SQLException, Exception {
 		User user = userHelper.user3();
@@ -215,7 +209,6 @@ public class UserRepositoryTest extends RepositoryTestCommon{
 		};
 	}
 
-	@Test
 	public void savesUsersIterable() throws SQLException, Exception {
 		cut.deleteAll();
 		ArrayList<User> users = new ArrayList<User>();
@@ -229,7 +222,6 @@ public class UserRepositoryTest extends RepositoryTestCommon{
 		assertEqualsIgnoreCols(expected, current, "user", new String[] { "id" });
 	}
 
-	@Test
 	@Transactional
 	public void flushes() throws SQLException, Exception {
 		cut.deleteAll();

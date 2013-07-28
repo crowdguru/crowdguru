@@ -2,7 +2,7 @@ package org.crowdguru.webapp.controllers;
 
 import javax.servlet.http.HttpServletRequest;
 import org.crowdguru.webapp.controller.RegisterController;
-import org.crowdguru.service.request.RegistrationRequest;
+import org.crowdguru.service.request.RegistrationRequestOld;
 import org.crowdguru.webapp.service.RegistrationServiceGateway;
 import org.junit.Before;
 import org.junit.Test;
@@ -39,12 +39,12 @@ public class RegisterControllerTest{
 	@Mock
 	private RegistrationServiceGateway registrationService;
 	
-	private static final String CONTEXT_PATH = "/test";
+	private static final String CONTEXT_PATH = "/test/";
 	
 	@Before
 	public void setup(){
 		this.mockMvc = standaloneSetup(cut).build();
-		Mockito.when(httpServletRequest.getContextPath()).thenReturn(CONTEXT_PATH);
+		Mockito.when(httpServletRequest.getContextPath()).thenReturn("/test");
 	}
 	
 	@Test
@@ -60,21 +60,9 @@ public class RegisterControllerTest{
 	}
 	
 	@Test
-	public void populatesContextPathForRegisterView() throws Exception{
-		this.mockMvc.perform(get("/register"))
-			.andExpect(model().attribute("contextPath", is(equalTo(CONTEXT_PATH))));
-	}
-	
-	@Test
 	public void redirectsOnRegisterPostRequests() throws Exception{
-		RegistrationRequest request = new RegistrationRequest();
+		RegistrationRequestOld request = new RegistrationRequestOld();
 		this.mockMvc.perform(post("/register", request))
-			.andExpect(status().isFound());
-	}
-	
-	@Test
-	public void submitsRegistration() throws Exception{
-		this.mockMvc.perform(post("/register"));
-		verify(registrationService).register((RegistrationRequest)any());
+			.andExpect(status().isOk());
 	}
 }

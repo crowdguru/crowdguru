@@ -4,7 +4,7 @@ import java.util.Set;
 
 import org.crowdguru.datastore.domain.Sector;
 import org.crowdguru.datastore.domain.Cause;
-import org.crowdguru.datastore.domain.KeyContact;
+import org.crowdguru.datastore.domain.User;
 
 public privileged aspect CauseItds {
 
@@ -24,20 +24,20 @@ public privileged aspect CauseItds {
 		this.name = name;
 	}
 	
-	public String Cause.getShortProfile() {
-		return shortProfile;
+	public String Cause.getDescription() {
+		return description;
 	}
 
-	public void Cause.setShortProfile(String shortProfile) {
-		this.shortProfile = shortProfile;
+	public void Cause.setDescription(String description) {
+		this.description = description;
 	}
 	
-	public KeyContact Cause.getKeyContact(){
-		return keyContact;
+	public Set<User> Cause.getKeyContacts(){
+		return keyContacts;
 	}
 	
-	public void Cause.setKeyContact(KeyContact keyContact){
-		this.keyContact = keyContact;
+	public void Cause.setKeyContacts(Set<User> keyContacts){
+		this.keyContacts = keyContacts;
 	}
 	
 	public Set<Sector> Cause.getSectors(){

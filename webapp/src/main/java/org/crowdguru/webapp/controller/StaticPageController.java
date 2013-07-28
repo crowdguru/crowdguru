@@ -3,24 +3,28 @@ package org.crowdguru.webapp.controller;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.ui.Model;
 
 @Controller
 public class StaticPageController {
 	
-	/* Very basic controller to map anything on the /pages path to a static placeholder page.
-	 * TODO: Extend this later on to match the path after /pages to a specific static page, e.g.
-	 * '/pages/about' would simply resolve to '/views/pages/about.html'
-	 */
-	
-	@RequestMapping("/pages/**")
-	public String index(Model m) {
-		log().info("Context path '" + context.getContextPath() + "'");
-		m.addAttribute("contextPath", context.getContextPath());
-		return "pages/default";
-	}
+	private HttpServletRequest httpServletRequest;
 	
 	@Autowired
-	private HttpServletRequest context;
+	public StaticPageController( HttpServletRequest httpServletRequest) {
+		this.httpServletRequest = httpServletRequest;
+	}
+	
+	@RequestMapping("/pages/{pageName}")
+	public String index(@PathVariable String pageName, Model model) {
+		return "pages/" + pageName;
+	}
+	
+	@ModelAttribute
+	public void populateModel(Model model) {
+		model.addAttribute("contextPath", httpServletRequest.getContextPath());
+	}
 }

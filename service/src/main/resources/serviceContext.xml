@@ -15,11 +15,13 @@
 	
 	<context:annotation-config />
 	
-	<context:component-scan base-package="org.crowdguru.service.domain.impl" />
+	<context:component-scan base-package="org.crowdguru.service.domain.impl,
+		org.crowdguru.service.domain.stub, 
+		org.crowdguru.service.gateway" />
  	
  	<tx:annotation-driven mode="aspectj" />
  	
- 	<beans profile="dev, prod, cloud">
+ 	<beans profile="prod">
 		<!-- Loads datastore submodule context -->
 		<import resource="classpath:datastoreContext.xml"/>
 	</beans>

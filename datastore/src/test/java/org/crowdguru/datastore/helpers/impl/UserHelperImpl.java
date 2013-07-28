@@ -11,8 +11,8 @@ public class UserHelperImpl implements UserHelper, UserConstants{
 		User user = new User();
 		user.setForename(USER_1_FORENAME);
 		user.setSurname(USER_1_SURNAME);
-		user.setAboutMe(USER_1_ABOUTME);
-		user.setHomeTown(USER_1_HOMETOWN);
+		user.setShortProfile(USER_1_SHORTPROFILE);
+		user.setLocation(USER_1_LOCATION);
 		user.setProviderId(USER_1_PROVIDER_ID);
 		user.setProviderUserId(USER_1_PROVIDER_USERID);
 		return user;
@@ -23,8 +23,8 @@ public class UserHelperImpl implements UserHelper, UserConstants{
 		User user = new User();
 		user.setForename(USER_2_FORENAME);
 		user.setSurname(USER_2_SURNAME);
-		user.setAboutMe(USER_2_ABOUTME);
-		user.setHomeTown(USER_2_HOMETOWN);
+		user.setShortProfile(USER_2_SHORTPROFILE);
+		user.setLocation(USER_2_LOCATION);
 		user.setProviderId(USER_2_PROVIDER_ID);
 		user.setProviderUserId(USER_2_PROVIDER_USERID);
 		return user;
@@ -35,8 +35,8 @@ public class UserHelperImpl implements UserHelper, UserConstants{
 		User user = new User();
 		user.setForename(USER_3_FORENAME);
 		user.setSurname(USER_3_SURNAME);
-		user.setAboutMe(USER_3_ABOUTME);
-		user.setHomeTown(USER_3_HOMETOWN);
+		user.setShortProfile(USER_3_SHORTPROFILE);
+		user.setLocation(USER_3_LOCATION);
 		user.setProviderId(USER_3_PROVIDER_ID);
 		user.setProviderUserId(USER_3_PROVIDER_USERID);
 		return user;

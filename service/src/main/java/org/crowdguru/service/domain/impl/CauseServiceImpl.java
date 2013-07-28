@@ -2,13 +2,13 @@ package org.crowdguru.service.domain.impl;
 
 import org.crowdguru.datastore.domain.Cause;
 import org.crowdguru.service.domain.CauseService;
-import org.springframework.stereotype.Service;
+import org.springframework.context.annotation.Profile;
 
-@Service
+@Profile({"cloud, prod, dev"})
 public class CauseServiceImpl implements CauseService {
 
 	public CauseServiceImpl() {
-		log().warn("state=init");
+		log().warn("state=created");
 	}
 	
 	@Override

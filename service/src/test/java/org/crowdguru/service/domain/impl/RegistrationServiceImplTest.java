@@ -1,5 +1,7 @@
-package org.crowdguru.service.domain.impl;
+/*package org.crowdguru.service.domain.impl;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -14,7 +16,7 @@ import org.crowdguru.service.domain.GuruService;
 import org.crowdguru.service.domain.KeyContactService;
 import org.crowdguru.service.domain.SectorService;
 import org.crowdguru.service.domain.SkillService;
-import org.crowdguru.service.request.RegistrationRequest;
+import org.crowdguru.service.request.RegistrationRequestOld;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
@@ -50,16 +52,16 @@ public class RegistrationServiceImplTest {
 	SectorService sectorService;
 	
 	@Test
-	public void createsGuruIfTypeGuru() {
-		RegistrationRequest request = new RegistrationRequest();
+	public void createsGuruIfTypeGuru() throws FileNotFoundException, IOException {
+		RegistrationRequestOld request = new RegistrationRequestOld();
 		request.setGuru(true);
 		cut.register(request);
 		verify(guruService).save(any(Guru.class));
 	}
 	
 	@Test
-	public void createsAndassociatesKeyContactAndCauseIfNew() {
-		RegistrationRequest request = new RegistrationRequest();
+	public void createsAndassociatesKeyContactAndCauseIfNew() throws FileNotFoundException, IOException {
+		RegistrationRequestOld request = new RegistrationRequestOld();
 		request.setKeyContact(true);
 		request.setCauseName("CAUSE_NAME");
 		request.setCauseShortProfile("CAUSE_SHORT_BIO");
@@ -81,8 +83,8 @@ public class RegistrationServiceImplTest {
 	}
 	
 	@Test
-	public void createsOnlyKeyContactAndAssociatesCauseIfCauseNotNew() {
-		RegistrationRequest request = new RegistrationRequest();
+	public void createsOnlyKeyContactAndAssociatesCauseIfCauseNotNew() throws FileNotFoundException, IOException {
+		RegistrationRequestOld request = new RegistrationRequestOld();
 		request.setKeyContact(true);
 		request.setCauseId(new Long(1));
 		
@@ -102,10 +104,10 @@ public class RegistrationServiceImplTest {
 	}
 	
 	@Test
-	public void mapsRequestToGuru() {
+	public void mapsRequestToGuru() throws FileNotFoundException, IOException {
 		ArgumentCaptor<Guru> argument = ArgumentCaptor.forClass(Guru.class);
 		
-		RegistrationRequest request = new RegistrationRequest();
+		RegistrationRequestOld request = new RegistrationRequestOld();
 		request.setGuru(true);
 		request.setForename("FORENAME");
 		request.setSurname("SURNAME");
@@ -156,10 +158,10 @@ public class RegistrationServiceImplTest {
 	}
 	
 	@Test
-	public void mapsRequestToKeyContact() {
+	public void mapsRequestToKeyContact() throws FileNotFoundException, IOException {
 		ArgumentCaptor<KeyContact> argument = ArgumentCaptor.forClass(KeyContact.class);
 		
-		RegistrationRequest request = new RegistrationRequest();
+		RegistrationRequestOld request = new RegistrationRequestOld();
 		request.setKeyContact(true);
 		request.setForename("FORENAME");
 		request.setSurname("SURNAME");
@@ -201,10 +203,10 @@ public class RegistrationServiceImplTest {
 	}
 	
 	@Test
-	public void mapsRequestToCause() {
+	public void mapsRequestToCause() throws FileNotFoundException, IOException {
 		ArgumentCaptor<Cause> argument = ArgumentCaptor.forClass(Cause.class);
 		
-		RegistrationRequest request = new RegistrationRequest();
+		RegistrationRequestOld request = new RegistrationRequestOld();
 		request.setKeyContact(true);
 		request.setCauseName("NAME");
 		request.setCauseShortProfile("CAUSE_SHORT_PROFILE");
@@ -247,3 +249,4 @@ public class RegistrationServiceImplTest {
 		assertThat(causeSectors, containsInAnyOrder(sector1, sector2, sector3));
 	}
 }
+*/

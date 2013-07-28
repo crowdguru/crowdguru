@@ -44,7 +44,7 @@ public class SkillTest extends TestCase {
 		assertThat(cut.getName(), is(equalTo(SkillConstants.SKILL_1_NAME)));
 	}
 	
-	public void testUsers(){
+	public void testGurus(){
 		assertThat(cut.getUsers(), is(nullValue()));
 		
 		Set<User> users = new HashSet<User>();
