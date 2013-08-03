@@ -28,12 +28,12 @@ public class IndexControllerTest{
 	@Mock(name="context")
 	private HttpServletRequest mockContext;
 	
-	private static final String CONTEXT_PATH = "/test";
+	private static final String CONTEXT_PATH = "/test/";
 	
 	@Before
 	public void setup(){
 		this.mockMvc = standaloneSetup(cut).build();
-		Mockito.when(mockContext.getContextPath()).thenReturn(CONTEXT_PATH);
+		Mockito.when(mockContext.getContextPath()).thenReturn("/test");
 	}
 	
 	@Test

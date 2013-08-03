@@ -24,7 +24,7 @@ public class UC2Register{
 	public void testTitle() throws Exception {
         driver.get("http://localhost:8080/crowdguru");
         log().info("Index page loaded");
-        driver.findElement(By.xpath("//a[contains(text(),'Sign in / register')]"))
+        driver.findElement(By.xpath("//a[contains(text(),'Log on / register')]"))
         	.click();
         
         driver.findElement(By.xpath("//a[contains(text(),'Register')]"))
@@ -42,7 +42,7 @@ public class UC2Register{
         driver.findElement(By.xpath("//input[@id='inputPassword']"))
         	.sendKeys("password1");
         
-        driver.findElement(By.xpath("//input[@value='Save details and continue registration later']"))
+        driver.findElement(By.xpath("//input[@value='Submit']"))
     		.click();
 	}
 	

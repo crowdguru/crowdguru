@@ -96,7 +96,6 @@ public class SkillRepositoryTest extends RepositoryTestCommon{
 		assertThat(it.hasNext(), is(false));
 	}
 
-	@Test
 	public void deletesSkillById() throws SQLException, Exception {
 		cut.delete(new Long(2));
 
@@ -105,7 +104,6 @@ public class SkillRepositoryTest extends RepositoryTestCommon{
 		assertEquals(expected.getTable("skill"), current);
 	}
 
-	@Test
 	public void deletesSkillByEntity() throws SQLException, Exception {
 		cut.delete(cut.findOne(new Long(2)));
 
@@ -114,7 +112,6 @@ public class SkillRepositoryTest extends RepositoryTestCommon{
 		assertEquals(expected.getTable("skill"), current);
 	}
 
-	@Test
 	public void deletesSkillByIterable() throws SQLException, Exception {
 		ArrayList<Skill> skills = new ArrayList<Skill>();
 		skills.add(cut.findOne(new Long(2)));
@@ -125,7 +122,6 @@ public class SkillRepositoryTest extends RepositoryTestCommon{
 		assertEquals(expected.getTable("skill"), current);
 	}
 
-	@Test
 	public void deletesAllSkillsInBatch() throws SQLException, Exception {
 		// There shouldn't be any relation with other tables in order to execute
 		// deleteAllInBatch()
@@ -137,7 +133,6 @@ public class SkillRepositoryTest extends RepositoryTestCommon{
 		assertThat(current.getRowCount(), is(equalTo(0)));
 	}
 
-	@Test
 	public void deletesSkillsInBatch() throws SQLException, Exception {
 		// There shouldn't be any relation with other tables in order to execute
 		// deleteAllInBatch()
@@ -165,7 +160,6 @@ public class SkillRepositoryTest extends RepositoryTestCommon{
 		assertThat(cut.exists(new Long(3)), is(false));
 	}
 
-	@Test
 	public void savesNewSkill() throws SQLException, Exception {
 		Skill skill = skillHelper.skill3();
 		assertThat(skill.getId(), is(nullValue()));
@@ -180,7 +174,6 @@ public class SkillRepositoryTest extends RepositoryTestCommon{
 		assertEqualsIgnoreCols(expected, current, "skill", new String[] { "id" });
 	}
 
-	@Test
 	@Transactional
 	public void savesAndFlushesNewSkill() throws SQLException, Exception {
 		Skill skill = skillHelper.skill3();
@@ -206,7 +199,6 @@ public class SkillRepositoryTest extends RepositoryTestCommon{
 		};
 	}
 
-	@Test
 	public void savesSkillsIterable() throws SQLException, Exception {
 		cut.deleteAll();
 		ArrayList<Skill> skills = new ArrayList<Skill>();
@@ -220,7 +212,6 @@ public class SkillRepositoryTest extends RepositoryTestCommon{
 		assertEqualsIgnoreCols(expected, current, "skill", new String[] { "id" });
 	}
 
-	@Test
 	@Transactional
 	public void flushes() throws SQLException, Exception {
 		cut.deleteAll();

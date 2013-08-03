@@ -44,17 +44,16 @@ public class SectorTest extends TestCase {
 		assertThat(cut.getName(), is(equalTo(SectorConstants.SECTOR_1_NAME)));
 	}
 	
-	public void testUsers(){
-		assertThat(cut.getUsers(), is(nullValue()));
+	public void testCauses(){
+		assertThat(cut.getCauses(), is(nullValue()));
 		
-		Set<User> users = new HashSet<User>();
-		UserHelper userHelper = new UserHelperImpl();
-		User aUser = userHelper.user1();
-		users.add(aUser);
-		cut.setUsers(users);
+		Set<Cause> causes = new HashSet<Cause>();
+		Cause aCause = new Cause();
+		causes.add(aCause);
+		cut.setCauses(causes);
 		
-		assertThat(cut.getUsers(), contains(aUser));
-		assertThat(cut.getUsers().size(), is(equalTo(1)));
+		assertThat(cut.getCauses(), contains(aCause));
+		assertThat(cut.getCauses().size(), is(equalTo(1)));
 	}
 	
 	public void testToString(){

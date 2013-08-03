@@ -15,6 +15,7 @@ import org.springframework.context.EnvironmentAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.core.env.EnvironmentCapable;
 
@@ -27,18 +28,31 @@ import org.springframework.core.env.EnvironmentCapable;
  */
 @Configuration
 @Profile({ "cloud" })
-public class CfDataSourceConfig{
+@PropertySource(value="classpath:/META-INF/cloud/cloudfoundry.properties")
+public class CloudFoundryfDataSourceCreator extends PropertyConfigurable implements DataSourceCreator{
 
-	/**
-	 * Cloudfoundry MySQL service name
-	 */
-	@Value("${cf.mysql.servicename}")
-	private String serviceName;
+	private static final String MYSQL_SERVICE_NAME_KEY = "cf.mysql.servicename";
 	
-	@Bean
-	public DataSource dataSource() {
-		CloudEnvironment env = new CloudEnvironment();
-		RdbmsServiceInfo info = env.getServiceInfo(serviceName, RdbmsServiceInfo.class);
+	private CloudFoundryEnvironmentGateway cloudFoundryEnvironment;
+	
+	public CloudFoundryfDataSourceCreator() {
+		log().warn("state=created");
+	}
+
+	@Autowired
+	public void setCloudFoundryEnvironment(CloudFoundryEnvironmentGateway cloudFoundryEnvironment) {
+		this.cloudFoundryEnvironment = cloudFoundryEnvironment;
+	}
+
+
+	@Override
+	@Bean(name="dataSource")
+	public DataSource create() {
+		log().warn("activity=create");
+		String mysqlServiceName = getProperty(MYSQL_SERVICE_NAME_KEY);
+		RdbmsServiceInfo info = cloudFoundryEnvironment.getRdbmsServiceInfo(mysqlServiceName);
 		return new RdbmsServiceCreator().createService(info);
 	}
+	
+	
 }

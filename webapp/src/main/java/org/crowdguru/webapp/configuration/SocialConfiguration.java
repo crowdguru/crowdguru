@@ -24,7 +24,7 @@ import org.springframework.social.facebook.api.Facebook;
 import org.springframework.social.facebook.connect.FacebookConnectionFactory;
 
 @Configuration
-@Profile({"dev", "prod"})
+@Profile({"prod"})
 public class SocialConfiguration {
 
 	@Bean

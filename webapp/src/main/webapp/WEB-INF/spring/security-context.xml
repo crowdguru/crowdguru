@@ -6,19 +6,26 @@
                     http://www.springframework.org/schema/security 
                     http://www.springframework.org/schema/security/spring-security-3.1.xsd">
 
-    <http use-expressions="true">
-    	<intercept-url pattern="/index.html" access="denyAll" />
-    	<form-login />
+    <http auto-config='true' disable-url-rewriting="true" create-session="ifRequired">
+    	<intercept-url pattern="/" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
+    	<intercept-url pattern="/index" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
+    	<intercept-url pattern="/register" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
+    	<intercept-url pattern="/login" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
+    	<intercept-url pattern="/pages/*" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
+    	<intercept-url pattern="/static/**" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
+    	<intercept-url pattern="**" access="ROLE_USER" />
+    	<form-login login-page='/login'/>
+    	
+    	<!-- Remove session cookie en logout. This is not guaranteed! -->
+    	<logout logout-url="/logout" delete-cookies="JSESSIONID"/>
+    	
+    	<!-- Prevent multiple sessions. Raise error if attempted -->
+    	<session-management invalid-session-url="/invalidSession">
+    		<concurrency-control max-sessions="1" error-if-maximum-exceeded="true"/>
+    	</session-management>
     </http>
 
-    <authentication-manager>
-        <authentication-provider>
-            <user-service>
-                <user name="rod" password="koala" authorities="supervisor, teller, user" />
-                <user name="dianne" password="emu" authorities="teller, user" />
-                <user name="scott" password="wombat" authorities="user" />
-                <user name="peter" password="opal" authorities="user" />
-            </user-service>
-        </authentication-provider>
-    </authentication-manager>
+  <authentication-manager>
+    <authentication-provider user-service-ref="basicUserDetailsService"/>
+  </authentication-manager>
 </beans:beans>   

@@ -3,6 +3,5 @@
   <sector id="1" name="SECTOR_1_NAME"/>
   <skill />
   <user />
-  <user_sector/>
   <user_skill />
 </dataset>

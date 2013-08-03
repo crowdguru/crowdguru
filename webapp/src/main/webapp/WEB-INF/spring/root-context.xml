@@ -9,7 +9,7 @@
 	<!-- Loads security context-->
 	<import resource="security-context.xml"/>
 	
- 	<beans profile="dev, prod, cloud">
+ 	<beans profile="dev, prod, cloud, nojpa">
 		<!-- Loads service submodule context -->
 		<import resource="classpath:serviceContext.xml"/>
 	</beans>

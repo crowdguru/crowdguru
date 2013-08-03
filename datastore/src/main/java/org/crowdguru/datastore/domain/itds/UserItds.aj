@@ -1,20 +1,9 @@
 package org.crowdguru.datastore.domain.itds;
 
-import java.util.Set;
-
-import org.crowdguru.datastore.domain.Sector;
-import org.crowdguru.datastore.domain.Skill;
 import org.crowdguru.datastore.domain.User;
+import org.crowdguru.datastore.domain.User.Type;
 
 public privileged aspect UserItds {
-
-	public Long User.getId() {
-		return id;
-	}
-
-	public void User.setId(Long id) {
-		this.id = id;
-	}
 
 	public String User.getProviderId() {
 		return providerId;
@@ -48,36 +37,52 @@ public privileged aspect UserItds {
 		this.surname = surname;
 	}
 
-	public String User.getAboutMe() {
-		return aboutMe;
+	public String User.getShortProfile() {
+		return shortProfile;
 	}
 
-	public void User.setAboutMe(String aboutMe) {
-		this.aboutMe = aboutMe;
+	public void User.setShortProfile(String shortProfile) {
+		this.shortProfile = shortProfile;
 	}
 
-	public String User.getHomeTown() {
-		return homeTown;
+	public String User.getLocation() {
+		return location;
 	}
 
-	public void User.setHomeTown(String homeTown) {
-		this.homeTown = homeTown;
+	public void User.setLocation(String location) {
+		this.location = location;
 	}
 
-	public Set<Skill> User.getSkills() {
-		return skills;
+	public String User.getEmail(){
+		return email;
 	}
-
-	public void User.setSkills(Set<Skill> skills) {
-		this.skills = skills;
+	
+	public void User.setEmail(String email){
+		this.email = email;
 	}
-
-	public Set<Sector> User.getSectors() {
-		return sectors;
+	
+	public byte[] User.getAvatar(){
+		return this.avatar;
 	}
-
-	public void User.setSectors(Set<Sector> sectors) {
-		this.sectors = sectors;
+	
+	public void User.setAvatar(byte[] avatar){
+		this.avatar = avatar;
+	}
+	
+	public void User.setPassword(String password){
+		this.password = password;
+	}
+	
+	public String User.getPassword(){
+		return this.password;
+	}
+	
+	public void User.setType(Type type) {
+		this.type = type;
+	}
+	
+	public Type User.getType(){
+		return this.type;
 	}
 
 	public String User.toString() {

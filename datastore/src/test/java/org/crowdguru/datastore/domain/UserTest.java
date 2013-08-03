@@ -56,19 +56,19 @@ public class UserTest extends TestCase{
 	}
 	
 	public void testAboutMe(){
-		assertThat(cut.getAboutMe(), is(nullValue()));
+		assertThat(cut.getShortProfile(), is(nullValue()));
 		
-		cut.setAboutMe(UserConstants.USER_1_ABOUTME);
+		cut.setShortProfile(UserConstants.USER_1_SHORTPROFILE);
 		
-		assertThat(cut.getAboutMe(), is(equalTo(UserConstants.USER_1_ABOUTME)));
+		assertThat(cut.getShortProfile(), is(equalTo(UserConstants.USER_1_SHORTPROFILE)));
 	}
 	
-	public void testHometown(){
-		assertThat(cut.getHomeTown(), is(nullValue()));
+	public void testLocation(){
+		assertThat(cut.getLocation(), is(nullValue()));
 		
-		cut.setHomeTown(UserConstants.USER_1_HOMETOWN);
+		cut.setLocation(UserConstants.USER_1_LOCATION);
 		
-		assertThat(cut.getHomeTown(), is(equalTo(UserConstants.USER_1_HOMETOWN)));
+		assertThat(cut.getLocation(), is(equalTo(UserConstants.USER_1_LOCATION)));
 	}
 	
 	public void testProviderId(){
@@ -85,34 +85,6 @@ public class UserTest extends TestCase{
 		cut.setProviderUserId(UserConstants.USER_1_PROVIDER_USERID);
 		
 		assertThat(cut.getProviderUserId(), is(equalTo(UserConstants.USER_1_PROVIDER_USERID)));
-	}
-	
-	public void testSkills(){
-		Set<Skill> skills = cut.getSkills();
-		assertThat(skills, is(nullValue()));
-
-		Set<Skill> newSkills = new HashSet<Skill>();
-		SkillHelper skillHelper = new SkillHelperImpl();
-		Skill aSkill = skillHelper.skill1();
-		newSkills.add(aSkill);
-		cut.setSkills(newSkills);
-		
-		assertThat(cut.getSkills(), contains(aSkill));
-		assertThat(cut.getSkills().size(), is(equalTo(1)));
-	}
-	
-	public void testSectors(){
-		Set<Sector> sectors = cut.getSectors();
-		assertThat(sectors, is(nullValue()));
-
-		Set<Sector> newSectors = new HashSet<Sector>();
-		SectorHelper sectorHelper = new SectorHelperImpl();
-		Sector aSector = sectorHelper.sector1();
-		newSectors.add(aSector);
-		cut.setSectors(newSectors);
-		
-		assertThat(cut.getSectors(), contains(aSector));
-		assertThat(cut.getSectors().size(), is(equalTo(1)));
 	}
 	
 	public void testToString(){
