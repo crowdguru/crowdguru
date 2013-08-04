@@ -48,9 +48,4 @@ public class IndexControllerTest{
 			.andExpect(view().name("index"));
 	}
 	
-	@Test
-	public void putsContextToRespondModel() throws Exception{
-		this.mockMvc.perform(get("/"))
-			.andExpect(model().attribute("contextPath", CONTEXT_PATH));
-	}
 }

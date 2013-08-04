@@ -56,7 +56,7 @@ public class RegisterControllerTest{
 	@Test
 	public void rendersRegistrationFormOnGetREquest() throws Exception{
 		this.mockMvc.perform(get("/register"))
-			.andExpect(view().name("signup"));
+			.andExpect(view().name("/signup"));
 	}
 	
 	@Test

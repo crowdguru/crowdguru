@@ -6,15 +6,17 @@
                     http://www.springframework.org/schema/security 
                     http://www.springframework.org/schema/security/spring-security-3.1.xsd">
 
-    <http auto-config='true' disable-url-rewriting="true" create-session="ifRequired">
+    <http disable-url-rewriting="true" create-session="ifRequired">
     	<intercept-url pattern="/" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
     	<intercept-url pattern="/index" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
-    	<intercept-url pattern="/register" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
+    	<intercept-url pattern="/register" access="IS_AUTHENTICATED_ANONYMOUSLY" />
     	<intercept-url pattern="/login" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
     	<intercept-url pattern="/pages/*" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
     	<intercept-url pattern="/static/**" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
-    	<intercept-url pattern="**" access="ROLE_USER" />
-    	<form-login login-page='/login'/>
+    	<intercept-url pattern="/**" access="ROLE_GURU, ROLE_KEYCONTACT" />
+    	<form-login login-page='/login' login-processing-url="/sessions"
+			username-parameter="email" password-parameter="password" 
+			default-target-url="/profile"/>
     	
     	<!-- Remove session cookie en logout. This is not guaranteed! -->
     	<logout logout-url="/logout" delete-cookies="JSESSIONID"/>
