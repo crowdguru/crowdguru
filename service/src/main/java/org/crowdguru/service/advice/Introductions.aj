@@ -10,7 +10,6 @@ public aspect Introductions {
 	declare @type: org.crowdguru.service.domain.impl.* : @Service;
 	declare @type: org.crowdguru.service.domain.stub.*: @Service;
 	declare @type: org.crowdguru.service.domain.stub.*: @Profile({"nojpa"});
-	declare @type: org.crowdguru.service.gateway.*: @Profile({"dev, prod"});
 	declare @type: @Component org.crowdguru.service..* : @IntroducedLogger;
 	declare @type: @Service org.crowdguru.service..* : @IntroducedLogger;
 }

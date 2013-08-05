@@ -12,7 +12,7 @@ import org.openqa.selenium.WebElement;
 
 public class UC2Register{
 
-	WebDriverFactory driverFactory = WebDriverGateway.getPhantomJSFactory();
+	WebDriverFactory driverFactory = WebDriverGateway.getFirefoxFactory();
 	WebDriver driver;
 	
 	@Before

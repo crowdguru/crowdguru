@@ -1,11 +1,9 @@
 package org.crowdguru.service.domain.impl;
 
 import org.crowdguru.service.domain.EncoderService;
-import org.springframework.context.annotation.Profile;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-@Profile({"insecure"})
 public class NoOpEncoderService implements EncoderService {
 
 	private PasswordEncoder encoder;
