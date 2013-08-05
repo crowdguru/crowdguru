@@ -1,5 +1,10 @@
 {{> partials/header }}
+{{#userDetails}}
+	{{> partials/navigation-user}}
+{{/userDetails}}
+{{^userDetails}}
 	{{> partials/navigation }}
+{{/userDetails}}
 	<section class="hero-unit">
       	<h1>Terms and Conditions</h1>
 	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do

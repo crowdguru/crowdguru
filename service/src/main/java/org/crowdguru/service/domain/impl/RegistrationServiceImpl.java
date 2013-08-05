@@ -4,6 +4,7 @@ import org.crowdguru.datastore.domain.User;
 import org.crowdguru.datastore.domain.User.Type;
 import org.crowdguru.service.domain.EncoderService;
 import org.crowdguru.service.domain.RegistrationService;
+import org.crowdguru.service.domain.UserDetails;
 import org.crowdguru.service.domain.UserService;
 import org.crowdguru.service.exception.InvalidAccountTypeException;
 import org.crowdguru.service.request.RegistrationRequest;
@@ -30,7 +31,7 @@ public class RegistrationServiceImpl implements RegistrationService {
 	}
 
 	@Override
-	public User register(RegistrationRequest request) throws InvalidAccountTypeException{
+	public UserDetails register(RegistrationRequest request) throws InvalidAccountTypeException{
 		log().warn("activity=register");
 		User user = new User();
 		user.setEmail(request.getEmail());
@@ -48,11 +49,11 @@ public class RegistrationServiceImpl implements RegistrationService {
 	private User.Type determineType(RegistrationRequest request) throws InvalidAccountTypeException{
 		User.Type type = Type.GURU;
 		if(request.isGuru() && request.isKeyContact()) {
-			type = type.BOTH;
+			type = Type.BOTH;
 		}else if(request.isGuru()) {
-			type = type.GURU;
+			type = Type.GURU;
 		}else if(request.isKeyContact()) {
-			type = type.KEYCONTACT;
+			type = Type.KEYCONTACT;
 		}else {
 			throw new InvalidAccountTypeException("Account type not specified");
 		}

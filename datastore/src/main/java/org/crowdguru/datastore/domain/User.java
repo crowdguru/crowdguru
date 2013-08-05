@@ -1,6 +1,6 @@
 package org.crowdguru.datastore.domain;
 
-import java.util.Enumeration;
+import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.Basic;
@@ -9,14 +9,13 @@ import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
-import org.crowdguru.datastore.domain.User.Type;
 
 @Entity
 @Table(name = "user")
-public class User extends HasId{
+public class User extends HasId implements Serializable{
+
+	private static final long serialVersionUID = 1L;
 
 	public enum Type{GURU, KEYCONTACT, BOTH}
 
