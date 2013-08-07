@@ -17,7 +17,7 @@
 	<properties>
 		<jackson.version>1.9.12</jackson.version>
 		<mustache.java-spring-webmvc.version>0.9.3-SNAPSHOT</mustache.java-spring-webmvc.version>
-		<spring.security.version>3.1.3.RELEASE</spring.security.version>
+		<spring.security.version>3.1.4.RELEASE</spring.security.version>
 		<spring-social.version>1.0.2.RELEASE</spring-social.version>
 		<spring-social-facebook.version>1.0.2.RELEASE</spring-social-facebook.version>
 		<phantomjsdriver.version>1.0.3</phantomjsdriver.version>
@@ -25,7 +25,6 @@
 		<taglibs.standard.version>1.1.2</taglibs.standard.version>
 		<servlet.api.version>2.5</servlet.api.version>
 		<jstl.version>1.2</jstl.version>
-		<aspetj.plugin.version>1.2</aspetj.plugin.version>
 		<cargo.version>1.4.2</cargo.version>
 	</properties>
 
@@ -75,24 +74,6 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
 				<configuration>
-					<systemProperties>
-						<property>
-							<name>console.logging.level</name>
-							<value>ERROR</value>
-						</property>
-						<property>
-							<name>logging.aspect</name>
-							<value>webapp-unit</value>
-						</property>
-						<property>
-							<name>logging.directory</name>
-							<value>target/log</value>
-						</property>
-						<property>
-							<name>third.party.logging.level</name>
-							<value>DEBUG</value>
-						</property>
-					</systemProperties>
 					<argLine>-XX:-UseSplitVerifier</argLine>
 					<excludes>
 						<exclude>**/views/*.java</exclude>
@@ -106,24 +87,6 @@
 					<includes>
 						<include>**/views/*.java</include>
 					</includes>
-					<systemProperties>
-						<property>
-							<name>console.logging.level</name>
-							<value>ERROR</value>
-						</property>
-						<property>
-							<name>logging.aspect</name>
-							<value>webapp-integration</value>
-						</property>
-						<property>
-							<name>logging.directory</name>
-							<value>target/log</value>
-						</property>
-						<property>
-							<name>third.party.logging.level</name>
-							<value>DEBUG</value>
-						</property>
-					</systemProperties>
 				</configuration>
 				<executions>
 					<execution>
@@ -156,13 +119,6 @@
 				</executions>
 				<configuration>
 					<container>
-						<systemProperties>
-							<console.logging.level>ERROR</console.logging.level>
-							<logging.aspect>webapp-jetty</logging.aspect>
-							<logging.directory>../../../log/</logging.directory>
-							<third.party.logging.level>DEBUG</third.party.logging.level>
-							<!-- <spring.profiles.active>cloud</spring.profiles.active> -->
-						</systemProperties>
 					</container>
 					<skip>${skipTests}</skip>
 				</configuration>
@@ -187,6 +143,8 @@
 						<excludes>
 							<exclude>**/advice/*.class</exclude>
 							<exclude>**/*Test.class</exclude>
+							<exclude>**/configuration/*.class</exclude>
+							<exclude>**/security/*.class</exclude>
 						</excludes>
 					</instrumentation>
 				</configuration>
@@ -223,6 +181,12 @@
 	</build>
 
 	<dependencies>
+		<dependency>
+			<groupId>org.crowdguru</groupId>
+			<artifactId>service</artifactId>
+			<version>${crowdguru.version}</version>
+		</dependency>
+		
 		<dependency>
 			<groupId>org.crowdguru</groupId>
 			<artifactId>datastore</artifactId>
@@ -268,7 +232,20 @@
 			<artifactId>spring-security-core</artifactId>
 			<version>${spring.security.version}</version>
 		</dependency>
+		
+		<dependency>
+        	<groupId>org.springframework.security</groupId>
+        	<artifactId>spring-security-config</artifactId>
+        	<version>${spring.security.version}</version>
+    	</dependency>
 
+    	<dependency>
+      		<groupId>org.springframework.security</groupId>
+      		<artifactId>spring-security-web</artifactId>
+      		<version>${spring.security.version}</version>
+      		<scope>runtime</scope>
+    	</dependency>
+    
 		<dependency>
 			<groupId>org.springframework.social</groupId>
 			<artifactId>spring-social-core</artifactId>
@@ -323,6 +300,17 @@
 		<dependency>
 			<groupId>org.mockito</groupId>
 			<artifactId>mockito-all</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.hamcrest</groupId>
+			<artifactId>hamcrest-integration</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>1.3</version>
 		</dependency>
 	</dependencies>
 

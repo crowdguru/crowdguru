@@ -21,32 +21,14 @@ import static org.junit.Assert.assertThat;
 public class DatastoreConfigTest{
 	
 	@InjectMocks
-	private DatastoreConfig cut;
+	private TransactionManagerCreator cut;
 	
 	@Mock
-	private DataSource dataSource;
-	
-	@SuppressWarnings(value = { "unused" })
-	@Spy
-	private Properties hibernateProps;
-	
-	@Test
-	public void createsEntityManagerFactory() {
-		LocalContainerEntityManagerFactoryBean bean = cut.entityManagerFactory();
-		assertThat(bean, notNullValue());
-		assertThat(bean.getDataSource(), equalTo(dataSource));
-		assertThat(bean.getJpaPropertyMap().values(), empty());
-	}
+	private LocalContainerEntityManagerFactoryBean entityManagerFactory;
 	
 	@Test
 	public void createsTransactionManager(){
-		PlatformTransactionManager tx = cut.transactionManager();
+		PlatformTransactionManager tx = cut.create();
 		assertThat(tx, instanceOf(JpaTransactionManager.class));
-	}
-	
-	@Test
-	public void createsT(){
-		JpaVendorAdapter adapter = cut.vendorAdapter();
-		assertThat(adapter, instanceOf(HibernateJpaVendorAdapter.class));
 	}
 }	

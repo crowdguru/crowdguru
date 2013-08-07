@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <CAUSE/>
+  <CAUSE_SECTOR/>
+  <CAUSE_USER/>
+  <HASID/>
+  <HIBERNATE_SEQUENCES/>
+  <SECTOR/>
+  <SKILL/>
+  <SKILLGROUP/>
+  <SKILLGROUP_SKILL/>
+  <USER/>
+  <USER_CAUSE/>
+  <USER_SKILL/>
+</dataset>

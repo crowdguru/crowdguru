@@ -22,7 +22,7 @@ public privileged aspect SkillItds {
 	public void Skill.setName(String name) {
 		this.name = name;
 	}
-		
+	
 	public Set<User> Skill.getUsers() {
 		return users;
 	}
