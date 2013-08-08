@@ -87,6 +87,9 @@
 				</executions>
 				<configuration>
 					<container>
+						<systemProperties>
+    						<spring.profiles.active>prod, insecure</spring.profiles.active>
+  						</systemProperties>
 					</container>
       				<deployables>
         				<deployable>

@@ -21,7 +21,7 @@
  	
  	<tx:annotation-driven mode="aspectj" />
  	
- 	<beans profile="prod">
+ 	<beans profile="dev, prod, cloud">
 		<!-- Loads datastore submodule context -->
 		<import resource="classpath:datastoreContext.xml"/>
 	</beans>

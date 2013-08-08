@@ -8,7 +8,6 @@ import org.crowdguru.service.gateway.SectorRepositoryGateway;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 
-@Profile({"cloud, prod, dev"})
 public class SectorServiceImpl implements SectorService {
 
 	private SectorRepositoryGateway sectorRepository;

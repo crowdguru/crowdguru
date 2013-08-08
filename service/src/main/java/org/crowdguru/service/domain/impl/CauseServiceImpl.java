@@ -4,7 +4,6 @@ import org.crowdguru.datastore.domain.Cause;
 import org.crowdguru.service.domain.CauseService;
 import org.springframework.context.annotation.Profile;
 
-@Profile({"cloud, prod, dev"})
 public class CauseServiceImpl implements CauseService {
 
 	public CauseServiceImpl() {

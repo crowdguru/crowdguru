@@ -5,7 +5,6 @@ import org.crowdguru.service.domain.SkillService;
 import org.crowdguru.service.gateway.SkillRepositoryGateway;
 import org.springframework.context.annotation.Profile;
 
-@Profile({"cloud, prod, dev"})
 public class SkillServiceImpl implements SkillService {
 
 	private SkillRepositoryGateway skillRepository;
