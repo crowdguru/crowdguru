@@ -1,6 +1,8 @@
 package org.crowdguru.acceptance.page;
 
 import org.crowdguru.acceptance.predicate.ElementDisplayedPredicate;
+import org.crowdguru.datastore.domain.User;
+import org.crowdguru.datastore.domain.User.Type;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -72,17 +74,18 @@ public class RegisterPage extends Page {
 		return page;
 	}
 	
-	public void register(String forename, String surname, String email, String password, boolean isGuru, boolean isKeyContact){
+	public void register(String forename, String surname, String email, String password, User.Type type){
 		typeForename(forename);
 		typeSurname(surname);
 		typeEmail(email);
 		typePassword(password);
 		
-		if(isGuru){
+		if(type == Type.BOTH){
 			clickGuruCheckbox();
-		}
-		
-		if(isKeyContact){
+			clickKeyContactCheckbox();
+		}else if (type == Type.GURU){
+			clickGuruCheckbox();
+		}else if(type == Type.KEYCONTACT){
 			clickKeyContactCheckbox();
 		}
 		

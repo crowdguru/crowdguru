@@ -15,7 +15,11 @@ public class UserDetailsInterceptor extends HandlerInterceptorAdapter {
 			ModelAndView modelAndView) throws Exception {
 		Object principle = getPrinciple();
 		if (principle instanceof UserDetails) {
+			boolean isGuru = ((UserDetails)principle).isGuru();
+			boolean isKeyContact = ((UserDetails)principle).isKeyContact();
 			modelAndView.addObject(USER_DETAILS_KEY, (UserDetails)principle);
+			modelAndView.addObject("isGuru", isGuru);
+			modelAndView.addObject("isKeyContact", isKeyContact);
 		}
 	}
 	

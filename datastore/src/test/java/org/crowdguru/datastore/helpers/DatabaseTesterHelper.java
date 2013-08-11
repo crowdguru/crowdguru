@@ -46,12 +46,4 @@ public interface DatabaseTesterHelper {
 	 * @throws Exception
 	 */
 	public IDataSet getDataSet() throws SQLException, Exception;
-
-	/**
-	 * Provides current datasource connection
-	 * 
-	 * @return
-	 * @throws Exception
-	 */
-	public IDatabaseConnection getConnection() throws Exception;
 }

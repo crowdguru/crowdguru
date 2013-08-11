@@ -2,6 +2,7 @@ package org.crowdguru.datastore.helpers.impl;
 
 import org.crowdguru.datastore.constants.UserConstants;
 import org.crowdguru.datastore.domain.User;
+import org.crowdguru.datastore.domain.User.Type;
 import org.crowdguru.datastore.helpers.UserHelper;
 
 public class UserHelperImpl implements UserHelper, UserConstants{
@@ -15,6 +16,9 @@ public class UserHelperImpl implements UserHelper, UserConstants{
 		user.setLocation(USER_1_LOCATION);
 		user.setProviderId(USER_1_PROVIDER_ID);
 		user.setProviderUserId(USER_1_PROVIDER_USERID);
+		user.setEmail(USER_1_EMAIL);
+		user.setPassword(USER_1_PASSWORD);
+		user.setType(USER_1_TYPE);
 		return user;
 	}
 	

@@ -18,6 +18,7 @@
 		<spring.data.jpa.version>1.2.0.RELEASE</spring.data.jpa.version>
 		<c3p0.version>0.9.1.2</c3p0.version>
 		<cloudfoundry.version>0.8.2</cloudfoundry.version>
+
 	</properties>
 
 	<build>
@@ -132,6 +133,18 @@
 					</execution>
 				</executions>
 			</plugin>
+		    <plugin>
+		    	<groupId>org.apache.maven.plugins</groupId>
+		      	<artifactId>maven-jar-plugin</artifactId>
+		       	<version>${apache.maven.plugin.version}</version>
+		       	<executions>
+		        	<execution>
+		          		<goals>
+		            		<goal>test-jar</goal>
+		           		</goals>
+		         	</execution>
+		       	</executions>
+			</plugin>
 		</plugins>
 	</build>
 
@@ -185,6 +198,12 @@
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-jpa</artifactId>
 			<version>${spring.data.jpa.version}</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>slf4j-api</artifactId>
+					<groupId>org.slf4j</groupId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 
 		<dependency>
@@ -224,6 +243,12 @@
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-ehcache</artifactId>
 			<version>${hibernate.version}</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>slf4j-api</artifactId>
+					<groupId>org.slf4j</groupId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 
 		<dependency>
@@ -251,12 +276,6 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
-			<version>1.7.2</version>
-		</dependency>
-		
-		<dependency>
 			<groupId>c3p0</groupId>
 			<artifactId>c3p0</artifactId>
 			<version>${c3p0.version}</version>
@@ -278,8 +297,6 @@
 		<dependency>
 			<groupId>org.dbunit</groupId>
 			<artifactId>dbunit</artifactId>
-			<version>2.4.9</version>
-			<scope>test</scope>
 		</dependency>
 
 		<dependency>

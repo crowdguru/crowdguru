@@ -1,4 +1,4 @@
-package org.crowdguru.webapp.controllers;
+package org.crowdguru.webapp.controller;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import org.crowdguru.datastore.domain.User;
 import org.crowdguru.datastore.repositories.UserRepository;
-import org.crowdguru.webapp.controller.UserController;
+import org.crowdguru.webapp.controller.GuruController;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,40 +19,33 @@ import org.springframework.test.web.servlet.MockMvc;
 import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
-public class UserControllerTest {
+public class GuruControllerTest {
 	
 	private MockMvc mockMvc;
 	
 	@InjectMocks
-	private UserController cut;
-	
-	@Mock(name="userRepository")
-	private UserRepository mockUserRepository;
-	
-	@Mock(name="context")
-	private HttpServletRequest mockContext;
-	
-	private static final String CONTEXT_PATH = "/test";
+	private GuruController cut;
 	
 	@Before
 	public void setUp(){
 		this.mockMvc = standaloneSetup(cut).build();
-		Mockito.when(mockContext.getContextPath()).thenReturn(CONTEXT_PATH);
 	}
 	
 	@Test
-	public void findsAllGurus() throws Exception {
-		when(mockUserRepository.findAll()).thenReturn(new ArrayList<User>());
-		this.mockMvc.perform(get("/users"))
+	public void respondsGurusRequest() throws Exception {
+		this.mockMvc.perform(get("/gurus"))
 			.andExpect(status().isOk())
-			.andExpect(view().name("users/list"));
+			.andExpect(view().name("gurus/list"));
 	}
 	
 	@Test
-	public void findsGuruById() throws Exception {
-		when(mockUserRepository.findOne(new Long(1))).thenReturn(new User());
-		this.mockMvc.perform(get("/users/1"))
+	public void respondsSpecificGuruRequest() throws Exception {
+		this.mockMvc.perform(get("/gurus/123"))
 			.andExpect(status().isOk())
-			.andExpect(view().name("users/profile"));
+			.andExpect(view().name("gurus/show"));
+		
+		this.mockMvc.perform(get("/gurus/456"))
+			.andExpect(status().isOk())
+			.andExpect(view().name("gurus/show"));
 	}
 }

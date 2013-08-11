@@ -29,7 +29,6 @@ import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@TransactionConfiguration(defaultRollback = false)
 public class UserRepositoryTest extends RepositoryTestCommon{
 
 	@Autowired
@@ -184,7 +183,6 @@ public class UserRepositoryTest extends RepositoryTestCommon{
 		assertEqualsIgnoreCols(expected, current, "user", new String[] { "id" });
 	}
 
-	@Transactional
 	public void savesAndFlushesNewUser() throws SQLException, Exception {
 		User user = userHelper.user3();
 		assertThat(user.getId(), is(nullValue()));
@@ -222,7 +220,6 @@ public class UserRepositoryTest extends RepositoryTestCommon{
 		assertEqualsIgnoreCols(expected, current, "user", new String[] { "id" });
 	}
 
-	@Transactional
 	public void flushes() throws SQLException, Exception {
 		cut.deleteAll();
 		cut.save(userHelper.user1());

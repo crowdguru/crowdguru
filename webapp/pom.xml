@@ -26,6 +26,7 @@
 		<servlet.api.version>2.5</servlet.api.version>
 		<jstl.version>1.2</jstl.version>
 		<cargo.version>1.4.2</cargo.version>
+		<jetty.plugin.version>9.0.4.v20130625</jetty.plugin.version>
 	</properties>
 
 	<build>
@@ -76,7 +77,7 @@
 				<configuration>
 					<argLine>-XX:-UseSplitVerifier</argLine>
 					<excludes>
-						<exclude>**/views/*.java</exclude>
+						<exclude>**/view/*.java</exclude>
 					</excludes>
 				</configuration>
 			</plugin>
@@ -85,7 +86,7 @@
 				<artifactId>failsafe-maven-plugin</artifactId>
 				<configuration>
 					<includes>
-						<include>**/views/*.java</include>
+						<include>**/view/*.java</include>
 					</includes>
 				</configuration>
 				<executions>
@@ -96,32 +97,6 @@
 						</goals>
 					</execution>
 				</executions>
-			</plugin>
-			<plugin>
-				<groupId>org.codehaus.cargo</groupId>
-				<artifactId>cargo-maven2-plugin</artifactId>
-				<version>${cargo.version}</version>
-				<executions>
-					<execution>
-						<id>start-container</id>
-						<phase>pre-integration-test</phase>
-						<goals>
-							<goal>start</goal>
-						</goals>
-					</execution>
-					<execution>
-						<id>stop-container</id>
-						<phase>post-integration-test</phase>
-						<goals>
-							<goal>stop</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<container>
-					</container>
-					<skip>${skipTests}</skip>
-				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
@@ -177,6 +152,11 @@
     				</services>
     			</configuration>
 			</plugin>
+		<plugin>
+		    <groupId>org.eclipse.jetty</groupId>
+    		<artifactId>jetty-maven-plugin</artifactId>
+    		<version>${jetty.plugin.version}</version>
+		</plugin>
 		</plugins>
 	</build>
 
