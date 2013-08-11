@@ -1,6 +1,11 @@
 {{> partials/header }}
+{{#userDetails}}
+	{{> partials/navigation-user}}
+{{/userDetails}}
+{{^userDetails}}
+	{{> partials/navigation }}
+{{/userDetails}}
 		<div class="container">
-			{{> partials/navigation }}
 			<section class="row-fluid">
 				<h2>Search Results</h2>
 				<div class="search-results">

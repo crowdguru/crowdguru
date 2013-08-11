@@ -1,11 +1,6 @@
 package org.crowdguru.datastore.integration;
 
-import static org.dbunit.Assertion.assertEquals;
-
 import java.sql.SQLException;
-import java.util.HashSet;
-import java.util.Set;
-
 import org.crowdguru.datastore.domain.Sector;
 import org.crowdguru.datastore.domain.Skill;
 import org.crowdguru.datastore.domain.User;
@@ -17,8 +12,7 @@ import org.crowdguru.datastore.helpers.UserHelper;
 import org.crowdguru.datastore.repositories.SectorRepository;
 import org.crowdguru.datastore.repositories.SkillRepository;
 import org.crowdguru.datastore.repositories.UserRepository;
-import org.dbunit.dataset.IDataSet;
-import org.dbunit.dataset.ITable;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -26,14 +20,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.transaction.AfterTransaction;
-import org.springframework.test.context.transaction.TransactionConfiguration;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 @ContextConfiguration({ "/datastoreContext.xml", "/datastoreTestContext.xml" })
 @ActiveProfiles({"prod", "integrationtest"})
 @RunWith(SpringJUnit4ClassRunner.class)
-@TransactionConfiguration(defaultRollback = false)
 public class RepositoryTest {
 
 	@Autowired
@@ -67,7 +59,6 @@ public class RepositoryTest {
 	}
 	
 	@Test
-	@Transactional
 	public void testRepositories() {
 		
 		//Save user1
@@ -95,7 +86,7 @@ public class RepositoryTest {
 		sector2 = sectorRepo.save(sector2);
 	}
 	
-	@AfterTransaction
+	@After
 	public void check() throws SQLException, Exception{
 /*		IDataSet current = databaseTester.getDataSet();
 		IDataSet expected = fileHelper.loadFromFlatXmlFile("RepositoryTestExpected.xml");

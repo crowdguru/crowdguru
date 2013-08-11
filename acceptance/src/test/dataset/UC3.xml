@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <cause/>
+  <cause_sector/>
+  <cause_user/>
+  <hasid/>
+  <hibernate_sequences SEQUENCE_NAME="HasId" SEQUENCE_NEXT_HI_VALUE="1"/>
+  <skillgroup/>
+  <skillgroup_skill/>
+  <sector />
+  <skill />
+  <user id="1" shortProfile="USER_1_SHORTPROFILE" forename="USER_1_FORENAME" location="USER_1_LOCATION" providerId="USER_1_PROVIDER_ID" providerUserId="USER_1_PROVIDER_USERID" surname="USER_1_SURNAME" type="1" email="USER_1@CROWDGURU.ORG" password="USER_1_PASSWORD"/>
+  <user_skill />
+</dataset>

@@ -1,4 +1,4 @@
-package org.crowdguru.webapp.controllers;
+package org.crowdguru.webapp.controller;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;

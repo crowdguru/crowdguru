@@ -36,4 +36,8 @@ public class FrontEnd {
 		IndexPage page = new IndexPage(driver, baseUrl);
 		return page;
 	}
+
+	public void logOut() {
+		driver.get(baseUrl + "/logout");
+	}
 }

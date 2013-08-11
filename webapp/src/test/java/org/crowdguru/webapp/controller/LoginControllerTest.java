@@ -1,8 +1,9 @@
-package org.crowdguru.webapp.controllers;
+package org.crowdguru.webapp.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.crowdguru.webapp.controller.IndexController;
+import org.crowdguru.webapp.controller.LoginController;
+import org.crowdguru.webapp.controller.RegisterController;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,42 +11,41 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
+import org.springframework.mock.web.portlet.MockRenderResponse;
 import org.springframework.test.web.servlet.MockMvc;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
 @RunWith(MockitoJUnitRunner.class)
-public class IndexControllerTest{
+public class LoginControllerTest{
 	
 	private MockMvc mockMvc;
 	
 	@InjectMocks
-	private IndexController cut;
+	private LoginController cut;
 	
 	@Mock(name="context")
 	private HttpServletRequest mockContext;
 	
-	private static final String CONTEXT_PATH = "/test/";
+	private static final String CONTEXT_PATH = "/test";
 	
 	@Before
 	public void setup(){
 		this.mockMvc = standaloneSetup(cut).build();
-		Mockito.when(mockContext.getContextPath()).thenReturn("/test");
+		Mockito.when(mockContext.getContextPath()).thenReturn(CONTEXT_PATH);
 	}
 	
 	@Test
-	public void mapsRoot() throws Exception{
-		this.mockMvc.perform(get("/"))
+	public void mapsRegister() throws Exception{
+		this.mockMvc.perform(get("/login"))
 			.andExpect(status().isOk());
 	}
 	
 	@Test
-	public void mapsRootToIndex() throws Exception{
-		this.mockMvc.perform(get("/"))
-			.andExpect(view().name("index"));
+	public void rendersRegisterView() throws Exception{
+		this.mockMvc.perform(get("/login"))
+			.andExpect(view().name("signin"));
 	}
-	
 }

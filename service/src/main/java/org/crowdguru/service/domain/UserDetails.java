@@ -30,4 +30,12 @@ public class UserDetails extends org.springframework.security.core.userdetails.U
 	public User.Type getType(){
 		return delegate.getType();
 	}
+	
+	public boolean isGuru(){
+		return delegate.getType() == User.Type.GURU || delegate.getType() == User.Type.BOTH;
+	}
+
+	public boolean isKeyContact() {
+		return delegate.getType() == User.Type.KEYCONTACT || delegate.getType() == User.Type.BOTH;
+	}
 }

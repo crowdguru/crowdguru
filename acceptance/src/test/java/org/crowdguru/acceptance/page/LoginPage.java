@@ -1,10 +1,6 @@
 package org.crowdguru.acceptance.page;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import com.google.common.base.Predicate;
 
 public class LoginPage extends Page{
 
