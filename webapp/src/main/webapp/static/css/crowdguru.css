@@ -92,3 +92,13 @@ body {
 	float: left;
 	margin: 0 5px 5px 0;
 }
+
+.taskCaption {
+	word-wrap: break-word;
+}
+
+.taskPhotoContainer {
+	width: 260px;
+	height: 180px;
+	overflow: hidden;
+}

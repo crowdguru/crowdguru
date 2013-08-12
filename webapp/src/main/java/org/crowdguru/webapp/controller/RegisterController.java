@@ -44,7 +44,7 @@ public class RegisterController {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public @ResponseBody String add(@ModelAttribute RegistrationRequest formData, 
+	public @ResponseBody String add(@ModelAttribute RegistrationRequest formData,
 			BindingResult bindingResult, Model model) throws InvalidAccountTypeException{
 		log().info("state=received");
 		registrationService.register(formData);

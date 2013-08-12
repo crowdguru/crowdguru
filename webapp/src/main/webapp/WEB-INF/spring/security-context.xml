@@ -7,6 +7,7 @@
                     http://www.springframework.org/schema/security/spring-security-3.1.xsd">
 
     <http disable-url-rewriting="true" create-session="ifRequired">
+    	<intercept-url pattern="/tasks/new" access="ROLE_KEYCONTACT"/>
     	<intercept-url pattern="/" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
     	<intercept-url pattern="/index" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
     	<intercept-url pattern="/register" access="IS_AUTHENTICATED_ANONYMOUSLY" />

@@ -1,11 +1,14 @@
 package org.crowdguru.webapp.controller;
 
 import org.crowdguru.webapp.controller.TaskController;
+import org.crowdguru.webapp.service.TaskServiceGateway;
+import org.crowdguru.service.domain.TaskService;
 import org.crowdguru.service.request.RegistrationRequestOld;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -19,6 +22,9 @@ public class TaskControllerTest{
 	
 	@InjectMocks
 	private TaskController cut;
+	
+	@Mock
+	private TaskServiceGateway taskService;
 	
 	@Before
 	public void setup(){
