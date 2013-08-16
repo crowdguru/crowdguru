@@ -12,11 +12,15 @@ public class RegistrationServiceGateway {
 	
 	private RegistrationService registrationService;
 	
-	@Autowired
-	public RegistrationServiceGateway(RegistrationService registrationService) {
-		this.registrationService = registrationService;
+	public RegistrationServiceGateway() {
+		log().warn("activity=created");
 	}
 
+	@Autowired
+	public void setRegistrationService(RegistrationService registrationService){
+		this.registrationService = registrationService;
+	}
+	
 	public UserDetails register(RegistrationRequest request) throws InvalidAccountTypeException{
 		return registrationService.register(request);
 	}

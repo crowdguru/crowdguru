@@ -1,10 +1,13 @@
 package org.crowdguru.acceptance.usecase;
 
+import org.crowdguru.acceptance.page.BrowseTasksPage;
+import org.crowdguru.acceptance.page.CreateTaskPage;
 import org.crowdguru.acceptance.page.IndexPage;
 import org.crowdguru.acceptance.page.LoginPage;
 import org.crowdguru.acceptance.page.ProfilePage;
 import org.crowdguru.datastore.domain.User;
 import org.crowdguru.datastore.helpers.UserHelper;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,9 +38,21 @@ public class UC3CreateTask extends UseCaseTest{
         LoginPage loginPage = indexPage.clickLogOnButton();
         
         ProfilePage profilePage = loginPage.login(user.getEmail(), user.getPassword());
-        profilePage.clickCreateTaskLink();
-        
-        frontEnd.logOut();
+        CreateTaskPage createTaskPage = profilePage.clickCreateTaskLink();
+        createTaskPage.inputTitle("Test task");
+        createTaskPage.inputShortDescription("Test short description");
+        createTaskPage.inputLongDescription("Test long description");
+        createTaskPage.selectAmount(3);
+        createTaskPage.selectUnit("weeks");
+        createTaskPage.selectSpecialismGroup();
+        createTaskPage.selectSpecialism();
+        BrowseTasksPage browseTasksPage = createTaskPage.clickSubmitButton();
+        browseTasksPage.assertTaskField("Test task");
+        browseTasksPage.assertTaskField("Test short description");
 	}
 	
+	@After
+	public void logOut(){
+		frontEnd.logOut();
+	}
 }

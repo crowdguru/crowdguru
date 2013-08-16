@@ -13,16 +13,22 @@ public class UserDetailsInterceptor extends HandlerInterceptorAdapter {
 
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
-		Object principle = getPrinciple();
-		if (principle instanceof UserDetails) {
-			boolean isGuru = ((UserDetails)principle).isGuru();
-			boolean isKeyContact = ((UserDetails)principle).isKeyContact();
-			modelAndView.addObject(USER_DETAILS_KEY, (UserDetails)principle);
+		if(modelAndView != null){
+			populateUserDetails(modelAndView);
+		}
+	}
+	
+	private void populateUserDetails(ModelAndView modelAndView) {
+		Object principal = getPrinciple();
+		if (principal instanceof UserDetails) {
+			boolean isGuru = ((UserDetails)principal).isGuru();
+			boolean isKeyContact = ((UserDetails)principal).isKeyContact();
+			modelAndView.addObject(USER_DETAILS_KEY, (UserDetails)principal);
 			modelAndView.addObject("isGuru", isGuru);
 			modelAndView.addObject("isKeyContact", isKeyContact);
 		}
 	}
-	
+
 	private Object getPrinciple() {
 		return SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 	}

@@ -8,6 +8,13 @@
 		<div class="container">
 			<section class="row-fluid">
 				<h2>Search results</h2>
+				<div class="span12">
+					<ul class="thumbnails">
+					{{#tasks}}
+						{{>partials/taskShortAd}}
+					{{/tasks}}
+	   				</ul>
+	   			</div>
 			</section>
 		</div>
 {{> partials/footer }}

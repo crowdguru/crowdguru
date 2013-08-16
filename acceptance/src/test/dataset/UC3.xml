@@ -5,10 +5,16 @@
   <cause_user/>
   <hasid/>
   <hibernate_sequences SEQUENCE_NAME="HasId" SEQUENCE_NEXT_HI_VALUE="1"/>
-  <skillgroup/>
-  <skillgroup_skill/>
-  <sector />
-  <skill />
+  <skillgroup id="2" groupName="Group 1"/>
+  <skillgroup id="3" groupName="Group 2"/>
+  <skill id="4" name="Skill A"/>
+  <skill id="5" name="Skill B"/>
+  <skill id="6" name="Skill C"/>
+  <skill id="7" name="Skill D"/>
+  <skillgroup_skill skillgroup_id="2" skills_id="4"/>
+  <skillgroup_skill skillgroup_id="2" skills_id="5"/>
+  <skillgroup_skill skillgroup_id="3" skills_id="6"/>
+  <skillgroup_skill skillgroup_id="3" skills_id="7"/>
   <user id="1" shortProfile="USER_1_SHORTPROFILE" forename="USER_1_FORENAME" location="USER_1_LOCATION" providerId="USER_1_PROVIDER_ID" providerUserId="USER_1_PROVIDER_USERID" surname="USER_1_SURNAME" type="1" email="USER_1@CROWDGURU.ORG" password="USER_1_PASSWORD"/>
   <user_skill />
 </dataset>
