@@ -40,8 +40,31 @@ function postForm(event, onloadHandler){
 	xhr.send(fd);
 }
 
+function toggleCollapse(item){
+	item.collapse('toggle');
+}
+
 $(function(){
 	$("#inputSubmitRegistrationForm").click(function(event){
 		postForm(event);
 	});
-});
+	$("#checkBoxKeyContact").click(function(event){
+		toggleCollapse($("#collapseKeyContact"));
+		return true;
+	});
+	$("#checkBoxGuru").click(function(event){
+		toggleCollapse($("#collapseGuru"));
+		return true;
+	});
+	$("#buttonAddSpecialism").click(function(event){
+		inputField = $("#inputSpecialism")
+		specialism = inputField.val();
+		inputField.val('');
+		$('<li class="form-control-static"><span class="label label-default">' + specialism + '</span></li>')
+			.appendTo("#listSpecialism")
+			.css('cursor','pointer')
+			.click(function(){
+				$(this).remove();
+			});
+	});
+});	
