@@ -21,11 +21,7 @@ public class UserDetailsInterceptor extends HandlerInterceptorAdapter {
 	private void populateUserDetails(ModelAndView modelAndView) {
 		Object principal = getPrinciple();
 		if (principal instanceof UserDetails) {
-			boolean isGuru = ((UserDetails)principal).isGuru();
-			boolean isKeyContact = ((UserDetails)principal).isKeyContact();
-			modelAndView.addObject(USER_DETAILS_KEY, (UserDetails)principal);
-			modelAndView.addObject("isGuru", isGuru);
-			modelAndView.addObject("isKeyContact", isKeyContact);
+			modelAndView.addObject("userDetails", (UserDetails)principal);
 		}
 	}
 
