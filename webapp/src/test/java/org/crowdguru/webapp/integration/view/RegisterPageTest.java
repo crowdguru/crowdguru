@@ -17,7 +17,7 @@ public class RegisterPageTest extends PageTest {
 	public void  LogOnButtonExists() throws Exception{
 		this.mockMvc.perform(get("/register"))
 			.andExpect(status().isOk())
-			.andExpect(xpath(".//*[@id='buttonLogOnOrRegister']").exists());
+			.andExpect(xpath(".//*[@id='buttonLogon']").exists());
 	}
 	
 	@Test

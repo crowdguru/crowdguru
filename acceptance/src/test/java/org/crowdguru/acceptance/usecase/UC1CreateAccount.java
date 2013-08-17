@@ -1,7 +1,6 @@
 package org.crowdguru.acceptance.usecase;
 
 import org.crowdguru.acceptance.page.IndexPage;
-import org.crowdguru.acceptance.page.LoginPage;
 import org.crowdguru.acceptance.page.ProfilePage;
 import org.crowdguru.acceptance.page.RegisterPage;
 import org.crowdguru.datastore.domain.User;
@@ -39,17 +38,16 @@ public class UC1CreateAccount extends UseCaseTest{
 		
         IndexPage indexPage = frontEnd.goHome();
         
-        LoginPage loginPage = indexPage.clickLogOnButton();
+        RegisterPage registerPage = indexPage.clickBecomeGuruButton();
         
-        RegisterPage registerPage = loginPage.clickRegisterButton();
         registerPage.register(user.getForename(), user.getSurname(), 
         		user.getEmail(), user.getPassword(), user.getType());
         
         registerPage.assertSubmissionNotificationPresent();
-        loginPage = registerPage.closeSubmissionNotification();
+        registerPage.closeSubmissionNotification();
         
-        ProfilePage profilePage = loginPage.login(user.getEmail(), user.getPassword());
-        
+        indexPage = frontEnd.goHome();
+        ProfilePage profilePage = indexPage.login(user.getEmail(), user.getPassword());
         profilePage.assertProfileField(user.getForename());
         profilePage.assertProfileField(user.getSurname());
         profilePage.assertProfileField(user.getEmail());

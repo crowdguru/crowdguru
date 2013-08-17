@@ -10,7 +10,7 @@ public class PageLoadedPredicate extends OneParameterPredicate<String>{
 	
 	@Override
 	public boolean apply(WebDriver driver) {
-		boolean result = driver.getCurrentUrl().equals(parameter);
+		boolean result = driver.getCurrentUrl().contains(parameter);
 		log().debug("url=" + parameter + ";result=" + result);
 		return result;
 	}

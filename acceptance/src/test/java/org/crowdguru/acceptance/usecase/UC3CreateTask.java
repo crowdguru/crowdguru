@@ -35,17 +35,16 @@ public class UC3CreateTask extends UseCaseTest{
 		User user = userHelper.user1();
 		
 		IndexPage indexPage = frontEnd.goHome();
-        LoginPage loginPage = indexPage.clickLogOnButton();
+        ProfilePage profilePage = indexPage.login(user.getEmail(), user.getPassword());
         
-        ProfilePage profilePage = loginPage.login(user.getEmail(), user.getPassword());
         CreateTaskPage createTaskPage = profilePage.clickCreateTaskLink();
         createTaskPage.inputTitle("Test task");
         createTaskPage.inputShortDescription("Test short description");
         createTaskPage.inputLongDescription("Test long description");
         createTaskPage.selectAmount(3);
         createTaskPage.selectUnit("weeks");
-        createTaskPage.selectSpecialismGroup();
-        createTaskPage.selectSpecialism();
+        //createTaskPage.selectSpecialismGroup();
+        //createTaskPage.selectSpecialism();
         BrowseTasksPage browseTasksPage = createTaskPage.clickSubmitButton();
         browseTasksPage.assertTaskField("Test task");
         browseTasksPage.assertTaskField("Test short description");

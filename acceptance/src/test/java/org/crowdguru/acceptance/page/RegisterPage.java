@@ -15,15 +15,15 @@ public class RegisterPage extends Page {
 	
 	private static final String SURNAME_INPUT_XPATH = "//input[@name='surname']";
 	
-	private static final String EMAIL_INPUT_XPATH = "//input[@name='email']";
+	private static final String EMAIL_INPUT_XPATH = "//input[@id='inputEmail']";
 	
-	private static final String PASSWORD_INPUT_XPATH = "//input[@name='password']";
+	private static final String PASSWORD_INPUT_XPATH = "//input[@id='inputPassword']";
 	
 	private static final String GURU_CHECKBOX_XPATH = "//input[@name='guru']";
 	
 	private static final String KEYCONTACT_CHECKBOX_XPATH = "//input[@name='keyContact']";
 	
-	private static final String SUBMIT_BUTTON_XPATH = "//input[@value='Submit']";
+	private static final String SUBMIT_BUTTON_XPATH = "//input[@id='inputSubmitRegistrationForm']";
 	
 	private static final String SUBMISSION_SUCCESS_NOTIFICATION_RE = "^[\\s\\S]*Submitted successfuly! Check your inbox to activate your account\\.[\\s\\S]*$";
 	
@@ -68,10 +68,8 @@ public class RegisterPage extends Page {
 		wait.until(new ElementDisplayedPredicate(SUBMISSION_NOTIFICATION_DIV_XPATH));
 	}
 
-	public LoginPage closeSubmissionNotification() {
+	public void closeSubmissionNotification() {
 		this.click(findElement(SUBMISSION_NOTIFICATION_CLOSE_BUTTON_XPATH));
-		LoginPage page = new LoginPage(driver, baseUrl);
-		return page;
 	}
 	
 	public void register(String forename, String surname, String email, String password, User.Type type){

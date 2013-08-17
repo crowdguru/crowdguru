@@ -8,8 +8,8 @@
 			make the world a better place. If you are a Guru or looking for a
 			Guru, or both, then please let us know a bit about you.</p>
 		<div id="divSubmitSuccessNotification"
-			class="alert alert-success hidden fade in">
-			<button class="close" data-dismiss="alert" type="button">×</button>
+			class="alert hidden alert-success alert-dismissable">
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
 			<strong>Submitted successfuly!</strong> Check your inbox to activate
 			your account.
 		</div>
@@ -57,7 +57,7 @@
 			</div>
 			<div class="form-group">
 				<div class="col-md-offset-2">
-					<input class="btn" type="submit" value="Submit" />
+					<input id="inputSubmitRegistrationForm" class="btn" type="submit" value="Submit" />
 				</div>
 			</div>
 		</form>
@@ -67,5 +67,6 @@
 </main>
 {{> partials/footer }}
 {{> partials/common-js }}
+<script src="{{contextPath}}static/lib/crowdguru/signup.js" type="text/javascript"></script>
 </body>
 </html>

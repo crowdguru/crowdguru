@@ -43,8 +43,8 @@ public abstract class UseCaseTest {
 	protected DatabaseTesterHelper databaseTester;
 	
 	public UseCaseTest(){
-		this.driverFactory = WebDriverGateway.getPhantomJSFactory();
-//		this.driverFactory = WebDriverGateway.getFirefoxFactory();
+//		this.driverFactory = WebDriverGateway.getPhantomJSFactory();
+		this.driverFactory = WebDriverGateway.getFirefoxFactory();
 	}
 	
 	@Before

@@ -24,10 +24,6 @@ function formPostAborted(evt) {
 
 function formPosted(){
 	console.info("activity=formPost;status=completed;");
-	$("#divSubmitSuccessNotification").alert();
-	$("#divSubmitSuccessNotification").bind('closed', function(){
-		goTo("login");
-	});
 	$("#divSubmitSuccessNotification").removeClass('hidden');
 }
 
@@ -45,8 +41,7 @@ function postForm(event, onloadHandler){
 }
 
 $(function(){
-	$("#buttonLogOnOrRegister").text("Log on");
-	$("input[type='submit']").click(function(event){
+	$("#inputSubmitRegistrationForm").click(function(event){
 		postForm(event);
 	});
 });
