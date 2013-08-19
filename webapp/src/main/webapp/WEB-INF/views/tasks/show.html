@@ -1,13 +1,11 @@
 {{> partials/header }}
-{{#userDetails}}
-	{{> partials/navigation-user}}
-{{/userDetails}}
-{{^userDetails}}
-	{{> partials/navigation }}
-{{/userDetails}}
-		<div class="container">
-			<section class="row-fluid">
-				<h2>Show task</h2>
-			</section>
-		</div>
+	{{#userDetails}}
+		{{> partials/navbar/authenticated }}
+	{{/userDetails}}
+<h2>Show task</h2>
+</div> <!-- Main contanier ends-->
+</main>
 {{> partials/footer }}
+{{> partials/common-js }}
+</body>
+</html>

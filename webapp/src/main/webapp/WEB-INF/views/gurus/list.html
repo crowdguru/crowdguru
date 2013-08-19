@@ -1,20 +1,23 @@
 {{> partials/header }}
-{{#userDetails}}
-	{{> partials/navigation-user}}
-{{/userDetails}}
-{{^userDetails}}
-	{{> partials/navigation }}
-{{/userDetails}}
-		<div class="container">
-			<section class="row-fluid">
-				<h2>Search Results</h2>
-				<div class="search-results">
-					<ul>
-						{{#users}}
-						<li><a href="{{contextPath}}/users/{{id}}">{{forename}} {{surname}}</a></li>
-						{{/users}}
-					</ul>
-				</div>
-			</section>
-		</div>
+	{{^userDetails}}
+		{{> partials/navbar/anonymous }}
+	{{/userDetails}}
+	{{#userDetails}}
+		{{> partials/navbar/authenticated }}
+	{{/userDetails}}
+<h2>Search results</h2>
+<div class="row">
+	<div class="search-results">
+		<ul>
+			{{#users}}
+			<li><a href="{{contextPath}}/users/{{id}}">{{forename}} {{surname}}</a></li>
+			{{/users}}
+		</ul>
+	</div>
+</div>
+</div> <!-- Main contanier ends-->
+</main>
 {{> partials/footer }}
+{{> partials/common-js }}
+</body>
+</html>

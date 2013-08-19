@@ -61,7 +61,9 @@ public abstract class UseCaseTest {
 	
 	@After
 	public void cleanDatabase() throws SQLException, Exception{
+		boolean res = databaseTester.disableForeignKeyIntegrityCheck();
 		databaseTester.clean();
+		res = databaseTester.enableForeignKeyIntegrityCheck();
 	}
 	
 	@After

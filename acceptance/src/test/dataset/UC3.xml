@@ -2,7 +2,6 @@
 <dataset>
   <cause/>
   <cause_sector/>
-  <cause_user/>
   <hasid/>
   <hibernate_sequences SEQUENCE_NAME="HasId" SEQUENCE_NEXT_HI_VALUE="1"/>
   <skillgroup id="2" groupName="Group 1"/>
@@ -15,6 +14,7 @@
   <skillgroup_skill skillgroup_id="2" skills_id="5"/>
   <skillgroup_skill skillgroup_id="3" skills_id="6"/>
   <skillgroup_skill skillgroup_id="3" skills_id="7"/>
-  <user id="1" shortProfile="USER_1_SHORTPROFILE" forename="USER_1_FORENAME" location="USER_1_LOCATION" providerId="USER_1_PROVIDER_ID" providerUserId="USER_1_PROVIDER_USERID" surname="USER_1_SURNAME" type="1" email="USER_1@CROWDGURU.ORG" password="USER_1_PASSWORD"/>
+  <user id="1" shortProfile="USER_1_SHORTPROFILE" forename="USER_1_FORENAME" location="USER_1_LOCATION" providerId="USER_1_PROVIDER_ID" providerUserId="USER_1_PROVIDER_USERID" surname="USER_1_SURNAME" type="2" email="USER_1@CROWDGURU.ORG" password="USER_1_PASSWORD"/>
   <user_skill />
+  <task />
 </dataset>

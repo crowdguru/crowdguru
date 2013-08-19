@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.Validator;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -46,7 +47,8 @@ public class RegisterController {
 	@RequestMapping(method = RequestMethod.POST)
 	public @ResponseBody String add(@ModelAttribute RegistrationRequest formData,
 			BindingResult bindingResult, Model model) throws InvalidAccountTypeException{
-		log().info("state=received");
+		log().info("activity=received");
+		log().debug(formData);
 		registrationService.register(formData);
 		return "done";
 	}

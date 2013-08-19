@@ -1,0 +1,40 @@
+{{> partials/header }}
+	{{#userDetails}}
+		{{> partials/navbar/authenticated }}
+	{{/userDetails}}
+	<h2>Cause details</h2>
+	<div class="col-md-5">
+		{{#causeDetails}}
+		<table class="table table-striped table-bordered">
+			<tbody>
+				<tr>
+					<td>ID</td>
+					<td>{{id}}</td>
+				</tr>
+				<tr>
+					<td>Name</td>
+					<td>{{name}}</td>
+				</tr>
+				<tr>
+					<td>Sectors</td>
+					{{#sectors}}
+					<td>{{name}}</td>
+					{{/sectors}}
+				</tr>
+				<tr>
+					<td>Key contact</td>
+					{{#keyContacts}}
+					<td>{{forename}} {{surname}}</td>
+					{{/keyContacts}}
+				</tr>
+			</tbody>
+		</table>
+		{{/causeDetails}}
+	</div>
+	</div> <!-- Main contanier ends-->
+</main>
+{{> partials/footer }}
+{{> partials/common-js }}
+</body>
+</html>
+

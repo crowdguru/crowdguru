@@ -2,34 +2,24 @@ package org.crowdguru.datastore.integration;
 
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
-import static org.dbunit.Assertion.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-
 import org.crowdguru.datastore.domain.Skill;
 import org.crowdguru.datastore.helpers.SkillHelper;
 import org.crowdguru.datastore.repositories.SkillRepository;
 import org.crowdguru.datastore.validators.SkillValidator;
 import org.dbunit.DatabaseUnitException;
-import org.dbunit.dataset.IDataSet;
-import org.dbunit.dataset.ITable;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.transaction.TransactionConfiguration;
-import org.springframework.transaction.annotation.Transactional;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@TransactionConfiguration(defaultRollback = false)
-public class SkillRepositoryTest extends RepositoryTestCommon{
+public class SkillRepositoryTest extends BaseRepositoryTest{
 
 	@Autowired
 	private SkillRepository cut;
@@ -43,7 +33,7 @@ public class SkillRepositoryTest extends RepositoryTestCommon{
 	@Before
 	public void setUp() throws DatabaseUnitException, SQLException, Exception {
 		check = null;
-		initialData = fileHelper.loadFromFlatXmlFile("SkillRepositoryTest/SkillRepositoryTest.xml");
+		initialData = fileHelper.loadFromFlatXmlFile("SkillRepositoryTest.xml");
 		databaseTester.cleanInsert(initialData);
 	}
 
@@ -96,56 +86,40 @@ public class SkillRepositoryTest extends RepositoryTestCommon{
 		assertThat(it.hasNext(), is(false));
 	}
 
+	@Test
 	public void deletesSkillById() throws SQLException, Exception {
 		cut.delete(new Long(2));
-
-		ITable current = databaseTester.getDataSet().getTable("skill");
-		IDataSet expected = fileHelper.loadFromFlatXmlFile("SkillRepositoryTest/deletesSkillExpected.xml");
-		assertEquals(expected.getTable("skill"), current);
+		assertThat(cut.count(), is(equalTo((long)1)));
 	}
 
+	@Test
 	public void deletesSkillByEntity() throws SQLException, Exception {
 		cut.delete(cut.findOne(new Long(2)));
-
-		ITable current = databaseTester.getDataSet().getTable("skill");
-		IDataSet expected = fileHelper.loadFromFlatXmlFile("SkillRepositoryTest/deletesSkillExpected.xml");
-		assertEquals(expected.getTable("skill"), current);
+		assertThat(cut.count(), is(equalTo((long)1)));
 	}
 
+	@Test
 	public void deletesSkillByIterable() throws SQLException, Exception {
 		ArrayList<Skill> skills = new ArrayList<Skill>();
 		skills.add(cut.findOne(new Long(2)));
 		cut.delete((Iterable<Skill>) skills);
-
-		ITable current = databaseTester.getDataSet().getTable("skill");
-		IDataSet expected = fileHelper.loadFromFlatXmlFile("SkillRepositoryTest/deletesSkillExpected.xml");
-		assertEquals(expected.getTable("skill"), current);
+		assertThat(cut.count(), is(equalTo((long)1)));
 	}
 
+	@Test
 	public void deletesAllSkillsInBatch() throws SQLException, Exception {
-		// There shouldn't be any relation with other tables in order to execute
-		// deleteAllInBatch()
-		IDataSet initial = fileHelper.loadFromFlatXmlFile("SkillRepositoryTest/deletesAllSkillsInBatchInitial.xml");
-		databaseTester.cleanInsert(initial);
 		cut.deleteAllInBatch();
-
-		ITable current = databaseTester.getDataSet().getTable("skill");
-		assertThat(current.getRowCount(), is(equalTo(0)));
+		assertThat(cut.count(), is(equalTo((long)0)));
 	}
 
+	@Test
 	public void deletesSkillsInBatch() throws SQLException, Exception {
-		// There shouldn't be any relation with other tables in order to execute
-		// deleteAllInBatch()
-		IDataSet initial = fileHelper.loadFromFlatXmlFile("SkillRepositoryTest/deletesAllSkillsInBatchInitial.xml");
-		databaseTester.cleanInsert(initial);
 
 		ArrayList<Skill> skills = new ArrayList<Skill>();
 		skills.add(cut.findOne(new Long(1)));
 		skills.add(cut.findOne(new Long(2)));
 		cut.deleteInBatch((Iterable<Skill>) skills);
-
-		ITable current = databaseTester.getDataSet().getTable("skill");
-		assertThat(current.getRowCount(), is(equalTo(0)));
+		assertThat(cut.count(), is(equalTo((long)0)));
 	}
 
 	@Test
@@ -160,81 +134,39 @@ public class SkillRepositoryTest extends RepositoryTestCommon{
 		assertThat(cut.exists(new Long(3)), is(false));
 	}
 
+	@Test
 	public void savesNewSkill() throws SQLException, Exception {
 		Skill skill = skillHelper.skill3();
-		assertThat(skill.getId(), is(nullValue()));
+		long count = cut.count();
 		cut.save(skill);
-		assertThat(skill.getId(), is(notNullValue()));
-
-		IDataSet current = databaseTester.getDataSet();
-		IDataSet expected = fileHelper.loadFromFlatXmlFile("SkillRepositoryTest/savesNewSkillExpected.xml");
-
-		// Ids are subject to change after save/delete operation. Ignoring for
-		// robustness.
-		assertEqualsIgnoreCols(expected, current, "skill", new String[] { "id" });
+		assertThat(cut.count(), is(equalTo((long)(count+1))));
 	}
 
-	@Transactional
 	public void savesAndFlushesNewSkill() throws SQLException, Exception {
 		Skill skill = skillHelper.skill3();
-		assertThat(skill.getId(), is(nullValue()));
+		long count = cut.count();
 		cut.saveAndFlush(skill);
-		assertThat(skill.getId(), is(notNullValue()));
-
-		check = new Runnable() {
-
-			@Override
-			public void run() {
-				IDataSet current;
-				try {
-					current = databaseTester.getDataSet();
-					IDataSet expected = fileHelper.loadFromFlatXmlFile("SkillRepositoryTest/savesNewSkillExpected.xml");
-					assertEqualsIgnoreCols(expected, current, "skill", new String[] { "id" });
-				}
-				catch (Exception e) {
-					e.printStackTrace();
-				}
-
-			}
-		};
+		assertThat(cut.count(), is(equalTo((long)(count+1))));
 	}
 
+	@Test
 	public void savesSkillsIterable() throws SQLException, Exception {
-		cut.deleteAll();
+		databaseTester.clean();
 		ArrayList<Skill> skills = new ArrayList<Skill>();
 		skills.add(skillHelper.skill1());
 		skills.add(skillHelper.skill2());
 		skills.add(skillHelper.skill3());
 		cut.save(skills);
-
-		IDataSet current = databaseTester.getDataSet();
-		IDataSet expected = fileHelper.loadFromFlatXmlFile("SkillRepositoryTest/savesNewSkillExpected.xml");
-		assertEqualsIgnoreCols(expected, current, "skill", new String[] { "id" });
+		assertThat(cut.count(), is(equalTo((long)3)));
 	}
 
-	@Transactional
+	@Test
 	public void flushes() throws SQLException, Exception {
-		cut.deleteAll();
+		databaseTester.clean();
 		cut.save(skillHelper.skill1());
 		cut.save(skillHelper.skill2());
 		cut.save(skillHelper.skill3());
 		cut.flush();
-
-		check = new Runnable() {
-
-			@Override
-			public void run() {
-				IDataSet current;
-				try {
-					current = databaseTester.getDataSet();
-					IDataSet expected = fileHelper.loadFromFlatXmlFile("SkillRepositoryTest/savesNewSkillExpected.xml");
-					assertEqualsIgnoreCols(expected, current, "skill", new String[] { "id" });
-				}
-				catch (Exception e) {
-					e.printStackTrace();
-				}
-
-			}
-		};
+		assertThat(cut.count(), is(equalTo((long)3)));
 	}
 }

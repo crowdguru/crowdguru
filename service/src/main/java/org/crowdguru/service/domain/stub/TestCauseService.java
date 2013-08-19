@@ -1,5 +1,8 @@
 package org.crowdguru.service.domain.stub;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.crowdguru.datastore.domain.Cause;
 import org.crowdguru.service.domain.CauseService;
 
@@ -21,4 +24,8 @@ public class TestCauseService implements CauseService {
 		return repository.findOne(id);
 	}
 
+	@Override
+	public List<Cause> findAll() {
+		return new ArrayList<Cause>();
+	}
 }

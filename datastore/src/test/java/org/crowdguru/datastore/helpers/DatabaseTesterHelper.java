@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import org.dbunit.DatabaseUnitException;
 import org.dbunit.database.IDatabaseConnection;
 import org.dbunit.dataset.IDataSet;
+import org.springframework.jdbc.CannotGetJdbcConnectionException;
 
 /**
  * Provides database operations. Especially bringing it to a known state before
@@ -46,4 +47,8 @@ public interface DatabaseTesterHelper {
 	 * @throws Exception
 	 */
 	public IDataSet getDataSet() throws SQLException, Exception;
+	
+	public boolean enableForeignKeyIntegrityCheck() throws CannotGetJdbcConnectionException, DatabaseUnitException, SQLException;
+	
+	public boolean disableForeignKeyIntegrityCheck() throws CannotGetJdbcConnectionException, DatabaseUnitException, SQLException;
 }

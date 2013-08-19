@@ -23,9 +23,8 @@ public class TestUserService implements UserService{
 	}
 
 	@Override
-	public synchronized UserDetails save(User user) {
-		user = repository.save(user);
-		return createUserDetails(user);
+	public synchronized User save(User user) {
+		return repository.save(user);
 	}
 
 	@Override
@@ -50,5 +49,10 @@ public class TestUserService implements UserService{
 	private UserDetails createUserDetails(User user) {
 		Collection<GrantedAuthority> authorities = authorityService.createAuthorities(user.getType());		
 		return new UserDetails(user, authorities);
+	}
+
+	@Override
+	public UserDetails populateUserDetails(User user) {
+		return createUserDetails(user);
 	}
 }

@@ -38,4 +38,8 @@ public class UserDetails extends org.springframework.security.core.userdetails.U
 	public boolean isKeyContact() {
 		return delegate.getType() == User.Type.KEYCONTACT || delegate.getType() == User.Type.BOTH;
 	}
+	
+	public User getUser(){
+		return delegate;
+	}
 }

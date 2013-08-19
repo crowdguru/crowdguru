@@ -27,9 +27,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@TransactionConfiguration(defaultRollback = false)
-public class SectorRepositoryTest extends RepositoryTestCommon{
+public class SectorRepositoryTest extends BaseRepositoryTest{
 
 	@Autowired
 	private SectorRepository cut;
@@ -42,8 +40,7 @@ public class SectorRepositoryTest extends RepositoryTestCommon{
 
 	@Before
 	public void setUp() throws DatabaseUnitException, SQLException, Exception {
-		check = null;
-		initialData = fileHelper.loadFromFlatXmlFile("SectorRepositoryTest/SectorRepositoryTest.xml");
+		initialData = fileHelper.loadFromFlatXmlFile("SectorRepositoryTest.xml");
 		databaseTester.cleanInsert(initialData);
 	}
 
@@ -99,19 +96,13 @@ public class SectorRepositoryTest extends RepositoryTestCommon{
 	@Test
 	public void deletesSectorById() throws SQLException, Exception {
 		cut.delete(new Long(2));
-
-		ITable current = databaseTester.getDataSet().getTable("sector");
-		IDataSet expected = fileHelper.loadFromFlatXmlFile("SectorRepositoryTest/deletesSectorExpected.xml");
-		assertEquals(expected.getTable("sector"), current);
+		assertThat(cut.count(), is(equalTo((long)1)));
 	}
 
 	@Test
 	public void deletesSectorByEntity() throws SQLException, Exception {
 		cut.delete(cut.findOne(new Long(2)));
-
-		ITable current = databaseTester.getDataSet().getTable("sector");
-		IDataSet expected = fileHelper.loadFromFlatXmlFile("SectorRepositoryTest/deletesSectorExpected.xml");
-		assertEquals(expected.getTable("sector"), current);
+		assertThat(cut.count(), is(equalTo((long)1)));
 	}
 
 	@Test
@@ -119,38 +110,22 @@ public class SectorRepositoryTest extends RepositoryTestCommon{
 		ArrayList<Sector> sectors = new ArrayList<Sector>();
 		sectors.add(cut.findOne(new Long(2)));
 		cut.delete((Iterable<Sector>) sectors);
-
-		ITable current = databaseTester.getDataSet().getTable("sector");
-		IDataSet expected = fileHelper.loadFromFlatXmlFile("SectorRepositoryTest/deletesSectorExpected.xml");
-		assertEquals(expected.getTable("sector"), current);
+		assertThat(cut.count(), is(equalTo((long)1)));
 	}
 
 	@Test
 	public void deletesAllSectorsInBatch() throws SQLException, Exception {
-		// There shouldn't be any relation with other tables in order to execute
-		// deleteAllInBatch()
-		IDataSet initial = fileHelper.loadFromFlatXmlFile("SectorRepositoryTest/deletesAllSectorsInBatchInitial.xml");
-		databaseTester.cleanInsert(initial);
 		cut.deleteAllInBatch();
-
-		ITable current = databaseTester.getDataSet().getTable("sector");
-		assertThat(current.getRowCount(), is(equalTo(0)));
+		assertThat(cut.count(), is(equalTo((long)0)));
 	}
 
 	@Test
 	public void deletesSectorsInBatch() throws SQLException, Exception {
-		// There shouldn't be any relation with other tables in order to execute
-		// deleteAllInBatch()
-		IDataSet initial = fileHelper.loadFromFlatXmlFile("SectorRepositoryTest/deletesAllSectorsInBatchInitial.xml");
-		databaseTester.cleanInsert(initial);
-
 		ArrayList<Sector> sectors = new ArrayList<Sector>();
 		sectors.add(cut.findOne(new Long(1)));
 		sectors.add(cut.findOne(new Long(2)));
 		cut.deleteInBatch((Iterable<Sector>) sectors);
-
-		ITable current = databaseTester.getDataSet().getTable("sector");
-		assertThat(current.getRowCount(), is(equalTo(0)));
+		assertThat(cut.count(), is(equalTo((long)0)));
 	}
 
 	@Test
@@ -171,79 +146,34 @@ public class SectorRepositoryTest extends RepositoryTestCommon{
 		assertThat(sector.getId(), is(nullValue()));
 		cut.save(sector);
 		assertThat(sector.getId(), is(notNullValue()));
-
-		IDataSet current = databaseTester.getDataSet();
-		IDataSet expected = fileHelper.loadFromFlatXmlFile("SectorRepositoryTest/savesNewSectorExpected.xml");
-
-		// Ids are subject to change after save/delete operation. Ignoring for
-		// robustness.
-		assertEqualsIgnoreCols(expected, current, "sector", new String[] { "id" });
 	}
 
 	@Test
-	@Transactional
 	public void savesAndFlushesNewSector() throws SQLException, Exception {
 		Sector sector = sectorHelper.sector3();
 		assertThat(sector.getId(), is(nullValue()));
 		cut.saveAndFlush(sector);
 		assertThat(sector.getId(), is(notNullValue()));
-
-		check = new Runnable() {
-
-			@Override
-			public void run() {
-				IDataSet current;
-				try {
-					current = databaseTester.getDataSet();
-					IDataSet expected = fileHelper.loadFromFlatXmlFile("SectorRepositoryTest/savesNewSectorExpected.xml");
-					assertEqualsIgnoreCols(expected, current, "sector", new String[] { "id" });
-				}
-				catch (Exception e) {
-					e.printStackTrace();
-				}
-
-			}
-		};
 	}
 
 	@Test
 	public void savesSectorsIterable() throws SQLException, Exception {
-		cut.deleteAll();
+		databaseTester.clean();
 		ArrayList<Sector> sectors = new ArrayList<Sector>();
 		sectors.add(sectorHelper.sector1());
 		sectors.add(sectorHelper.sector2());
 		sectors.add(sectorHelper.sector3());
 		cut.save(sectors);
-
-		IDataSet current = databaseTester.getDataSet();
-		IDataSet expected = fileHelper.loadFromFlatXmlFile("SectorRepositoryTest/savesNewSectorExpected.xml");
-		assertEqualsIgnoreCols(expected, current, "sector", new String[] { "id" });
+		assertThat(cut.count(), is(equalTo((long)3)));
 	}
 
 	@Test
-	@Transactional
 	public void flushes() throws SQLException, Exception {
-		cut.deleteAll();
+		databaseTester.clean();
 		cut.save(sectorHelper.sector1());
 		cut.save(sectorHelper.sector2());
 		cut.save(sectorHelper.sector3());
 		cut.flush();
-
-		check = new Runnable() {
-
-			@Override
-			public void run() {
-				IDataSet current;
-				try {
-					current = databaseTester.getDataSet();
-					IDataSet expected = fileHelper.loadFromFlatXmlFile("SectorRepositoryTest/savesNewSectorExpected.xml");
-					assertEqualsIgnoreCols(expected, current, "sector", new String[] { "id" });
-				}
-				catch (Exception e) {
-					e.printStackTrace();
-				}
-
-			}
-		};
+		assertThat(cut.count(), is(equalTo((long)3)));
 	}
 }

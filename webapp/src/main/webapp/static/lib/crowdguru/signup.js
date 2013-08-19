@@ -24,10 +24,6 @@ function formPostAborted(evt) {
 
 function formPosted(){
 	console.info("activity=formPost;status=completed;");
-	$("#divSubmitSuccessNotification").alert();
-	$("#divSubmitSuccessNotification").bind('closed', function(){
-		goTo("login");
-	});
 	$("#divSubmitSuccessNotification").removeClass('hidden');
 }
 
@@ -44,9 +40,43 @@ function postForm(event, onloadHandler){
 	xhr.send(fd);
 }
 
+function toggleCollapse(item){
+	item.collapse('toggle');
+}
+
 $(function(){
-	$("#buttonLogOnOrRegister").text("Log on");
-	$("input[type='submit']").click(function(event){
+	$("#inputSubmitRegistrationForm").click(function(event){
 		postForm(event);
+	});
+	$("#checkBoxKeyContact").click(function(event){
+		toggleCollapse($("#collapseKeyContact"));
+		return true;
+	});
+	$("#checkBoxGuru").click(function(event){
+		toggleCollapse($("#collapseGuru"));
+		return true;
+	});
+	$("#buttonAddSpecialism").click(function(event){
+		inputField = $("#inputSpecialism");
+		specialism = inputField.val();
+		inputField.val('');
+		$('<li class="form-control-static"><span class="label label-default">' + specialism + '</span><input type="hidden" name="specialisms" value="' + specialism + '" /></li>')
+			.appendTo("#listSpecialism")
+			.css('cursor','pointer')
+			.click(function(){
+				$(this).remove();
+			});
+	});
+	
+	$("#buttonAddSector").click(function(event){
+		inputField = $("#inputSector");
+		sector = inputField.val();
+		inputField.val('');
+		$('<li class="form-control-static"><span class="label label-default">' + sector + '</span><input type="hidden" name="sectors" value="' + sector + '" /></li>')
+			.appendTo("#listSector")
+			.css('cursor','pointer')
+			.click(function(){
+				$(this).remove();
+			});
 	});
 });

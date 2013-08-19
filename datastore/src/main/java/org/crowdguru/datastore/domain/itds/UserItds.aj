@@ -1,7 +1,8 @@
 package org.crowdguru.datastore.domain.itds;
 
+import java.util.Set;
 import org.crowdguru.datastore.domain.User;
-import org.crowdguru.datastore.domain.User.Type;
+import org.crowdguru.datastore.domain.Cause;
 
 public privileged aspect UserItds {
 
@@ -77,14 +78,22 @@ public privileged aspect UserItds {
 		return this.password;
 	}
 	
-	public void User.setType(Type type) {
+	public void User.setType(User.Type type) {
 		this.type = type;
 	}
 	
-	public Type User.getType(){
+	public User.Type User.getType(){
 		return this.type;
 	}
 
+	public Set<Cause> User.getCauses(){
+		return this.causes;
+	}
+	
+	public Set<Cause> User.setCauses(Set<Cause> causes){
+		return this.causes = causes;
+	}
+	
 	public String User.toString() {
 		return "{ "
 				+ "id: '"             + id             + "', "
