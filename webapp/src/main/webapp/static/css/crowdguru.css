@@ -118,3 +118,16 @@ h3 {
 	height: 180px;
 	overflow: hidden;
 }
+
+.padding-right-reduced {
+    padding-right: 4px;
+}
+
+.padding-left-reduced {
+    padding-left: 4px;
+}
+
+.panel-heading-height-reduced {
+	padding-top: 1px;
+	padding-bottom: 1px;
+}

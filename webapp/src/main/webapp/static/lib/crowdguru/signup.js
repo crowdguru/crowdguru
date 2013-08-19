@@ -57,14 +57,26 @@ $(function(){
 		return true;
 	});
 	$("#buttonAddSpecialism").click(function(event){
-		inputField = $("#inputSpecialism")
+		inputField = $("#inputSpecialism");
 		specialism = inputField.val();
 		inputField.val('');
-		$('<li class="form-control-static"><span class="label label-default">' + specialism + '</span></li>')
+		$('<li class="form-control-static"><span class="label label-default">' + specialism + '</span><input type="hidden" name="specialisms" value="' + specialism + '" /></li>')
 			.appendTo("#listSpecialism")
 			.css('cursor','pointer')
 			.click(function(){
 				$(this).remove();
 			});
 	});
-});	
+	
+	$("#buttonAddSector").click(function(event){
+		inputField = $("#inputSector");
+		sector = inputField.val();
+		inputField.val('');
+		$('<li class="form-control-static"><span class="label label-default">' + sector + '</span><input type="hidden" name="sectors" value="' + sector + '" /></li>')
+			.appendTo("#listSector")
+			.css('cursor','pointer')
+			.click(function(){
+				$(this).remove();
+			});
+	});
+});

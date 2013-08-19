@@ -4,9 +4,13 @@
 	{{/userDetails}}
 	<h2>Profile</h2>
 	<div class="col-md-5">
-		{{#userDetails}}
+		{{#user}}
 		<table class="table table-striped table-bordered">
 			<tbody>
+				<tr>
+					<td>ID</td>
+					<td>{{id}}</td>
+				</tr>
 				<tr>
 					<td>Forename</td>
 					<td>{{forename}}</td>
@@ -20,12 +24,32 @@
 					<td>{{email}}</td>
 				</tr>
 				<tr>
+					<td>Location</td>
+					<td>{{location}}</td>
+				</tr>
+				<tr>
 					<td>Type</td>
 					<td>{{type}}</td>
 				</tr>
+				<tr>
+					<td>Short profile</td>
+					<td>{{shortProfile}}</td>
+				</tr>
+				<tr>
+					<td>Specialisms</td>
+					{{#skills}}
+					<td>{{name}}</td>
+					{{/skills}}
+				</tr>
+				{{#causes}}
+				<tr>
+					<td>Cause</td>
+					<td>{{name}}</td>
+				</tr>
+				{{/causes}}
 			</tbody>
 		</table>
-		{{/userDetails}}
+		{{/user}}
 	</div>
 	</div> <!-- Main contanier ends-->
 </main>

@@ -14,58 +14,51 @@ public class RegisterPageTest extends PageTest {
 	}
 	
 	@Test
-	public void  LogOnButtonExists() throws Exception{
-		this.mockMvc.perform(get("/register"))
-			.andExpect(status().isOk())
-			.andExpect(xpath(".//*[@id='buttonLogon']").exists());
-	}
-	
-	@Test
 	public void forenameInputExists() throws Exception{
 		this.mockMvc.perform(get("/register"))
 			.andExpect(status().isOk())
-			.andExpect(xpath("//input[@name='forename']").exists());
+			.andExpect(xpath("//input[@id='inputForename']").exists());
 	}
 	
 	@Test
 	public void surnameInputExists() throws Exception{
 		this.mockMvc.perform(get("/register"))
 			.andExpect(status().isOk())
-			.andExpect(xpath("//input[@name='surname']").exists());
+			.andExpect(xpath("//input[@id='inputSurname']").exists());
 	}
 	
 	@Test
 	public void emailInputExists() throws Exception{
 		this.mockMvc.perform(get("/register"))
 			.andExpect(status().isOk())
-			.andExpect(xpath("//input[@name='email']").exists());
+			.andExpect(xpath("//input[@id='inputEmail']").exists());
 	}
 	
 	@Test
 	public void passwordInputExists() throws Exception{
 		this.mockMvc.perform(get("/register"))
 			.andExpect(status().isOk())
-			.andExpect(xpath("//input[@name='password']").exists());
+			.andExpect(xpath("//input[@id='inputPassword']").exists());
 	}
 	
 	@Test
 	public void submitButtonExists() throws Exception{
 		this.mockMvc.perform(get("/register"))
 			.andExpect(status().isOk())
-			.andExpect(xpath("//input[@value='Submit']").exists());
+			.andExpect(xpath("//input[@id='inputSubmitRegistrationForm']").exists());
 	}
 	
 	@Test
 	public void GuruCheckboxExists() throws Exception{
 		this.mockMvc.perform(get("/register"))
 			.andExpect(status().isOk())
-			.andExpect(xpath("//input[@name='guru']").exists());
+			.andExpect(xpath("//input[@id='checkBoxGuru']").exists());
 	}
 	
 	@Test
 	public void keyContactCheckboxExists() throws Exception{
 		this.mockMvc.perform(get("/register"))
 			.andExpect(status().isOk())
-			.andExpect(xpath("//input[@name='keyContact']").exists());
+			.andExpect(xpath("//input[@id='checkBoxKeyContact']").exists());
 	}
 }

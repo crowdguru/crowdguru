@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <cause/>
+  <cause_sector/>
+  <hasid/>
+  <hibernate_sequences SEQUENCE_NAME="HasId" SEQUENCE_NEXT_HI_VALUE="1"/>
+  <skillgroup/>
+  <skillgroup_skill/>
+  <user id="1" shortProfile="USER_1_SHORTPROFILE" forename="USER_1_FORENAME" location="USER_1_LOCATION" providerId="USER_1_PROVIDER_ID" providerUserId="USER_1_PROVIDER_USERID" surname="USER_1_SURNAME"/>
+  <user id="2" shortProfile="USER_2_SHORTPROFILE" forename="USER_2_FORENAME" location="USER_2_LOCATION" providerId="USER_2_PROVIDER_ID" providerUserId="USER_2_PROVIDER_USERID" surname="USER_2_SURNAME"/>
+</dataset>

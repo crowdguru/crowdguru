@@ -62,10 +62,10 @@ public class User extends HasId implements Serializable{
 	@Basic
 	private Boolean isLocationDisabled;
 	
-	@ManyToMany
+	@ManyToMany(fetch=FetchType.EAGER)
 	Set<Skill> skills;
 	
-	@ManyToMany
+	@ManyToMany(fetch=FetchType.EAGER)
 	private Set<Cause> causes;
 	
 	@Lob

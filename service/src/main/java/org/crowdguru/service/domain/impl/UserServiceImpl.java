@@ -34,10 +34,14 @@ public class UserServiceImpl implements UserService{
 	}
 	
 	@Override
-	@Transactional
-	public UserDetails save(User user) {
-		user = userRepository.save(user);
+	public UserDetails populateUserDetails(User user) {
 		return createUserDetails(user);
+	}
+	
+	@Override
+	@Transactional
+	public User save(User user){
+		return userRepository.save(user);
 	}
 
 	@Override

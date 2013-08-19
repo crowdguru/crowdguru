@@ -45,10 +45,10 @@ public class DatabaseInitializer implements ApplicationListener<ContextRefreshed
 	@Override
 	@Transactional
 	public void onApplicationEvent(ContextRefreshedEvent event) {
-		if(event.getApplicationContext().getDisplayName().contains("crowdguru-application-servlet")){
+/*		if(event.getApplicationContext().getDisplayName().contains("crowdguru-application-servlet")){
 			createSkillGroups();
 			createUsers();
-		}
+		}*/
 	}
 	
 	private void createSkillGroups(){

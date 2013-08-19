@@ -31,14 +31,12 @@ public class DatabaseTesterHelperImpl implements DatabaseTesterHelper {
 		IDatabaseConnection dbunitConnection = getJdbcConnection();
 		IDataSet dataset = dbunitConnection.createDataSet();
 		DatabaseOperation.DELETE_ALL.execute(dbunitConnection, dataset);
-		releaseManagedDatabaseConnection(dbunitConnection.getConnection());
 	}
 
 	@Override
 	public void cleanInsert(IDataSet dataset) throws DatabaseUnitException, SQLException, Exception {
 		IDatabaseConnection dbunitConnection = getJdbcConnection();
 		DatabaseOperation.CLEAN_INSERT.execute(dbunitConnection, dataset);
-		releaseManagedDatabaseConnection(dbunitConnection.getConnection());
 	}
 
 	@Override
@@ -49,11 +47,28 @@ public class DatabaseTesterHelperImpl implements DatabaseTesterHelper {
 		return dataset;
 	}
 
-	private IDatabaseConnection getJdbcConnection() throws CannotGetJdbcConnectionException, DatabaseUnitException{
+	private IDatabaseConnection getJdbcConnection() throws CannotGetJdbcConnectionException, DatabaseUnitException {
 		return new DatabaseConnection(DataSourceUtils.getConnection(dataSource));
 	}
+
+	private void releaseManagedDatabaseConnection(Connection connection) throws CannotGetJdbcConnectionException,
+			DatabaseUnitException {
+		 DataSourceUtils.releaseConnection(connection, dataSource);
+	}
 	
-	private void releaseManagedDatabaseConnection(Connection connection) throws CannotGetJdbcConnectionException, DatabaseUnitException{
-		//DataSourceUtils.releaseConnection(connection, dataSource);
+	@Override
+	public boolean disableForeignKeyIntegrityCheck() throws SQLException, CannotGetJdbcConnectionException, DatabaseUnitException{
+		IDatabaseConnection dbunitConnection = getJdbcConnection();
+		return executeSqlStatement(dbunitConnection, "SET FOREIGN_KEY_CHECKS = 0;");
+	}
+	
+	@Override
+	public boolean enableForeignKeyIntegrityCheck() throws CannotGetJdbcConnectionException, DatabaseUnitException, SQLException{
+		IDatabaseConnection dbunitConnection = getJdbcConnection();
+		return executeSqlStatement(dbunitConnection, "SET FOREIGN_KEY_CHECKS = 1;");
+	}
+	
+	private boolean executeSqlStatement(IDatabaseConnection dbunitConnection, String statement) throws SQLException{
+		return dbunitConnection.getConnection().prepareStatement(statement).execute();
 	}
 }

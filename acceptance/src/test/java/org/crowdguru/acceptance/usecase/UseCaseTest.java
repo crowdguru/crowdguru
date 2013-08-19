@@ -43,8 +43,8 @@ public abstract class UseCaseTest {
 	protected DatabaseTesterHelper databaseTester;
 	
 	public UseCaseTest(){
-//		this.driverFactory = WebDriverGateway.getPhantomJSFactory();
-		this.driverFactory = WebDriverGateway.getFirefoxFactory();
+		this.driverFactory = WebDriverGateway.getPhantomJSFactory();
+//		this.driverFactory = WebDriverGateway.getFirefoxFactory();
 	}
 	
 	@Before
@@ -61,7 +61,9 @@ public abstract class UseCaseTest {
 	
 	@After
 	public void cleanDatabase() throws SQLException, Exception{
+		boolean res = databaseTester.disableForeignKeyIntegrityCheck();
 		databaseTester.clean();
+		res = databaseTester.enableForeignKeyIntegrityCheck();
 	}
 	
 	@After

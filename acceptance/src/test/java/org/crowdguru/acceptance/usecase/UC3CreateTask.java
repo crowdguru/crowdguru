@@ -43,11 +43,7 @@ public class UC3CreateTask extends UseCaseTest{
         createTaskPage.inputLongDescription("Test long description");
         createTaskPage.selectAmount(3);
         createTaskPage.selectUnit("weeks");
-        //createTaskPage.selectSpecialismGroup();
-        //createTaskPage.selectSpecialism();
-        BrowseTasksPage browseTasksPage = createTaskPage.clickSubmitButton();
-        browseTasksPage.assertTaskField("Test task");
-        browseTasksPage.assertTaskField("Test short description");
+        createTaskPage.clickSubmitButton();
 	}
 	
 	@After

@@ -11,21 +11,25 @@ import com.google.common.base.Predicate;
 
 public class RegisterPage extends Page {
 
-	private static final String FORENAME_INPUT_XPATH = "//input[@name='forename']";
+	private static final String FORENAME_INPUT_XPATH = "//input[@id='inputForename']";
 	
-	private static final String SURNAME_INPUT_XPATH = "//input[@name='surname']";
+	private static final String SURNAME_INPUT_XPATH = "//input[@id='inputSurname']";
 	
 	private static final String EMAIL_INPUT_XPATH = "//input[@id='inputEmail']";
 	
 	private static final String PASSWORD_INPUT_XPATH = "//input[@id='inputPassword']";
 	
-	private static final String GURU_CHECKBOX_XPATH = "//input[@name='guru']";
+	private static final String LOCATION_INPUT_XPATH = "//input[@id='inputLocation']";
+	
+	private static final String GURU_CHECKBOX_XPATH = "//input[@id='checkBoxGuru']";
 	
 	private static final String KEYCONTACT_CHECKBOX_XPATH = "//input[@name='keyContact']";
 	
 	private static final String SUBMIT_BUTTON_XPATH = "//input[@id='inputSubmitRegistrationForm']";
 	
-	private static final String SUBMISSION_SUCCESS_NOTIFICATION_RE = "^[\\s\\S]*Submitted successfuly! Check your inbox to activate your account\\.[\\s\\S]*$";
+	private static final String SHORTPROFILE_TEXTAREA_XPATH = "//textarea[@id='textAreaShortProfile']";
+	
+	private static final String CAUSENAME_INPUT_XPATH = "//input[@id='inputCauseName']";
 	
 	private static final String SUBMISSION_NOTIFICATION_CLOSE_BUTTON_XPATH = "//div[@id='divSubmitSuccessNotification']/button";
 	
@@ -49,6 +53,18 @@ public class RegisterPage extends Page {
 	
 	public void typePassword(String password) {
 		this.clearAndSendKeys(findElement(PASSWORD_INPUT_XPATH), password);		
+	}
+	
+	public void typeShortProfile(String profile) {
+		this.clearAndSendKeys(findElement(SHORTPROFILE_TEXTAREA_XPATH), profile);		
+	}
+	
+	public void typeCauseName(String name) {
+		this.clearAndSendKeys(findElement(CAUSENAME_INPUT_XPATH), name);		
+	}
+	
+	public void typeLocation(String location) {
+		this.clearAndSendKeys(findElement(LOCATION_INPUT_XPATH), location);		
 	}
 	
 	public void clickGuruCheckbox() {
