@@ -5,7 +5,7 @@
 
 	<groupId>org.crowdguru</groupId>
 	<artifactId>crowdguru</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.2-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<name>crowdguru</name>
@@ -18,7 +18,7 @@
 		<aspectj.version>1.7.1</aspectj.version>
 		<java.source>1.7</java.source>
 		<java.target>1.7</java.target>
-		<crowdguru.version>0.0.1-SNAPSHOT</crowdguru.version>
+		<crowdguru.version>0.0.2-SNAPSHOT</crowdguru.version>
 		<cobertura.version>2.5.2</cobertura.version>
 		<junit.version>4.11</junit.version>
 		<apache.maven.plugin.version>2.4</apache.maven.plugin.version>
