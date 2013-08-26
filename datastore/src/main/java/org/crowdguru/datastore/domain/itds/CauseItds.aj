@@ -4,6 +4,7 @@ import java.util.Set;
 
 import org.crowdguru.datastore.domain.Sector;
 import org.crowdguru.datastore.domain.Cause;
+import org.crowdguru.datastore.domain.Task;
 import org.crowdguru.datastore.domain.User;
 
 public privileged aspect CauseItds {
@@ -46,5 +47,13 @@ public privileged aspect CauseItds {
 	
 	public void Cause.setSectors(Set<Sector> sectors){
 		this.sectors = sectors;
+	}
+	
+	public void Cause.setTasks(Set<Task> tasks){
+		this.tasks = tasks;
+	}
+	
+	public Set<Task> Cause.getTasks(){
+		return this.tasks;
 	}
 }

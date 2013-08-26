@@ -1,10 +1,8 @@
 package org.crowdguru.acceptance.usecase;
 
-import org.crowdguru.acceptance.page.BrowseTasksPage;
 import org.crowdguru.acceptance.page.CreateTaskPage;
+import org.crowdguru.acceptance.page.HomePage;
 import org.crowdguru.acceptance.page.IndexPage;
-import org.crowdguru.acceptance.page.LoginPage;
-import org.crowdguru.acceptance.page.ProfilePage;
 import org.crowdguru.datastore.domain.User;
 import org.crowdguru.datastore.helpers.UserHelper;
 import org.junit.After;
@@ -35,7 +33,7 @@ public class UC3CreateTask extends UseCaseTest{
 		User user = userHelper.user1();
 		
 		IndexPage indexPage = frontEnd.goHome();
-        ProfilePage profilePage = indexPage.login(user.getEmail(), user.getPassword());
+        HomePage profilePage = indexPage.login(user.getEmail(), user.getPassword());
         
         CreateTaskPage createTaskPage = profilePage.clickCreateTaskLink();
         createTaskPage.inputTitle("Test task");

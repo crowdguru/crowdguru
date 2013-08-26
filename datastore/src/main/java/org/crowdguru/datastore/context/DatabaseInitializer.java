@@ -1,12 +1,16 @@
 package org.crowdguru.datastore.context;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
+import org.crowdguru.datastore.domain.Cause;
 import org.crowdguru.datastore.domain.Skill;
 import org.crowdguru.datastore.domain.SkillGroup;
 import org.crowdguru.datastore.domain.User;
 import org.crowdguru.datastore.domain.User.Type;
+import org.crowdguru.datastore.repositories.CauseRepository;
 import org.crowdguru.datastore.repositories.SkillGroupRepository;
 import org.crowdguru.datastore.repositories.SkillRepository;
 import org.crowdguru.datastore.repositories.UserRepository;
@@ -27,6 +31,8 @@ public class DatabaseInitializer implements ApplicationListener<ContextRefreshed
 	
 	UserRepository userRepository;
 	
+	CauseRepository causeRepository;
+	
 	@Autowired
 	public void setSkillRepository(SkillRepository skillRepository){
 		this.skillRepository = skillRepository;
@@ -42,20 +48,36 @@ public class DatabaseInitializer implements ApplicationListener<ContextRefreshed
 		this.userRepository = userRepository;
 	}
 	
+	@Autowired
+	public void setCauseRepository(CauseRepository causeRepository){
+		this.causeRepository = causeRepository;
+	}
+	
 	@Override
 	@Transactional
 	public void onApplicationEvent(ContextRefreshedEvent event) {
-/*		if(event.getApplicationContext().getDisplayName().contains("crowdguru-application-servlet")){
-			createSkillGroups();
-			createUsers();
-		}*/
+		if(event.getApplicationContext().getDisplayName().contains("crowdguru-application-servlet")){
+			List<SkillGroup> skillGroups = createSkillGroups();
+			List<User> users = createUsers();
+			List<Cause> causes = createCauses();
+			Set<Cause> ca = new HashSet<Cause>();
+			ca.add(causes.get(0));
+			users.get(0).setCauses(ca);
+			userRepository.save(users.get(0));
+			Set<User> us = new HashSet<User>();
+			us.add(users.get(0));
+			causes.get(0).setKeyContacts(us);
+			causeRepository.save(causes.get(0));
+		}
 	}
-	
-	private void createSkillGroups(){
+
+	private List<SkillGroup> createSkillGroups(){
+		List<SkillGroup> groups = new ArrayList<SkillGroup>();
 		String[] skillNames = {"Skill A", "Skill B"};
-		SkillGroup group = createSkillGroup("Group 1", skillNames);
+		groups.add(createSkillGroup("Group 1", skillNames));
 		String[] skillNames2 = {"Skill C", "Skill D"};
-		group = createSkillGroup("Group 2", skillNames2);
+		groups.add(createSkillGroup("Group 2", skillNames2));
+		return groups;
 	}
 	
 	private SkillGroup createSkillGroup(String groupName, String[] skillNames){
@@ -83,21 +105,32 @@ public class DatabaseInitializer implements ApplicationListener<ContextRefreshed
 		return skillRepository.save(skill);
 	}
 	
-	private void createUsers(){
+	private List<User> createUsers(){
+		List<User> users = new ArrayList<User>();
 		User user = new User();
-		user.setForename("Forname1");
-		user.setSurname("Surname1");
+		user.setForename("Bob");
+		user.setSurname("James");
 		user.setEmail("kc@crowdguru.org");
 		user.setPassword("kc");
 		user.setType(Type.KEYCONTACT);
-		userRepository.save(user);
+		users.add(userRepository.save(user));
 		
 		user = new User();
-		user.setForename("Forname2");
-		user.setSurname("Surname2");
+		user.setForename("John");
+		user.setSurname("Brains");
 		user.setEmail("gr@crowdguru.org");
 		user.setPassword("gr");
 		user.setType(Type.GURU);
-		userRepository.save(user);
+		users.add(userRepository.save(user));
+		return users;
+	}
+	
+	private List<Cause> createCauses() {
+		List<Cause> causes = new ArrayList<Cause>();
+		Cause cause = new Cause();
+		cause.setName("Test Charity");
+		cause.setDescription("At vero eos et accusamus et iusto odio dignissimos ducimus, qui blanditiis praesentium voluptatum deleniti atque corrupti, quos dolores et quas molestias excepturi sint, obcaecati cupiditate non provident, similique sunt in culpa, qui officia deserunt mollitia animi, id est laborum et dolorum fuga.");
+		causes.add(causeRepository.save(cause));
+		return causes;
 	}
 }

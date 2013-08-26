@@ -23,10 +23,10 @@ public class CauseServiceGateway {
 	}
 	
 	public List<Cause> findAll(){
-		return this.causeService.findAll();
+		return this.causeService.getCauses();
 	}
 
 	public Cause findOne(Long causeId) {
-		return this.causeService.findOne(causeId);
+		return this.causeService.getCauseById(causeId);
 	}
 }

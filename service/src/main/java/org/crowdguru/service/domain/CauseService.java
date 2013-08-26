@@ -8,8 +8,8 @@ public interface CauseService {
 	
 	public Cause save(Cause cause);
 
-	public Cause findOne(Long id);
+	public Cause getCauseById(Long id);
 	
-	public List<Cause> findAll();
+	public List<Cause> getCauses();
 	
 }

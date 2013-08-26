@@ -6,7 +6,5 @@ public interface UserService {
 
 	public User save(User user);
 
-	public UserDetails findByEmail(String email);
-
-	UserDetails populateUserDetails(User user);
+	public User getUserByEmail(String email);
 }

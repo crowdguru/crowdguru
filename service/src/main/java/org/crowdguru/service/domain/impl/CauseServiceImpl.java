@@ -32,15 +32,15 @@ public class CauseServiceImpl implements CauseService {
 
 	@Override
 	@Transactional(readOnly=true)
-	public Cause findOne(Long id) {
+	public Cause getCauseById(Long id) {
 		Cause cause = causeRepository.findOne(id);
-		log().info("activity=findOne;id=" + id + ";result=" + cause != null ? "found" : "notFound");
+		log().info("activity=getCauseById;id=" + id + ";found=" + (cause != null));
 		return cause;
 	}
 
 	@Override
 	@Transactional(readOnly=true)
-	public List<Cause> findAll() {
+	public List<Cause> getCauses() {
 		List<Cause> findings = causeRepository.findAll();
 		log().info("activity=findAll;found=" + findings.size());
 		return findings;

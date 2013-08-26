@@ -4,11 +4,13 @@ import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -62,11 +64,14 @@ public class User extends HasId implements Serializable{
 	@Basic
 	private Boolean isLocationDisabled;
 	
-	@ManyToMany(fetch=FetchType.EAGER)
+	@ManyToMany
 	Set<Skill> skills;
 	
-	@ManyToMany(fetch=FetchType.EAGER)
+	@ManyToMany
 	private Set<Cause> causes;
+	
+	@OneToMany(mappedBy="owner")
+	private Set<Task> ownedTasks;
 	
 	@Lob
 	byte[] avatar;

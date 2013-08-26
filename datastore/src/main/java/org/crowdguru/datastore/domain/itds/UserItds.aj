@@ -1,6 +1,8 @@
 package org.crowdguru.datastore.domain.itds;
 
 import java.util.Set;
+
+import org.crowdguru.datastore.domain.Task;
 import org.crowdguru.datastore.domain.User;
 import org.crowdguru.datastore.domain.Cause;
 
@@ -92,6 +94,14 @@ public privileged aspect UserItds {
 	
 	public Set<Cause> User.setCauses(Set<Cause> causes){
 		return this.causes = causes;
+	}
+
+	public void User.setOwnedTasks(Set<Task> ownedTasks){
+		this.ownedTasks = ownedTasks;
+	}
+	
+	public Set<Task> User.getOwnedTasks(){
+		return this.ownedTasks;
 	}
 	
 	public String User.toString() {

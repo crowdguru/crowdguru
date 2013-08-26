@@ -1,7 +1,7 @@
 package org.crowdguru.webapp.service;
 
+import org.crowdguru.datastore.domain.User;
 import org.crowdguru.service.domain.RegistrationService;
-import org.crowdguru.service.domain.UserDetails;
 import org.crowdguru.service.exception.InvalidAccountTypeException;
 import org.crowdguru.service.request.RegistrationRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,7 @@ public class RegistrationServiceGateway {
 		this.registrationService = registrationService;
 	}
 	
-	public UserDetails register(RegistrationRequest request) throws InvalidAccountTypeException{
+	public User register(RegistrationRequest request) throws InvalidAccountTypeException{
 		return registrationService.register(request);
 	}
 }

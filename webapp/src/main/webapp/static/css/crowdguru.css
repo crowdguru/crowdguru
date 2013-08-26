@@ -131,3 +131,54 @@ h3 {
 	padding-top: 1px;
 	padding-bottom: 1px;
 }
+
+.bottom-right-alert {
+	position: absolute;
+	right: 1%;
+	word-wrap:break-word;
+	height:auto;
+}
+
+.notificationBase {
+	left: 0;
+    opacity: 1;
+    position: relative;
+    visibility: visible;
+}
+
+a.notificationMainLink {
+    color: #333333;
+    display: block;
+    margin-bottom: -1px;
+    padding: 7px 20px 7px 8px;
+    text-decoration: none;
+    z-index: 2;
+}
+
+a.notificationMainLink:hover {
+    text-decoration: none;
+    border-color: #DDDDDD;
+    background-color: #E7E7E7;
+}
+
+.notificationContainer {
+	padding-left: 0px;
+    padding-right: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 330px;
+    overflow: hidden;
+}
+
+.info {
+	max-width: 300px;
+	word-wrap: break-word;
+}
+
+.notificationsIcon {
+	cursor: pointer;
+}
+
+.notificationEmphasis {
+	font-weight: bold;	
+}

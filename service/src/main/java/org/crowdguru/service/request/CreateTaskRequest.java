@@ -2,6 +2,9 @@ package org.crowdguru.service.request;
 
 import java.util.List;
 
+import org.crowdguru.datastore.domain.Cause;
+import org.crowdguru.datastore.domain.User;
+
 public class CreateTaskRequest {
 
 	private String title;
@@ -19,6 +22,10 @@ public class CreateTaskRequest {
 	private boolean publish;
 	
 	private byte[] photo;
+	
+	private Long causeId;
+	
+	private String keyContactEmail;
 
 	public String getTitle() {
 		return title;
@@ -83,5 +90,20 @@ public class CreateTaskRequest {
 	public void setPublish(boolean publish) {
 		this.publish = publish;
 	}
-	
+
+	public Long getCauseId() {
+		return causeId;
+	}
+
+	public void setCauseId(Long causeId) {
+		this.causeId = causeId;
+	}
+
+	public String getkeyContactEmail() {
+		return keyContactEmail;
+	}
+
+	public void setKeyContactEmail(String keyContactEmail) {
+		this.keyContactEmail = keyContactEmail;
+	}
 }

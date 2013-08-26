@@ -58,13 +58,7 @@ public class TaskControllerTest{
 	
 	@Test
 	public void respondsToSaveRequest() throws Exception{
-		this.mockMvc.perform(get("/tasks/save"))
-			.andExpect(status().isOk());
-	}
-	
-	@Test
-	public void respondsToPublishRequest() throws Exception{
-		this.mockMvc.perform(get("/tasks/publish"))
+		this.mockMvc.perform(get("/tasks/new"))
 			.andExpect(status().isOk());
 	}
 }

@@ -26,15 +26,15 @@ public class IndexPage extends Page {
 		this.clearAndSendKeys(findElement(PASSWORD_INPUT_XPATH), password);		
 	}
 	
-	public ProfilePage login(String email, String password){
+	public HomePage login(String email, String password){
 		typeEmail(email);
 		typePassword(password);
 		return clickLogOnButton();
 	}
 	
-	public ProfilePage clickLogOnButton() {
+	public HomePage clickLogOnButton() {
 		this.click(findElement(LOGON_BUTTON_XPATH));
-		ProfilePage page = new ProfilePage(driver, baseUrl);
+		HomePage page = new HomePage(driver, baseUrl);
 		return page;
 	}
 	

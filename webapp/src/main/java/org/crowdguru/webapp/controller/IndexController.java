@@ -8,7 +8,7 @@ import org.springframework.ui.Model;
 public class IndexController {
 	
 	@RequestMapping("/")
-	public String index(Model m) {
+	public String index(Model model) {
 		return "index";
 	}
 }

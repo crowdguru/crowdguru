@@ -36,7 +36,7 @@ public class RegisterPage extends Page {
 	private static final String SUBMISSION_NOTIFICATION_DIV_XPATH = "//div[@id='divSubmitSuccessNotification']";
 	
 	public RegisterPage(WebDriver driver, String baseUrl){
-		super(driver, baseUrl, "/register");
+		super(driver, baseUrl, "/signup");
 	}
 	
 	public void typeForename(String forename){

@@ -20,12 +20,12 @@ public class TestCauseService implements CauseService {
 	}
 
 	@Override
-	public Cause findOne(Long id) {
+	public Cause getCauseById(Long id) {
 		return repository.findOne(id);
 	}
 
 	@Override
-	public List<Cause> findAll() {
+	public List<Cause> getCauses() {
 		return new ArrayList<Cause>();
 	}
 }
