@@ -4,10 +4,13 @@ import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -19,7 +22,8 @@ public class Task extends HasId implements Serializable{
 	@Basic
 	private String title;
 	
-	@Basic
+	@Lob
+	@Basic(fetch=FetchType.LAZY)
 	private String shortDescription;
 	
 	@Lob
@@ -36,7 +40,15 @@ public class Task extends HasId implements Serializable{
 	@Basic(fetch=FetchType.LAZY)
 	private byte[] photo;
 	
+	@ManyToOne
+	private User owner;
+	
+	@ManyToOne
+	private Cause cause;
+	
 	@ManyToMany
-	Set<Skill> specialisms;
-
+	private Set<Skill> specialisms;
+	
+	@ManyToMany
+	private Set<User> assignees;
 }

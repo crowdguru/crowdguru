@@ -2,28 +2,35 @@ package org.crowdguru.datastore.constants;
 
 import org.crowdguru.datastore.domain.User;
 
+//http://www.babynames.com/features/widgets.php?&action=renamer
 public interface UserConstants {
-	String USER_1_FORENAME = "USER_1_FORENAME"; 
-	String USER_1_SURNAME = "USER_1_SURNAME";
-	String USER_1_SHORTPROFILE = "USER_1_SHORTPROFILE";
-	String USER_1_LOCATION = "USER_1_LOCATION";
-	String USER_1_PROVIDER_ID = "USER_1_PROVIDER_ID";
-	String USER_1_PROVIDER_USERID = "USER_1_PROVIDER_USERID";
-	String USER_1_EMAIL = "USER_1@CROWDGURU.ORG";
-	String USER_1_PASSWORD = "USER_1_PASSWORD";
+	String USER_1_FORENAME = "Caleb"; 
+	String USER_1_SURNAME = "Ace";
+	String USER_1_SHORTPROFILE = "Sed ut perspiciatis unde omnis iste natus error sit voluptatem.";
+	String USER_1_LOCATION = "London";
+	String USER_1_PROVIDER_ID = "accusantium";
+	String USER_1_PROVIDER_USERID = "doloremque";
+	String USER_1_EMAIL = "calebace@gmail.com";
+	String USER_1_PASSWORD = "calebace";
 	User.Type USER_1_TYPE = User.Type.KEYCONTACT;
 	
-	String USER_2_FORENAME = "USER_2_FORENAME"; 
-	String USER_2_SURNAME = "USER_2_SURNAME";
-	String USER_2_SHORTPROFILE = "USER_2_SHORTPROFILE";
-	String USER_2_LOCATION = "USER_2_LOCATION";
-	String USER_2_PROVIDER_ID = "USER_2_PROVIDER_ID";
-	String USER_2_PROVIDER_USERID = "USER_2_PROVIDER_USERID";
+	String USER_2_FORENAME = "Nikkol"; 
+	String USER_2_SURNAME = "Shiva";
+	String USER_2_SHORTPROFILE = "Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet consectetur.";
+	String USER_2_LOCATION = "Brighton";
+	String USER_2_PROVIDER_ID = "dolores";
+	String USER_2_PROVIDER_USERID = "magni";
+	String USER_2_EMAIL = "nikkolshiva@hotmail.com";
+	String USER_2_PASSWORD = "nikkolshiva";
+	User.Type USER_2_TYPE = User.Type.GURU;
 	
-	String USER_3_FORENAME = "USER_3_FORENAME"; 
-	String USER_3_SURNAME = "USER_3_SURNAME";
-	String USER_3_SHORTPROFILE = "USER_3_SHORTPROFILE";
-	String USER_3_LOCATION = "USER_3_LOCATION";
-	String USER_3_PROVIDER_ID = "USER_3_PROVIDER_ID";
-	String USER_3_PROVIDER_USERID = "USER_3_PROVIDER_USERID";
+	String USER_3_FORENAME = "Ishik"; 
+	String USER_3_SURNAME = "Addy";
+	String USER_3_SHORTPROFILE = "Quis autem vel eum iure reprehenderit qui in ea voluptate";
+	String USER_3_LOCATION = "Bristol";
+	String USER_3_PROVIDER_ID = "sequi";
+	String USER_3_PROVIDER_USERID = "nesciunt";
+	String USER_3_EMAIL = "ishik_addy@yahoo.com";
+	String USER_3_PASSWORD = "ishikaddy";
+	User.Type USER_3_TYPE = User.Type.BOTH;
 }

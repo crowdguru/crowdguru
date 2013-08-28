@@ -35,17 +35,17 @@ public class GuruControllerTest {
 	public void respondsGurusRequest() throws Exception {
 		this.mockMvc.perform(get("/gurus"))
 			.andExpect(status().isOk())
-			.andExpect(view().name("gurus/list"));
+			.andExpect(view().name("users/list"));
 	}
 	
 	@Test
 	public void respondsSpecificGuruRequest() throws Exception {
 		this.mockMvc.perform(get("/gurus/123"))
 			.andExpect(status().isOk())
-			.andExpect(view().name("gurus/show"));
+			.andExpect(view().name("users/show"));
 		
 		this.mockMvc.perform(get("/gurus/456"))
 			.andExpect(status().isOk())
-			.andExpect(view().name("gurus/show"));
+			.andExpect(view().name("users/show"));
 	}
 }

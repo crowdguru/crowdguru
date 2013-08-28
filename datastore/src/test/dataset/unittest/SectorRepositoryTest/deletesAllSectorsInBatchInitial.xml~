@@ -1,9 +1,0 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<dataset>
-  <sector id="1" name="SECTOR_1_NAME"/>
-  <sector id="2" name="SECTOR_2_NAME"/>
-  <skill />
-  <user />
-  <user_sector/>
-  <user_skill />
-</dataset>

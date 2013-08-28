@@ -1,17 +1,13 @@
 package org.crowdguru.service.domain.impl;
 
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
 import org.crowdguru.datastore.domain.Cause;
 import org.crowdguru.datastore.domain.User;
 import org.crowdguru.datastore.domain.User.Type;
-import org.crowdguru.datastore.repositories.UserRepository;
 import org.crowdguru.service.domain.CauseService;
-import org.crowdguru.service.domain.EncoderService;
 import org.crowdguru.service.domain.RegistrationService;
-import org.crowdguru.service.domain.UserDetails;
 import org.crowdguru.service.domain.UserService;
 import org.crowdguru.service.exception.InvalidAccountTypeException;
 import org.crowdguru.service.request.RegistrationRequest;
@@ -21,8 +17,6 @@ public class RegistrationServiceImpl implements RegistrationService {
 	
 	private UserService userService; 
 	
-	private EncoderService encoderService;
-	
 	private CauseService causeService;
 	
 	@Autowired
@@ -31,25 +25,21 @@ public class RegistrationServiceImpl implements RegistrationService {
 	}
 
 	@Autowired
-	public void setEncoderService(EncoderService encoderService) {
-		this.encoderService = encoderService;
-	}
-	
-	@Autowired
 	public void setCauseService(CauseService causeService){
 		this.causeService = causeService;
 	}
 	
 	public RegistrationServiceImpl() {
-		log().warn("state=created");	
+		log().warn("activity=create");	
 	}
 
 	@Override
-	public UserDetails register(RegistrationRequest request) throws InvalidAccountTypeException{
+	public User register(RegistrationRequest request) throws InvalidAccountTypeException{
 		log().warn("activity=register");
 		User user = createUser(request);
 		user = processTypeSpecificFields(user, request);
-		return userService.populateUserDetails(user);
+		log().info("activity=register;id=" + user.getId() + ";email=" + user.getEmail());
+		return user;
 	}
 
 	private User createUser(RegistrationRequest request) throws InvalidAccountTypeException {
@@ -57,16 +47,12 @@ public class RegistrationServiceImpl implements RegistrationService {
 		user.setEmail(request.getEmail());
 		user.setForename(request.getForename());
 		user.setSurname(request.getSurname());
-		user.setPassword(encodePassword(request.getPassword()));
+		user.setPassword(request.getPassword());
 		user.setType(determineType(request));
 		user.setLocation(request.getLocation());
 		return userService.save(user);
 	}
 
-	private String encodePassword(String rawPassword) {
-		return encoderService.encode(rawPassword);
-	}
-	
 	private User processTypeSpecificFields(User user, RegistrationRequest request) {
 		if(request.isKeyContact()){
 			user = processKeyContactFields(user, request);

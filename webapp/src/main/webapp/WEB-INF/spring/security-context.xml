@@ -1,37 +1,49 @@
 <beans:beans xmlns="http://www.springframework.org/schema/security"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:beans="http://www.springframework.org/schema/beans"
+    xmlns:context="http://www.springframework.org/schema/context"
     xsi:schemaLocation="http://www.springframework.org/schema/beans 
                     http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
                     http://www.springframework.org/schema/security 
-                    http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+                    http://www.springframework.org/schema/security/spring-security-3.1.xsd
+                    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
 
-    <http disable-url-rewriting="true" create-session="ifRequired">
-    	<intercept-url pattern="/tasks" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
-    	<intercept-url pattern="/tasks/new" access="ROLE_KEYCONTACT"/>
-    	<intercept-url pattern="/" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
-    	<intercept-url pattern="/index" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
-    	<intercept-url pattern="/register" access="IS_AUTHENTICATED_ANONYMOUSLY" />
-    	<intercept-url pattern="/login" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
-    	<intercept-url pattern="/tasks" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
-    	<intercept-url pattern="/gurus" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
-    	<intercept-url pattern="/pages/*" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
-    	<intercept-url pattern="/static/**" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
-    	<intercept-url pattern="/**" access="ROLE_GURU, ROLE_KEYCONTACT" />
-    	<form-login login-page='/login' login-processing-url="/sessions"
+    <http disable-url-rewriting="true" create-session="ifRequired" use-expressions="true">
+    	<intercept-url pattern="/tasks" access="permitAll"/>
+    	<intercept-url pattern="/tasks/new" access="hasRole('ROLE_KEYCONTACT')"/>
+    	<intercept-url pattern="/" access="permitAll"/>
+    	<intercept-url pattern="/index" access="permitAll"/>
+    	<intercept-url pattern="/signup" access="isAnonymous()" />
+    	<intercept-url pattern="/login" access="isAnonymous()"/>
+    	<intercept-url pattern="/gurus" access="permitAll"/>
+    	<intercept-url pattern="/pages/*" access="permitAll"/>
+    	<intercept-url pattern="/static/**" access="permitAll"/>
+    	<intercept-url pattern="/**" access="hasAnyRole('ROLE_GURU', 'ROLE_KEYCONTACT')" />
+    	<form-login login-page='/signup' login-processing-url="/sessions"
 			username-parameter="email" password-parameter="password" 
-			default-target-url="/profile"/>
+			default-target-url="/home" authentication-success-handler-ref="sessionUserMaintainer"/>
     	
     	<!-- Remove session cookie en logout. This is not guaranteed! -->
     	<logout logout-url="/logout" delete-cookies="JSESSIONID"/>
     	
+    	
     	<!-- Prevent multiple sessions. Raise error if attempted -->
-    	<session-management invalid-session-url="/invalidSession">
-    		<concurrency-control max-sessions="1" error-if-maximum-exceeded="true"/>
-    	</session-management>
+    	<session-management invalid-session-url="/invalidSession" />
     </http>
 
-  <authentication-manager>
-    <authentication-provider user-service-ref="basicUserDetailsService"/>
-  </authentication-manager>
+	<beans:bean id="authorityService" 
+		class="org.crowdguru.webapp.security.AuthorityServiceImpl" />
+		
+	<beans:bean id="userDetailsService" 
+		class="org.crowdguru.webapp.security.UserDetailsService" />
+  	
+  	<beans:bean id="securityAccessorService" 
+		class="org.crowdguru.webapp.security.SecurityAccessor" />
+		
+	<beans:bean id="sessionUserMaintainer" 
+		class="org.crowdguru.webapp.security.AuthenticationSuccessHandler" />
+		
+  	<authentication-manager>
+    	<authentication-provider user-service-ref="userDetailsService"/>
+  	</authentication-manager>
 </beans:beans>   

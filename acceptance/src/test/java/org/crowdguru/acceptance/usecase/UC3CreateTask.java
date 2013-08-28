@@ -1,48 +1,50 @@
 package org.crowdguru.acceptance.usecase;
 
-import org.crowdguru.acceptance.page.BrowseTasksPage;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
+
 import org.crowdguru.acceptance.page.CreateTaskPage;
 import org.crowdguru.acceptance.page.IndexPage;
-import org.crowdguru.acceptance.page.LoginPage;
-import org.crowdguru.acceptance.page.ProfilePage;
+import org.crowdguru.datastore.domain.Cause;
+import org.crowdguru.datastore.domain.Task;
 import org.crowdguru.datastore.domain.User;
-import org.crowdguru.datastore.helpers.UserHelper;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * https://github.com/crowdguru/crowdguru/wiki/UC3-Create-task
  */
 public class UC3CreateTask extends UseCaseTest{
 	
-	UserHelper userHelper;
 	
-	@Autowired
-	public void setUserHelper(UserHelper userHelper){
-		this.userHelper = userHelper;
-	}
+	User keyContact;
+	
+	Cause cause;
 	
 	@Before
 	public void setup() throws Exception {
-		loadDataSet("UC3.xml");
+		keyContact = userRepository.save(userHelper.user1());
+		cause = causeRepository.save(causeHelper.cause1());
+		
+		Set<Cause> causes = new HashSet<Cause>();
+		causes.add(cause);
+		keyContact.setCauses(causes);
+		userRepository.save(keyContact);
 	}
 	
 	@Test
 	public void createsAccountAndLogsOn() throws Exception {
 
-		User user = userHelper.user1();
-		
-		IndexPage indexPage = frontEnd.goHome();
-        ProfilePage profilePage = indexPage.login(user.getEmail(), user.getPassword());
+		Task task = taskHelper.task1();
+		IndexPage indexPage = frontEnd.goToIndexPage();
+        indexPage.login(keyContact.getEmail(), keyContact.getPassword());
         
-        CreateTaskPage createTaskPage = profilePage.clickCreateTaskLink();
-        createTaskPage.inputTitle("Test task");
-        createTaskPage.inputShortDescription("Test short description");
-        createTaskPage.inputLongDescription("Test long description");
-        createTaskPage.selectAmount(3);
-        createTaskPage.selectUnit("weeks");
+        CreateTaskPage createTaskPage = indexPage.clickCreateTaskLink();
+        createTaskPage.inputTitle(task.getTitle());
+        createTaskPage.inputShortDescription(task.getShortDescription());
+        createTaskPage.inputLongDescription(task.getLongDescription());
         createTaskPage.clickSubmitButton();
 	}
 	

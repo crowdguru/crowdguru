@@ -36,7 +36,7 @@ function postForm(event, onloadHandler){
 	xhr.addEventListener("load", formPosted, false);
 	xhr.addEventListener("error", formPostFailed, false);
 	xhr.addEventListener("abort", formPostAborted, false);
-	xhr.open("POST", contextPath + "register");
+	xhr.open("POST", contextPath + "signup");
 	xhr.send(fd);
 }
 

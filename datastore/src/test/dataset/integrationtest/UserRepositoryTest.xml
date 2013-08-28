@@ -6,6 +6,10 @@
   <hibernate_sequences SEQUENCE_NAME="HasId" SEQUENCE_NEXT_HI_VALUE="1"/>
   <skillgroup/>
   <skillgroup_skill/>
-  <user id="1" shortProfile="USER_1_SHORTPROFILE" forename="USER_1_FORENAME" location="USER_1_LOCATION" providerId="USER_1_PROVIDER_ID" providerUserId="USER_1_PROVIDER_USERID" surname="USER_1_SURNAME"/>
-  <user id="2" shortProfile="USER_2_SHORTPROFILE" forename="USER_2_FORENAME" location="USER_2_LOCATION" providerId="USER_2_PROVIDER_ID" providerUserId="USER_2_PROVIDER_USERID" surname="USER_2_SURNAME"/>
+  <user id="1" shortProfile="Sed ut perspiciatis unde omnis iste natus error sit voluptatem." 
+  	forename="Caleb" location="London" providerId="accusantium" providerUserId="doloremque" 
+  	surname="Ace" type="1" email="calebace@gmail.com" password="calebace"/>
+  <user id="2" shortProfile="Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet consectetur." 
+  	forename="Nikkol" location="Brighton" providerId="dolores" providerUserId="magni" 
+  	surname="Shiva" type="0" email="nikkolshiva@hotmail.com" password="nikkolshiva"/>
 </dataset>

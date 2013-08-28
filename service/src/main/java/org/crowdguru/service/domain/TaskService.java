@@ -13,4 +13,6 @@ public interface TaskService {
 	public List<SkillGroup> getSkillGroups();
 
 	public List<Task> getTasks();
+
+	public Task getTaskById(Long taskId);
 }

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en-GB" xmlns:th="http://www.thymeleaf.org">
+<head th:substituteby="fragments/head::head">
+<meta charset="utf-8 " />
+<title th:text="CrowdGuru | Let's work together!">CrowdGuru |
+	Let's work together!</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="The new helping community" />
+
+<link href="http://fonts.googleapis.com/css?family=Cabin+Sketch:400,700"
+	rel="stylesheet" />
+<link href="../../../static/lib/bootstrap/css/bootstrap.min.css"
+	th:href="@{/static/lib/bootstrap/css/bootstrap.min.css}"
+	rel="stylesheet" />
+<link href="../../../static/css/crowdguru.css"
+	th:href="@{/static/css/crowdguru.css}" rel="stylesheet" />
+<link rel="shortcut icon" href="../../../static/img/favicon.ico"
+	type="image/x-icon" th:href="@{/static/img/favicon.ico}" />
+</head>
+<body>
+	<header th:substituteby="fragments/navbar::navbar"
+		class="navbar navbar-fixed-top" role="banner">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target=".navbar-collapse">
+					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="../index.html" th:href="@{/}">CrowdGuru</a>
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					<li><a href="../tasks/list.html" th:href="@{/tasks}">Browse
+							tasks</a></li>
+					<li><a href="../gurus/list.html" th:href="@{/gurus}">Browse
+							gurus</a></li>
+				</ul>
+				<form class="navbar-form navbar-right" role="logon"
+					th:action="@{/sessions}" method="POST">
+					<div class="form-group">
+						<label class="sr-only" for="inputLoginEmail">Email address</label>
+						<input type="email" id="inputLoginEmail" placeholder="Email"
+							name="email" class="form-control input-sm"></input>
+					</div>
+					<div class="form-group">
+						<label class="sr-only" for="inputLoginPassword">Password</label> <input
+							type="password" id="inputLoginPassword" placeholder="Password"
+							name="password" class="form-control input-sm"></input>
+					</div>
+					<button type="submit" id="buttonLogon"
+						class="btn btn-sm btn-default">Log on</button>
+				</form>
+			</div>
+		</div>
+	</header>
+	<main id="content" role="main">
+	<div class="container">
+		<section class="hero-unit">
+			<h1>Terms and Conditions</h1>
+			<h2>Move along. Nothing to see here.</h2>
+			<p>This will be a "content-ish" page without much functionality.</p>
+		</section>
+	</div>
+	</main>
+	<footer th:substituteby="fragments/footer :: footer" class="container"
+		role="footer">
+		<p>A footer. &#9426; CrowdGuru.org. To view our Terms and
+			Conditions please click here.</p>
+		<ul class="footer-links">
+			<li><a href="./case-studies.html"
+				th:href="@{/pages/case-studies}">Case studies</a></li>
+			<li><a href="./faq.html" th:href="@{/pages/faq}">FAQs</a></li>
+			<li><a href="./support-us.html"
+				th:href="@{/pages/support-us}">Support Us</a></li>
+			<li><a href="./contact.html" th:href="@{/pages/contact}">Contact
+					Us</a></li>
+			<li><a href="./about.html" th:href="@{/pages/about}">About
+					Us</a></li>
+		</ul>
+	</footer>
+	<span th:include="fragments/js::js"> <script
+			src="../../../static/lib/jquery/jquery-1.9.1.js"
+			th:src="@{/static/lib/jquery/jquery-1.9.1.js}" type="text/javascript"></script>
+		<script src="http://use.edgefonts.net/cedarville-cursive;kranky.js"
+			type="text/javascript"></script> <script
+			src="http://use.edgefonts.net/cedarville-cursive;kranky.js"
+			type="text/javascript"></script> <!--[if lt IE 9]>
+				<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+			<![endif]--> <script
+			src="../../../static/lib/bootstrap/js/bootstrap.min.js"
+			th:src="@{/static/lib/bootstrap/js/bootstrap.min.js}"
+			type="text/javascript"></script>
+	</span>
+</body>
+</html>

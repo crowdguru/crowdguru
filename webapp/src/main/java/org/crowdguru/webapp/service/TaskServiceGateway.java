@@ -33,4 +33,8 @@ public class TaskServiceGateway {
 	public List<Task> getTasks() {
 		return taskService.getTasks();
 	}
+
+	public Task getTaskById(Long id) {
+		return taskService.getTaskById(id);
+	}
 }

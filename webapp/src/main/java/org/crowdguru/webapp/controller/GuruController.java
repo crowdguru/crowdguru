@@ -12,11 +12,11 @@ public class GuruController {
 	
 	@RequestMapping(method=RequestMethod.GET)
 	public String users(Model m) {
-		return "gurus/list";
+		return "users/list";
 	}
 	
-	@RequestMapping(value="/{guruId}", method=RequestMethod.GET)
-	public String user(@PathVariable Long guruId, Model m) {
-		return "gurus/show";
+	@RequestMapping(value="/{id}", method=RequestMethod.GET)
+	public String user(@PathVariable Long id, Model m) {
+		return "users/show";
 	}
 }

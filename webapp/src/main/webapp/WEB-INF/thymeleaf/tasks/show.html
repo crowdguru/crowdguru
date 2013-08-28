@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en-GB" xmlns:th="http://www.thymeleaf.org">
+<head th:substituteby="fragments/head::head">
+<meta charset="utf-8 " />
+<title th:text="CrowdGuru | Let's work together!">CrowdGuru |
+	Let's work together!</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="The new helping community" />
+
+<link href="http://fonts.googleapis.com/css?family=Cabin+Sketch:400,700"
+	rel="stylesheet" />
+<link href="../../../static/lib/bootstrap/css/bootstrap.min.css"
+	th:href="@{/static/lib/bootstrap/css/bootstrap.min.css}"
+	rel="stylesheet" />
+<link href="../../../static/css/crowdguru.css"
+	th:href="@{/static/css/crowdguru.css}" rel="stylesheet" />
+<link rel="shortcut icon" href="../../../static/img/favicon.ico"
+	type="image/x-icon" th:href="@{/static/img/favicon.ico}" />
+</head>
+<body>
+	<header th:substituteby="fragments/navbar::navbar"
+		class="navbar navbar-fixed-top" role="banner">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target=".navbar-collapse">
+					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="../index.html" th:href="@{/}">CrowdGuru</a>
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					<li><a href="../tasks/list.html" th:href="@{/tasks}">Browse
+							tasks</a></li>
+					<li><a href="../gurus/list.html" th:href="@{/gurus}">Browse
+							gurus</a></li>
+				</ul>
+				<form class="navbar-form navbar-right" role="logon"
+					th:action="@{/sessions}" method="POST">
+					<div class="form-group">
+						<label class="sr-only" for="inputLoginEmail">Email address</label>
+						<input type="email" id="inputLoginEmail" placeholder="Email"
+							name="email" class="form-control input-sm"></input>
+					</div>
+					<div class="form-group">
+						<label class="sr-only" for="inputLoginPassword">Password</label> <input
+							type="password" id="inputLoginPassword" placeholder="Password"
+							name="password" class="form-control input-sm"></input>
+					</div>
+					<button type="submit" id="buttonLogon"
+						class="btn btn-sm btn-default">Log on</button>
+				</form>
+			</div>
+		</div>
+	</header>
+	<main id="content" role="main">
+	<div class="container">
+		<h2 th:text="'Task #' + ${task.id}">Task #10</h2>
+		<div class="col-md-9">
+			<div class="col-md-3">
+				<div class="thumbnail">
+					<img th:src="@{/static/img/sampledata/task-ad-img-small.jpg}"
+						class="img-responsive" />
+				</div>
+			</div>
+			<div class="col-md-9">
+				<table class="table table-condensed">
+					<tbody>
+						<tr>
+							<td><strong>Title</strong></td>
+							<td th:text="${task.title}">Title</td>
+						</tr>
+						<tr>
+							<td><strong>Cause</strong></td>
+							<td th:text="${task.cause.name}">Cause</td>
+						</tr>
+						<tr>
+							<td><strong>Owner</strong></td>
+							<td th:text="${task.owner.forename} + ' ' + ${task.owner.surname}">Key contact</td>
+						</tr>
+						<tr>
+							<td><strong>Assigned to</strong></td>
+							<td th:each="assignee : ${task.assignees}" th:unless="${#sets.isEmpty(task.assignees)}"><span th:text="${assignee.forename} + ' ' + ${assignee.lastname} + ' '" ></span></td>
+							<td th:if="${#sets.isEmpty(task.assignees)}"></td>
+						</tr>
+						<tr>
+							<td><strong>Description</strong></td>
+							<td th:text="${task.shortDescription}">Short description</td>
+						</tr>
+						<tr>
+							<td><strong>Goal</strong></td>
+							<td th:text="''">Goal</td>
+						</tr>
+						<tr>
+							<td><strong>Time frame</strong></td>
+							<td th:text="${task.amount} + ' ' + ${task.unit}">3 weeks</td>
+						</tr>
+						<tr>
+							<td><strong>EAE</strong></td>
+							<td th:text="''"></td>
+						</tr>
+						<tr>
+							<td><strong>Preffered Communication</strong></td>
+							<td th:text="''"></td>
+						</tr>
+						<tr>
+							<td><strong>Help needed</strong></td>
+							<td th:text="''"></td>
+						</tr>
+						<tr>
+							<td><strong>Details</strong></td>
+							<td th:text="${task.longDescription}">Long description</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class="modal fade" id="modalOfferHelp" tabindex="-1"
+				role="dialog" aria-labelledby="labelModalOfferHelp"
+				aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button id="buttonCloseModal" type="button" class="close" 
+								aria-hidden="true">&times;</button>
+							<h4 class="modal-title" id="labelModalOfferHelp">Offer Help</h4>
+						</div>
+						<div class="modal-body">
+							<form class="form" role="offerHelp">
+								<div class="form-group">
+									<p>Enter your message below</p>
+									<label for="textareaMessage">Message</label>
+									<textarea row="5" class="form-control" id="textareaMessage"></textarea>
+								</div>
+							</form>
+						</div>
+						<div class="modal-footer">
+							<button id="buttonSendOffer" type="button" 
+								class="btn btn-primary">Send</button>
+							<button id="buttonCancelOffer" type="button" 
+								class="btn btn-default">Cancel</button>
+						</div>
+					</div><!-- /.modal-content -->
+				</div><!-- /.modal-dialog -->
+			</div>
+			<a id="buttonOfferHelp" class="btn btn-primary btn-lg">
+				Offer Help</a>
+		</div>
+	</div>
+	</main>
+	<footer th:substituteby="fragments/footer :: footer" class="container"
+		role="footer">
+		<p>A footer. &#9426; CrowdGuru.org. To view our Terms and
+			Conditions please click here.</p>
+		<ul class="footer-links">
+			<li><a href="./case-studies.html"
+				th:href="@{/pages/case-studies}">Case studies</a></li>
+			<li><a href="./faq.html" th:href="@{/pages/faq}">FAQs</a></li>
+			<li><a href="./support-us.html" th:href="@{/pages/support-us}">Support
+					Us</a></li>
+			<li><a href="./contact.html" th:href="@{/pages/contact}">Contact
+					Us</a></li>
+			<li><a href="./about.html" th:href="@{/pages/about}">About
+					Us</a></li>
+		</ul>
+	</footer>
+	<div th:include="fragments/js::js" th:remove="tag">
+		<script src="../../../static/lib/jquery/jquery-1.9.1.js"
+			th:src="@{/static/lib/jquery/jquery-1.9.1.js}" type="text/javascript">
+		</script>
+		<script src="http://use.edgefonts.net/cedarville-cursive;kranky.js"
+			type="text/javascript">
+		</script>
+		<script src="http://use.edgefonts.net/cedarville-cursive;kranky.js"
+			type="text/javascript">
+		</script>
+		<!--[if lt IE 9]>
+			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		<script src="../../../static/lib/bootstrap/js/bootstrap.min.js"
+			th:src="@{/static/lib/bootstrap/js/bootstrap.min.js}"
+			type="text/javascript">
+		</script>
+	</div>
+	<script th:inline="javascript">
+	/*<![CDATA[*/
+        var Crowdguru = {};
+    	Crowdguru.taskLongAd = (function(){
+		    /*[+
+			var endpoint  = [[@{/tasks/}]] + [[${task.id}]] + "/offerHelp";
+			+]*/
+			
+			/*[- */
+			var endpoint = "./tasks/1/offerHelp";
+			/* -]*/
+			
+			var EVENT_OFFER_HELP = "Crowdguru.TaskLongAd.OfferHelp";
+		    
+		    var EVENT_CANCEL_OFFER = "Crowdguru.TaskLongAd.CancelOffer";
+		    
+		    var EVENT_CANCEL_OFFER = "Crowdguru.TaskLongAd.CancelOffer";
+		    
+		    var EVENT_MESSAGE_CHANGE = "Crowdguru.TaskLongAd.MessageChange";
+		    
+		    var EVENT_SEND_OFFER = "Crowdguru.TaskLongAd.SendOffer";
+		    
+		    var EVENT_OFFER_SENT_SUCCESS = "Crowdguru.TaskLongAd.OfferSentSuccess";
+		    
+		    var EVENT_OFFER_SENT_FAILURE = "Crowdguru.TaskLongAd.OfferSentFailure";
+		    
+		    var model = {
+		    	message: "I\'d love to help on your task. Please Accept this offer and send me your contact details so we can get started.",
+		    	
+		    	setMessage: function(msg){
+		    		this.message = msg;
+		    	},
+		    	
+		    	getMessage: function(){
+		    		return this.message;
+		    	},
+		    	
+				postHelpOffer: function(){
+					self = this;
+		    		$.ajax({
+			    		type: "POST",
+			    		url: endpoint,
+			    		// The key needs to match your method's input parameter (case-sensitive).
+			    		data: JSON.stringify({ message: this.message }),
+			    		contentType: "application/json; charset=utf-8",
+			    		dataType: "json",
+			    		success: function(data){
+			    			$(self).trigger(EVENT_OFFER_SENT_SUCCESS, [data]);	
+			    		},
+			    		failure: function(data){
+			    			$(self).trigger(EVENT_OFFER_SENT_FAILURE, [data]);
+			    		},
+					});
+				},
+		    };
+		    
+		    function View(model, elements){
+		    	this.model = model;
+		    	this.elements = elements;
+		    	var self = this;
+		    	
+		    	this.elements.buttonOfferHelp.bind("click", function(){
+		    		$(self).trigger(EVENT_OFFER_HELP);
+		    	});
+		    	
+		    	this.elements.buttonCloseModal.bind("click", function(){
+		    		$(self).trigger(EVENT_CANCEL_OFFER);	
+		    	});
+		    	
+		    	this.elements.buttonCancelOffer.bind("click", function(){
+		    		$(self).trigger(EVENT_CANCEL_OFFER);	
+		    	});
+		    	
+		    	this.elements.textareaMessage.bind("change", function(){
+		    		$(self).trigger(EVENT_MESSAGE_CHANGE, [$(this).val()]);
+		    	});
+		    	
+		    	this.elements.buttonSendOffer.bind("click", function(){
+		    		$(self).trigger(EVENT_SEND_OFFER);
+		    	});
+		    	
+		    	$(this.model).bind(EVENT_OFFER_SENT_SUCCESS, function(evt, data){
+		    		self.offerSentSuccess(data);
+		    	});
+		    	
+		    	$(this.model).bind(EVENT_OFFER_SENT_FAILURE, function(evt, data){
+		    		self.offerSentFailure(data);
+		    	})
+		    };
+		    
+		    View.prototype = {
+		    	alert: '<div class="col-md-3 alert alert-dismissable fade in"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button> </div>',
+		    	
+		    	offerSent: function(){
+		    		console.log('Offer submitted');
+		    	},
+		    	
+		    	show: function(){
+					var message = this.model.getMessage();
+					this.elements.textareaMessage.val(message);
+		    		this.elements.modal.modal('show');
+		    	},
+		    	
+		    	hide: function(){
+		    		this.elements.modal.modal('hide');
+		    	},
+		    	
+		    	offerSentSuccess: function(data){
+		    		var alert = $(this.alert);
+		    		alert.addClass("alert-info");
+		    		alert.append("Your offer has ben sent.");
+		    		alert.addClass("bottom-right-alert");
+		    		$("body").append(alert);
+		    		console.log("stat: " + JSON.stringify(data));
+		    	},
+		    	
+		    	offerSentFailure: function(data){
+		    		var alert = $(this.alert);
+		    		alert.addClass("alert-warning");
+		    		alert.append(data.stat);
+		    		alert.addClass("bottom-right-alert");
+		    		$("body").append(alert);
+		    		console.log("stat: " + JSON.stringify(data));
+		    	},
+		    };
+		    
+		    function Controller(view, model){
+		    	this.view = view;
+		    	this.model = model;
+		    	var self = this;
+		    	$(this.view).bind(EVENT_OFFER_HELP, function(){
+		    		self.offerHelp();
+		    	});
+		    	
+		    	$(this.view).bind(EVENT_CANCEL_OFFER, function(){
+		    		self.cancelOffer();
+		    	});
+		    	
+		    	$(this.view).bind(EVENT_MESSAGE_CHANGE, function(event, msg){
+		    		self.messageChanged(msg);
+		    	});
+		    	
+		    	$(this.view).bind(EVENT_SEND_OFFER, function(){
+		    		self.sendOffer();
+		    	});
+		    };
+		    
+		    Controller.prototype = {
+		    	offerHelp: function(){
+		    		this.view.show();
+		    	},
+		    	
+		    	cancelOffer: function(){
+		    		this.view.hide();
+		    	},
+		    	
+		    	messageChanged: function(msg){
+		    		this.model.setMessage(msg);
+		    	},
+		    	
+		    	sendOffer: function(){
+		    		this.view.hide();
+		    		this.model.postHelpOffer();
+		    	},
+		    };
+		    
+		    return {
+		    	initialize: function(elements){
+		    		var view = new View(model, elements);
+		    		var controller = new Controller(view, model);
+		    	}	
+		    };
+		})();
+
+	    $(function(){
+	    	Crowdguru.taskLongAd.initialize({
+	    		buttonOfferHelp: $("#buttonOfferHelp"),
+	    		modal: $("#modalOfferHelp"),
+	    		buttonSendOffer: $("#buttonSendOffer"),
+	    		buttonCancelOffer: $("#buttonCancelOffer"),
+	    		buttonCloseModal: $("#buttonCloseModal"),
+	    		textareaMessage: $("#textareaMessage"),
+	    	});
+	    });
+	/*]]>*/
+	</script>
+</body>
+</html>

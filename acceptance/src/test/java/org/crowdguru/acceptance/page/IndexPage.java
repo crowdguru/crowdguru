@@ -2,7 +2,7 @@ package org.crowdguru.acceptance.page;
 
 import org.openqa.selenium.WebDriver;
 
-public class IndexPage extends Page {
+public class IndexPage extends PageWithNavBar {
 	
 	private static final String LOGON_BUTTON_XPATH =  "//button[@id='buttonLogon']";
 	
@@ -26,16 +26,14 @@ public class IndexPage extends Page {
 		this.clearAndSendKeys(findElement(PASSWORD_INPUT_XPATH), password);		
 	}
 	
-	public ProfilePage login(String email, String password){
+	public void login(String email, String password){
 		typeEmail(email);
 		typePassword(password);
-		return clickLogOnButton();
+		clickLogOnButton();
 	}
 	
-	public ProfilePage clickLogOnButton() {
+	public void clickLogOnButton() {
 		this.click(findElement(LOGON_BUTTON_XPATH));
-		ProfilePage page = new ProfilePage(driver, baseUrl);
-		return page;
 	}
 	
 	public RegisterPage clickBecomeGuruButton() {
