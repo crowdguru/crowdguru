@@ -2,17 +2,33 @@ package org.crowdguru.acceptance.usecase;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.sql.SQLException;
+import java.util.Collections;
+
+import javassist.compiler.NoFieldException;
+
+import javax.management.Notification;
 
 import org.apache.commons.io.FileUtils;
 import org.crowdguru.acceptance.driver.WebDriverFactory;
 import org.crowdguru.acceptance.driver.WebDriverGateway;
-import org.crowdguru.acceptance.page.FrontEnd;
+import org.crowdguru.acceptance.page.Navigator;
+import org.crowdguru.datastore.domain.Cause;
+import org.crowdguru.datastore.domain.Task;
+import org.crowdguru.datastore.domain.User;
+import org.crowdguru.datastore.helpers.CauseHelper;
 import org.crowdguru.datastore.helpers.DatabaseTesterHelper;
 import org.crowdguru.datastore.helpers.FileOperationsHelper;
+import org.crowdguru.datastore.helpers.NotificationHelper;
+import org.crowdguru.datastore.helpers.OfferHelper;
+import org.crowdguru.datastore.helpers.TaskHelper;
+import org.crowdguru.datastore.helpers.UserHelper;
+import org.crowdguru.datastore.repositories.CauseRepository;
+import org.crowdguru.datastore.repositories.NotificationRepository;
+import org.crowdguru.datastore.repositories.OfferRepository;
+import org.crowdguru.datastore.repositories.TaskRepository;
+import org.crowdguru.datastore.repositories.UserRepository;
 import org.dbunit.DatabaseUnitException;
-import org.dbunit.dataset.DataSetException;
 import org.dbunit.dataset.IDataSet;
 import org.junit.After;
 import org.junit.Before;
@@ -32,38 +48,52 @@ public abstract class UseCaseTest {
 
 	protected WebDriverFactory driverFactory;
 	
-	protected FrontEnd frontEnd;
+	protected Navigator frontEnd;
 	
 	protected WebDriver driver;
 	
 	@Autowired
+	protected UserRepository userRepository;
+	
+	@Autowired
+	protected CauseRepository causeRepository;
+	
+	@Autowired
+	protected TaskRepository taskRepository;
+	
+	@Autowired
+	protected NotificationRepository notificationRepository;
+	
+	@Autowired
+	protected OfferRepository offerRepository;
+	
+	@Autowired
+	protected UserHelper userHelper;
+	
+	@Autowired
+	protected CauseHelper causeHelper;
+	
+	@Autowired
+	protected TaskHelper taskHelper;
+	
+	@Autowired
+	protected NotificationHelper notificationHelper;
+	
+	@Autowired
+	protected OfferHelper offerHelper;
+	
+	@Autowired
 	protected FileOperationsHelper fileHelper;
 
-	@Autowired
-	protected DatabaseTesterHelper databaseTester;
-	
 	public UseCaseTest(){
 		this.driverFactory = WebDriverGateway.getPhantomJSFactory();
-//		this.driverFactory = WebDriverGateway.getFirefoxFactory();
 	}
 	
 	@Before
 	public void initializeDriver() throws Exception {
 		driver = driverFactory.create();
-		frontEnd = new FrontEnd();
+		frontEnd = new Navigator();
 		frontEnd.setDriver(driver);
-	}
-	
-	protected void loadDataSet(String fileName) throws DatabaseUnitException, SQLException, Exception{
-		IDataSet dataset = fileHelper.loadFromFlatXmlFile(fileName);
-		databaseTester.cleanInsert(dataset);
-	}
-	
-	@After
-	public void cleanDatabase() throws SQLException, Exception{
-		boolean res = databaseTester.disableForeignKeyIntegrityCheck();
-		databaseTester.clean();
-		res = databaseTester.enableForeignKeyIntegrityCheck();
 	}
 	
 	@After
@@ -71,11 +101,23 @@ public abstract class UseCaseTest {
 		driver.quit();
 	}
 	
-	
 	protected void takeScreenshot(String filename) throws IOException{
         File screenshot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
         FileUtils.copyFile(screenshot, new File("/tmp/" + filename));
 	}
 	
-	
+	@After
+	public void cleanDatabase(){
+		taskHelper.removeRelationships();
+		userHelper.removeRelationships();
+		causeHelper.removeRelationships();
+		notificationHelper.removeRelationships();
+		offerHelper.removeRelationships();
+		
+		taskRepository.deleteAllInBatch();
+		causeRepository.deleteAllInBatch();
+		notificationRepository.deleteAllInBatch();
+		offerRepository.deleteAllInBatch();
+		userRepository.deleteAllInBatch();
+	}
 }

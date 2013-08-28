@@ -21,7 +21,7 @@
     	<intercept-url pattern="/**" access="hasAnyRole('ROLE_GURU', 'ROLE_KEYCONTACT')" />
     	<form-login login-page='/signup' login-processing-url="/sessions"
 			username-parameter="email" password-parameter="password" 
-			default-target-url="/home"/>
+			default-target-url="/home" authentication-success-handler-ref="sessionUserMaintainer"/>
     	
     	<!-- Remove session cookie en logout. This is not guaranteed! -->
     	<logout logout-url="/logout" delete-cookies="JSESSIONID"/>
@@ -39,6 +39,9 @@
   	
   	<beans:bean id="securityAccessorService" 
 		class="org.crowdguru.webapp.security.SecurityAccessor" />
+		
+	<beans:bean id="sessionUserMaintainer" 
+		class="org.crowdguru.webapp.security.AuthenticationSuccessHandler" />
 		
   	<authentication-manager>
     	<authentication-provider user-service-ref="userDetailsService"/>

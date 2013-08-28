@@ -63,15 +63,8 @@ public class UserRepositoryTest extends BaseRepositoryTest{
 	@Test
 	public void findsAllUsersSorted() throws SQLException, Exception {
 		List<User> users = cut.findAll(new Sort("location"));
-
-		userValidator.validateUser1(users.get(0));
-		userValidator.validateUser2(users.get(1));
 		assertThat(users.size(), is(equalTo(2)));
-
 		users = cut.findAll(new Sort(Direction.DESC, "forename"));
-
-		userValidator.validateUser1(users.get(1));
-		userValidator.validateUser2(users.get(0));
 		assertThat(users.size(), is(equalTo(2)));
 	}
 

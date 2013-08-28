@@ -65,7 +65,7 @@ public class User extends HasId implements Serializable{
 	private Boolean isLocationDisabled;
 	
 	@ManyToMany
-	Set<Skill> skills;
+	private Set<Skill> skills;
 	
 	@ManyToMany
 	private Set<Cause> causes;
@@ -73,6 +73,9 @@ public class User extends HasId implements Serializable{
 	@OneToMany(mappedBy="owner")
 	private Set<Task> ownedTasks;
 	
+	@ManyToMany(mappedBy="assignees")
+	private Set<Task> assignedTasks;
+	
 	@Lob
-	byte[] avatar;
+	private byte[] avatar;
 }

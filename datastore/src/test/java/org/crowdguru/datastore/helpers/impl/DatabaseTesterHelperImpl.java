@@ -43,7 +43,6 @@ public class DatabaseTesterHelperImpl implements DatabaseTesterHelper {
 	public IDataSet getDataSet() throws SQLException, Exception {
 		IDatabaseConnection dbunitConnection = getJdbcConnection();
 		IDataSet dataset = dbunitConnection.createDataSet();
-		releaseManagedDatabaseConnection(dbunitConnection.getConnection());
 		return dataset;
 	}
 
@@ -59,7 +58,8 @@ public class DatabaseTesterHelperImpl implements DatabaseTesterHelper {
 	@Override
 	public boolean disableForeignKeyIntegrityCheck() throws SQLException, CannotGetJdbcConnectionException, DatabaseUnitException{
 		IDatabaseConnection dbunitConnection = getJdbcConnection();
-		return executeSqlStatement(dbunitConnection, "SET FOREIGN_KEY_CHECKS = 0;");
+		boolean retval = executeSqlStatement(dbunitConnection, "SET FOREIGN_KEY_CHECKS = 0;"); 
+		return true;
 	}
 	
 	@Override
@@ -69,6 +69,7 @@ public class DatabaseTesterHelperImpl implements DatabaseTesterHelper {
 	}
 	
 	private boolean executeSqlStatement(IDatabaseConnection dbunitConnection, String statement) throws SQLException{
-		return dbunitConnection.getConnection().prepareStatement(statement).execute();
+		int a = DataSourceUtils.getTargetConnection(dataSource.getConnection()).prepareStatement(statement).executeUpdate();
+		return true;
 	}
 }

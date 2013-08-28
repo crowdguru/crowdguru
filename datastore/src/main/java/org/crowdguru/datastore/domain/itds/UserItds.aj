@@ -104,6 +104,14 @@ public privileged aspect UserItds {
 		return this.ownedTasks;
 	}
 	
+	public void User.setAssignedTasks(Set<Task> assignedTasks){
+		this.assignedTasks = assignedTasks;
+	}
+	
+	public Set<Task> User.getAssignedTasks(){
+		return this.assignedTasks;
+	}
+	
 	public String User.toString() {
 		return "{ "
 				+ "id: '"             + id             + "', "

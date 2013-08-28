@@ -22,7 +22,8 @@ public class Task extends HasId implements Serializable{
 	@Basic
 	private String title;
 	
-	@Basic
+	@Lob
+	@Basic(fetch=FetchType.LAZY)
 	private String shortDescription;
 	
 	@Lob
@@ -39,13 +40,15 @@ public class Task extends HasId implements Serializable{
 	@Basic(fetch=FetchType.LAZY)
 	private byte[] photo;
 	
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne
 	private User owner;
 	
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne
 	private Cause cause;
 	
 	@ManyToMany
-	Set<Skill> specialisms;
-
+	private Set<Skill> specialisms;
+	
+	@ManyToMany
+	private Set<User> assignees;
 }

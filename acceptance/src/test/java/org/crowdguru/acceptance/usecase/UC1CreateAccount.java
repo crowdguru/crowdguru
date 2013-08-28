@@ -19,25 +19,6 @@ import org.springframework.beans.factory.annotation.Autowired;
  */
 public class UC1CreateAccount extends UseCaseTest{
 
-	UserHelper userHelper;
-	
-	CauseHelper causeHelper;
-	
-	@Autowired
-	public void setUserHelper(UserHelper userHelper){
-		this.userHelper = userHelper;
-	}
-	
-	@Autowired
-	public void setCauseHelper(CauseHelper causeHelper){
-		this.causeHelper = causeHelper;
-	}
-	
-	@Before
-	public void setup() throws Exception {
-		databaseTester.clean();
-	}
-	
 	@After
 	public void logout(){
         frontEnd.logOut();
@@ -77,7 +58,7 @@ public class UC1CreateAccount extends UseCaseTest{
 	}
 	
 	private RegisterPage goToRegistrationPage(){
-		IndexPage indexPage = frontEnd.goHome();
+		IndexPage indexPage = frontEnd.goToIndexPage();
 		return indexPage.clickBecomeGuruButton();
 	}
 }

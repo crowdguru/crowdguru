@@ -83,7 +83,7 @@ public class TaskController {
 
 	@RequestMapping(value="/new", method=RequestMethod.GET)
 	public String newTask(Model model) {
-		log().info("activity=createTask");
+		log().info("activity=newTask");
 		List<SkillGroup> skillGroups = taskService.getSkillGroups();
 		model.addAttribute("skillGroups", skillGroups);
 		return "tasks/new";

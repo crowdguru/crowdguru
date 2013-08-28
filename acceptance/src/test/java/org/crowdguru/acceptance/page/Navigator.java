@@ -3,7 +3,7 @@ package org.crowdguru.acceptance.page;
 import org.openqa.selenium.WebDriver;
 import static org.junit.Assert.assertTrue;
 
-public class FrontEnd {
+public class Navigator {
 
 	private static final String DEFAULT_BASE_URL = "http://localhost:8080/crowdguru";
 	
@@ -11,7 +11,7 @@ public class FrontEnd {
 	
 	private WebDriver driver;
 	
-	public FrontEnd(){
+	public Navigator(){
 		baseUrl = DEFAULT_BASE_URL;
 	}
 
@@ -31,9 +31,16 @@ public class FrontEnd {
 		this.driver = driver;
 	}
 
-	public IndexPage goHome(){
+	public IndexPage goToIndexPage(){
 		driver.get(baseUrl);
 		IndexPage page = new IndexPage(driver, baseUrl);
+		return page;
+	}
+	
+	public TaskPage goToTaskPage(Long taskId){
+		String taskPath = "/tasks/" + taskId; 
+		driver.get(baseUrl + taskPath);
+		TaskPage page = new TaskPage(driver, baseUrl, taskId);
 		return page;
 	}
 

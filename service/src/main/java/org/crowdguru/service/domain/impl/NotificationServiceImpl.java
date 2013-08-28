@@ -10,8 +10,6 @@ import org.crowdguru.datastore.domain.QNotification;
 import org.crowdguru.datastore.domain.Task;
 import org.crowdguru.datastore.domain.User;
 import org.crowdguru.service.domain.NotificationService;
-import org.crowdguru.service.domain.TaskService;
-import org.crowdguru.service.domain.UserService;
 import org.crowdguru.service.gateway.NotificationRepositoryGateway;
 import org.crowdguru.service.gateway.UserRepositoryGateway;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +18,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.transaction.annotation.Transactional;
-
-import com.mysema.query.jpa.impl.JPAQuery;
 import com.mysema.query.types.Predicate;
 
 public class NotificationServiceImpl implements NotificationService {

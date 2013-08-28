@@ -80,6 +80,11 @@
 							<td th:text="${task.owner.forename} + ' ' + ${task.owner.surname}">Key contact</td>
 						</tr>
 						<tr>
+							<td><strong>Assigned to</strong></td>
+							<td th:each="assignee : ${task.assignees}" th:unless="${#sets.isEmpty(task.assignees)}"><span th:text="${assignee.forename} + ' ' + ${assignee.lastname} + ' '" ></span></td>
+							<td th:if="${#sets.isEmpty(task.assignees)}"></td>
+						</tr>
+						<tr>
 							<td><strong>Description</strong></td>
 							<td th:text="${task.shortDescription}">Short description</td>
 						</tr>
@@ -289,7 +294,7 @@
 		    	offerSentSuccess: function(data){
 		    		var alert = $(this.alert);
 		    		alert.addClass("alert-info");
-		    		alert.append(data.stat);
+		    		alert.append("Your offer has ben sent.");
 		    		alert.addClass("bottom-right-alert");
 		    		$("body").append(alert);
 		    		console.log("stat: " + JSON.stringify(data));

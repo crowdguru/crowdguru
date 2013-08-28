@@ -88,4 +88,12 @@ public privileged aspect TaskItds {
 	public Cause Task.getCause(){
 		return this.cause;
 	}
+	
+	public void Task.setAssignees(Set<User> assignees){
+		this.assignees = assignees;
+	}
+	
+	public Set<User> Task.getAssignees(){
+		return this.assignees;
+	}
 }

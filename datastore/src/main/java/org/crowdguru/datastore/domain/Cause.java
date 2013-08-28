@@ -30,7 +30,7 @@ public class Cause extends HasId{
 	@ManyToMany
 	private Set<Sector> sectors;
 	
-	@ManyToMany(fetch=FetchType.LAZY, mappedBy="causes")
+	@ManyToMany(mappedBy="causes")
 	private Set<User> keyContacts;
 	
 	@OneToMany(mappedBy="cause")

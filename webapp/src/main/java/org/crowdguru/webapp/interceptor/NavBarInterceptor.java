@@ -2,12 +2,14 @@ package org.crowdguru.webapp.interceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.crowdguru.service.domain.NotificationService;
 import org.crowdguru.service.gateway.NotificationRepositoryGateway;
 import org.crowdguru.webapp.security.SecurityAccessor;
 import org.crowdguru.webapp.service.NotificationServiceGateway;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
@@ -57,5 +59,4 @@ public class NavBarInterceptor extends HandlerInterceptorAdapter {
 		String email = securityAccessor.getCurrentUserEmail();
 		modelAndView.addObject("notifications", notificationService.getNotificationsByUserEmail(email));
 	}
-
 }
